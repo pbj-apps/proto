@@ -44,8 +44,9 @@ message UpdatePatientProviderRequest {
 }
 
 message ListPatientProvidersRequest {
-  heyrenee.v1.messages.PatientProviderStatus patient_provider_status = 1;
-  string patient_id = 2;
+  string patient_id = 1;
+  heyrenee.v1.messages.PatientProviderStatus patient_provider_status = 2;
+  heyrenee.v1.messages.PatientProviderType patient_provider_type = 3;
 }
 
 message ListPatientProvidersResponse {
