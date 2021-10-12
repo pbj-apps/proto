@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1";
+
+import "heyrenee/v1/messages/caregiver.proto";
+
+service CaregiverService {
+  rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
+  rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
+  rpc UpdateCaregiver(UpdateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
+}
+
+message CreateCaregiverRequest {
+  heyrenee.v1.messages.Caregiver caregiver = 1;
+}
+
+message GetCaregiverRequest {
+  string user_id = 1;
+  string caregiver_id = 2;
+}
+
+message UpdateCaregiverRequest {
+  heyrenee.v1.messages.Caregiver caregiver = 1;
+}

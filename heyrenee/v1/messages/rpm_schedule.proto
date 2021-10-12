@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "heyrenee/v1/messages/provider.proto";
+
+message RpmSchedule {
+  string user_id = 1;
+  string patient_id = 2;
+  string rpm_schedule_id = 3;
+  RpmScheduleType rpm_schedule_type = 4;
+  google.protobuf.Timestamp first_measurement_regimen_start = 5;
+  google.protobuf.Duration measurement_regimen_duration = 6;
+  int64 measurements_per_regimen = 7;
+  repeated google.protobuf.Duration measurement_durations_from_regimen_start = 8;
+  oneof provider {
+    string provider_id = 9;
+    Provider provider_message = 10;
+  }
+   RpmScheduleStatus rpm_schedule_status = 11;
+}
+
+enum RpmScheduleType {
+  RPM_SCHEDULE_TYPE_UNSPECIFIED = 0;
+  RPM_SCHEDULE_TYPE_HEART_RATE = 1;
+  RPM_SCHEDULE_TYPE_BLOOD_PRESSURE = 2;
+  RPM_SCHEDULE_TYPE_PULSE = 3;
+  RPM_SCHEDULE_TYPE_SP_O2 = 4;
+  RPM_SCHEDULE_TYPE_WEIGHT = 5;
+  RPM_SCHEDULE_TYPE_GLUCOSE = 6;
+}
+
+enum RpmScheduleStatus {
+  RPM_SCHEDULE_STATUS_UNSPECIFIED = 0;
+  RPM_SCHEDULE_ACTIVE = 1;
+  RPM_SCHEDULE_INACTIVE = 2;
+}

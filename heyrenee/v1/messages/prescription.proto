@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "heyrenee/v1/messages/medication.proto";
+import "heyrenee/v1/messages/provider.proto";
+
+message Prescription {
+  string user_id = 1;
+  string patient_id = 2;
+  oneof medication {
+    string medication_id = 3;
+    Medication medication_message = 4;
+  }
+  string prescription_id = 5;
+  oneof provider {
+    string provider_id = 6;
+    Provider provider_message = 7;
+  }
+  string provider_instructions = 8;
+  string patient_instructions = 9;
+  int64 refill_count = 10;
+  google.protobuf.Duration refill_frequency = 11;
+  PrescriptionStatus prescription_status = 12;
+  google.protobuf.Timestamp first_medication_regimen_start = 13;
+  google.protobuf.Duration medication_regimen_duration = 14;
+  int64 medication_doses_per_regimen = 15;
+  repeated google.protobuf.Duration medication_dose_durations_from_regimen_start = 16;
+}
+
+enum PrescriptionStatus {
+  PRESCRIPTION_STATUS_UNSPECIFIED = 0;
+  PRESCRIPTION_ACTIVE = 1;
+  PRESCRIPTION_INACTIVE = 2;
+}

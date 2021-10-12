@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1";
+
+import "heyrenee/v1/messages/medication_dose.proto";
+import "heyrenee/v1/messages/prescription.proto";
+import "heyrenee/v1/messages/refill.proto";
+
+service MedicationService {
+  rpc CreatePrescription(CreatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {}
+  rpc UpdatePrescription(UpdatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {}
+  rpc ListPrescriptions(ListPrescriptionsRequest) returns (ListPrescriptionsResponse) {}
+
+  rpc ListMedicationDoses(ListMedicationDosesRequest) returns (ListMedicationDosesResponse) {}
+
+  rpc ListRefills(ListRefillsRequest) returns (ListRefillsResponse) {}
+}
+
+message CreatePrescriptionRequest {
+  heyrenee.v1.messages.Prescription prescription = 1;
+}
+
+message UpdatePrescriptionRequest {
+  heyrenee.v1.messages.Prescription prescription = 1;
+}
+
+message ListPrescriptionsRequest {
+  string patient_id = 1;
+  heyrenee.v1.messages.PrescriptionStatus prescription_status = 2;
+}
+
+message ListPrescriptionsResponse {
+  repeated heyrenee.v1.messages.Prescription prescriptions = 1;
+}
+
+message ListMedicationDosesRequest {
+  string prescription_id = 1;
+}
+
+message ListMedicationDosesResponse {
+  repeated heyrenee.v1.messages.MedicationDose medication_doses = 1;
+}
+
+message ListRefillsRequest {
+  string prescription_id = 1;
+}
+
+message ListRefillsResponse {
+  repeated heyrenee.v1.messages.Refill refills = 1;
+}

@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+import "google/protobuf/timestamp.proto";
+
+message RpmMeasurement {
+  string user_id = 1;
+  string patient_id = 2;
+  string rpm_schedule_id = 3;
+  string rpm_measurement_id = 4;
+  repeated RpmMeasurementResult rpm_measurement_results = 5;
+  google.protobuf.Timestamp time_taken = 6;
+}
+
+message RpmMeasurementResult {
+  string rpm_measurement_result_id = 1;
+  double value = 2;
+  RpmMeasurementResultUnit rpm_measurement_result_unit = 3;
+  RpmMeasurementResultType rpm_measurement_result_type = 4;
+}
+
+enum RpmMeasurementResultUnit {
+  RPM_MEASUREMENT_RESULT_UNIT_UNSPECIFIED = 0;
+  RPM_MEASUREMENT_RESULT_UNIT_BPM = 1;
+  RPM_MEASUREMENT_RESULT_UNIT_LBS = 2;
+  RPM_MEASUREMENT_RESULT_UNIT_PERCENTAGE = 3;
+  RPM_MEASUREMENT_RESULT_UNIT_MG_DL = 4;
+  RPM_MEASUREMENT_RESULT_UNIT_MM_HG = 5;
+  RPM_MEASUREMENT_RESULT_UNIT_CELSIUS = 6;
+}
+
+enum RpmMeasurementResultType {
+  RPM_MEASUREMENT_RESULT_TYPE_UNSPECIFIED = 0;
+  RPM_MEASUREMENT_RESULT_TYPE_WEIGHT = 1;
+  RPM_MEASUREMENT_RESULT_TYPE_SPO2 = 2;
+  RPM_MEASUREMENT_RESULT_TYPE_BPM = 3;
+  RPM_MEASUREMENT_RESULT_TYPE_GLUCOSE = 4;
+  RPM_MEASUREMENT_RESULT_TYPE_DIA = 5;
+  RPM_MEASUREMENT_RESULT_TYPE_SYS = 6;
+  RPM_MEASUREMENT_RESULT_TYPE_TEMP = 7;
+}

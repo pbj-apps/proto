@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1";
+
+import "heyrenee/v1/messages/appointment.proto";
+
+service AppointmentService {
+  rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {}
+}
+
+message ListAppointmentsRequest {
+  AppointmentType appointment_type = 1;
+  string patient_id = 2;
+}
+
+message ListAppointmentsResponse {
+  repeated heyrenee.v1.messages.Appointment appointments = 1;
+}
+
+enum AppointmentType {
+  APPOINTMENT_TYPE_UNSPECIFIED = 0;
+  APPOINTMENT_UPCOMING = 1;
+}

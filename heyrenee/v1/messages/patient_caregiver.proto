@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+import "heyrenee/v1/messages/caregiver.proto";
+
+message PatientCaregiver {
+  string user_id = 1;
+  string patient_id = 2;
+  oneof caregiver {
+    string caregiver_id = 3;
+    Caregiver caregiver_message = 4;
+  }
+  string preferred_name = 5;
+  PatientCaregiverType patient_caregiver_type = 6;
+  PatientCaregiverAccess patient_caregiver_access = 7;
+  PatientCaregiverRelationship patient_caregiver_relationship = 8;
+}
+
+enum PatientCaregiverType {
+  PATIENT_CAREGIVER_TYPE_UNSPECIFIED = 0;
+  PATIENT_CAREGIVER_TYPE_PRIMARY = 1;
+}
+
+enum PatientCaregiverAccess {
+  PATIENT_CAREGIVER_ACCESS_UNSPECIFIED = 0;
+  PATIENT_CAREGIVER_ACCESS_NONE = 1;
+  PATIENT_CAREGIVER_ACCESS_DASHBOARD = 2;
+}
+
+enum PatientCaregiverRelationship {
+  PATIENT_CAREGIVER_RELATIONSHIP_UNSPECIFIED = 0;
+  PATIENT_CAREGIVER_RELATIONSHIP_CHILD = 1;
+  PATIENT_CAREGIVER_RELATIONSHIP_PARENT = 2;
+  PATIENT_CAREGIVER_RELATIONSHIP_GRANDPARENT = 3;
+  PATIENT_CAREGIVER_RELATIONSHIP_GRANDCHILD = 4;
+  PATIENT_CAREGIVER_RELATIONSHIP_EXTENDED_FAMILY = 5;
+  PATIENT_CAREGIVER_RELATIONSHIP_FRIEND = 6;
+  PATIENT_CAREGIVER_RELATIONSHIP_HEALTH_AIDE = 7;
+  PATIENT_CAREGIVER_RELATIONSHIP_OTHER = 8;
+}

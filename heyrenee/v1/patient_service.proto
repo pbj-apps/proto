@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1";
+
+import "heyrenee/v1/messages/patient.proto";
+import "heyrenee/v1/messages/patient_provider.proto";
+import "heyrenee/v1/messages/patient_caregiver.proto";
+
+service PatientService {
+  rpc CreatePatient(CreatePatientRequest) returns (heyrenee.v1.messages.Patient) {}
+  rpc GetPatient(GetPatientRequest) returns (heyrenee.v1.messages.Patient) {}
+  rpc UpdatePatient(UpdatePatientRequest) returns (heyrenee.v1.messages.Patient) {}
+
+  rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
+  rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
+  rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {}
+
+  rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
+  rpc UpdatePatientCaregiver(UpdatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
+  rpc ListPatientCaregivers(ListPatientCaregiversRequest) returns (ListPatientCaregiversResponse) {}
+}
+
+message CreatePatientRequest {
+  heyrenee.v1.messages.Patient patient = 1;
+}
+
+message GetPatientRequest {
+  string user_id = 1;
+  string patient_id = 2;
+}
+
+message UpdatePatientRequest {
+  heyrenee.v1.messages.Patient patient = 1;
+}
+
+message CreatePatientProviderRequest {
+  heyrenee.v1.messages.PatientProvider patient_provider = 1;
+}
+
+message UpdatePatientProviderRequest {
+  heyrenee.v1.messages.PatientProvider patient_provider = 1;
+}
+
+message ListPatientProvidersRequest {
+  heyrenee.v1.messages.PatientProviderStatus patient_provider_status = 1;
+  string patient_id = 2;
+}
+
+message ListPatientProvidersResponse {
+  repeated heyrenee.v1.messages.PatientProvider patient_providers = 1;
+}
+
+message CreatePatientCaregiverRequest {
+  heyrenee.v1.messages.PatientCaregiver patient_caregiver = 1;
+}
+
+message UpdatePatientCaregiverRequest {
+  heyrenee.v1.messages.PatientCaregiver patient_caregiver = 1;
+}
+
+message ListPatientCaregiversRequest {
+  string patient_id = 1;
+}
+
+message ListPatientCaregiversResponse {
+  repeated heyrenee.v1.messages.PatientCaregiver patient_caregivers = 1;
+}

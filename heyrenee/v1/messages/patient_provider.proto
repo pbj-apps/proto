@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+import "heyrenee/v1/messages/provider.proto";
+
+message PatientProvider {
+  string user_id = 1;
+  string patient_id = 2;
+  oneof provider {
+    string provider_id = 3;
+    Provider provider_message = 4;
+  }
+  string cell_phone = 5;
+  string contact_instructions = 6;
+  string contact_info = 7;
+  string specialty = 8;
+  PatientProviderStatus patient_provider_status = 9;
+}
+
+enum PatientProviderStatus {
+  PATIENT_PROVIDER_STATUS_UNSPECIFIED = 0;
+  PATIENT_PROVIDER_ACTIVE = 1;
+  PATIENT_PROVIDER_INACTIVE = 2;
+}

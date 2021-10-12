@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1";
+
+import "heyrenee/v1/messages/rpm_schedule.proto";
+import "heyrenee/v1/messages/rpm_measurement.proto";
+
+service RpmService {
+  rpc ListRpmSchedules(ListRpmSchedulesRequest) returns (ListRpmSchedulesResponse) {}
+  rpc ListRpmMeasurements(ListRpmMeasurementsRequest) returns (ListRpmMeasurementsResponse) {}
+}
+
+message ListRpmSchedulesRequest {
+  string patient_id = 1;
+  heyrenee.v1.messages.RpmScheduleStatus rpm_schedule_status = 2;
+}
+
+message ListRpmSchedulesResponse {
+  repeated heyrenee.v1.messages.RpmSchedule rpm_schedules = 1;
+}
+
+message ListRpmMeasurementsRequest {
+  string rpm_schedule_id = 1;
+}
+
+message ListRpmMeasurementsResponse {
+  repeated heyrenee.v1.messages.RpmMeasurement rpm_measurements = 1;
+}

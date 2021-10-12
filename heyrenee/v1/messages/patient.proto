@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+import "google/protobuf/timestamp.proto";
+
+message Patient {
+  string user_id = 1;
+  string patient_id = 2;
+  string first_name = 3;
+  string middle_name = 4;
+  string last_name = 5;
+  string primary_phone = 6;
+  google.protobuf.Timestamp date_of_birth = 7;
+  Sex sex = 8;
+  string email = 9;
+  repeated string address_lines = 10;
+  string city = 11;
+  string state = 12;
+  string zip = 13;
+  string concierge_id = 14;
+  string preferred_name = 15;
+  MaritalStatus marital_status = 16;
+  Language preferred_language = 17;
+  Ethnicity ethnicity = 18;
+  string mobile_phone = 19;
+  string other_phone = 20;
+  string notes = 21;
+  string name_pronunciation = 22;
+}
+
+enum Sex {
+  SEX_UNSPECIFIED = 0;
+  SEX_MALE = 1;
+  SEX_FEMALE = 2;
+}
+
+enum MaritalStatus {
+  MARITAL_STATUS_UNSPECIFIED = 0;
+  MARITAL_STATUS_SINGLE = 1;
+  MARITAL_STATUS_MARRIED = 2;
+}
+
+enum Language {
+  LANGUAGE_UNSPECIFIED = 0;
+  LANGUAGE_ENGLISH = 1;
+  LANGUAGE_SPANISH = 2;
+  LANGUAGE_OTHER = 3;
+}
+
+enum Ethnicity {
+  ETHNICITY_UNSPECIFIED = 0;
+  ETHNICITY_ASIAN_AMERICAN = 1;
+  ETHNICITY_BLACK_OR_AFRICAN_AMERICAN = 2;
+  ETHNICITY_WHITE_OR_EUROPEAN_AMERICAN = 3;
+  ETHNICITY_AMERICAN_INDIAN_OR_ALASKA_NATIVE = 4;
+  ETHNICITY_NATIVE_HAWAIIAN_OR_PACIFIC_ISLANDER = 5;
+}

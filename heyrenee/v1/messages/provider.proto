@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+message Provider {
+  string provider_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  repeated string address_lines = 4;
+  string city = 5;
+  string state = 6;
+  string zip = 7;
+  string phone = 8;
+  string specialty = 9;
+  string npi = 10;
+  string facility = 11;
+  string hours = 12;
+  string ribbon_id = 13;
+  string secondary_facility = 14;
+  repeated string secondary_address_lines = 15;
+  string secondary_city = 16;
+  string secondary_state = 17;
+  string secondary_zip = 18;
+  string secondary_phone = 19;
+  string secondary_specialty = 20;
+  string secondary_hours = 21;
+}
