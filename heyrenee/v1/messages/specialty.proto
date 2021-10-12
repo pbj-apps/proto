@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+
+enum Specialty {
+  SPECIALTY_UNSPECIFIED = 0;
+  SPECIALTY_ENDOCRINOLOGIST = 1;
+}

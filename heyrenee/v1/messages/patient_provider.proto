@@ -5,6 +5,7 @@ package heyrenee.v1.messages;
 option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
 
 import "heyrenee/v1/messages/provider.proto";
+import "heyrenee/v1/messages/specialty.proto";
 
 message PatientProvider {
   string user_id = 1;
@@ -16,12 +17,18 @@ message PatientProvider {
   string cell_phone = 5;
   string contact_instructions = 6;
   string contact_info = 7;
-  string specialty = 8;
-  PatientProviderStatus patient_provider_status = 9;
+  PatientProviderStatus patient_provider_status = 8;
+  PatientProviderType patient_provider_type = 9;
+  Specialty specialty = 10;
 }
 
 enum PatientProviderStatus {
   PATIENT_PROVIDER_STATUS_UNSPECIFIED = 0;
   PATIENT_PROVIDER_ACTIVE = 1;
   PATIENT_PROVIDER_INACTIVE = 2;
+}
+
+enum PatientProviderType {
+  PATIENT_PROVIDER_TYPE_UNSPECIFIED = 0;
+  PATIENT_PROVIDER_TYPE_PRIMARY = 1;
 }

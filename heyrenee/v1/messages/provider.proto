@@ -4,6 +4,8 @@ package heyrenee.v1.messages;
 
 option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
 
+import "heyrenee/v1/messages/specialty.proto";
+
 message Provider {
   string provider_id = 1;
   string first_name = 2;
@@ -13,7 +15,7 @@ message Provider {
   string state = 6;
   string zip = 7;
   string phone = 8;
-  string specialty = 9;
+  Specialty specialty = 9;
   string npi = 10;
   string facility = 11;
   string hours = 12;
@@ -24,6 +26,6 @@ message Provider {
   string secondary_state = 17;
   string secondary_zip = 18;
   string secondary_phone = 19;
-  string secondary_specialty = 20;
+  Specialty secondary_specialty = 20;
   string secondary_hours = 21;
 }
