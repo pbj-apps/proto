@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package heyrenee.v1.messages;
 
-option go_package = "github.com/HeyReneeInc/coeur/api/heyrenee/v1/messages";
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "heyrenee/v1/messages/specialty.proto";
 
