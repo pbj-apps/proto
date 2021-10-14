@@ -27,6 +27,8 @@ message CreatePatientRequest {
 }
 
 message GetPatientRequest {
+  string user_id = 1;
+  string patient_id = 2;
 }
 
 message UpdatePatientRequest {
