@@ -8,17 +8,15 @@ import "heyrenee/v1/messages/provider.proto";
 import "google/protobuf/timestamp.proto";
 
 message Appointment {
-  string user_id = 1;
-  string patient_id = 2;
   oneof provider {
-    string provider_id = 3;
-    Provider provider_message = 4;
+    string provider_id = 1;
+    Provider provider_message = 2;
   }
-  string appointment_id = 5;
-  google.protobuf.Timestamp date = 6;
-  repeated string address_lines = 7;
-  string city = 8;
-  string state = 9;
-  string zip = 10;
-  string instructions = 11;
+  string appointment_id = 3;
+  google.protobuf.Timestamp date = 4;
+  repeated string address_lines = 5;
+  string city = 6;
+  string state = 7;
+  string zip = 8;
+  string instructions = 9;
 }
