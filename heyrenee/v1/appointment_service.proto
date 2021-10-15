@@ -11,7 +11,8 @@ service AppointmentService {
 }
 
 message ListAppointmentsRequest {
-  AppointmentType appointment_type = 1;
+  string patient_id = 1;
+  AppointmentType appointment_type = 2;
 }
 
 message ListAppointmentsResponse {
