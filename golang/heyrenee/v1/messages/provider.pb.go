@@ -20,32 +20,54 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// A Provider represents a medical care provider.
 type Provider struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProviderId            string    `protobuf:"bytes,1,opt,name=provider_id,json=providerId,proto3" json:"provider_id,omitempty"`
-	FirstName             string    `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName              string    `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	AddressLines          []string  `protobuf:"bytes,4,rep,name=address_lines,json=addressLines,proto3" json:"address_lines,omitempty"`
-	City                  string    `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
-	State                 string    `protobuf:"bytes,6,opt,name=state,proto3" json:"state,omitempty"`
-	Zip                   string    `protobuf:"bytes,7,opt,name=zip,proto3" json:"zip,omitempty"`
-	Phone                 string    `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone,omitempty"`
-	Specialty             Specialty `protobuf:"varint,9,opt,name=specialty,proto3,enum=heyrenee.v1.messages.Specialty" json:"specialty,omitempty"`
-	Npi                   string    `protobuf:"bytes,10,opt,name=npi,proto3" json:"npi,omitempty"`
-	Facility              string    `protobuf:"bytes,11,opt,name=facility,proto3" json:"facility,omitempty"`
-	Hours                 string    `protobuf:"bytes,12,opt,name=hours,proto3" json:"hours,omitempty"`
-	RibbonId              string    `protobuf:"bytes,13,opt,name=ribbon_id,json=ribbonId,proto3" json:"ribbon_id,omitempty"`
-	SecondaryFacility     string    `protobuf:"bytes,14,opt,name=secondary_facility,json=secondaryFacility,proto3" json:"secondary_facility,omitempty"`
-	SecondaryAddressLines []string  `protobuf:"bytes,15,rep,name=secondary_address_lines,json=secondaryAddressLines,proto3" json:"secondary_address_lines,omitempty"`
-	SecondaryCity         string    `protobuf:"bytes,16,opt,name=secondary_city,json=secondaryCity,proto3" json:"secondary_city,omitempty"`
-	SecondaryState        string    `protobuf:"bytes,17,opt,name=secondary_state,json=secondaryState,proto3" json:"secondary_state,omitempty"`
-	SecondaryZip          string    `protobuf:"bytes,18,opt,name=secondary_zip,json=secondaryZip,proto3" json:"secondary_zip,omitempty"`
-	SecondaryPhone        string    `protobuf:"bytes,19,opt,name=secondary_phone,json=secondaryPhone,proto3" json:"secondary_phone,omitempty"`
-	SecondarySpecialty    Specialty `protobuf:"varint,20,opt,name=secondary_specialty,json=secondarySpecialty,proto3,enum=heyrenee.v1.messages.Specialty" json:"secondary_specialty,omitempty"`
-	SecondaryHours        string    `protobuf:"bytes,21,opt,name=secondary_hours,json=secondaryHours,proto3" json:"secondary_hours,omitempty"`
+	// The ID of the Provider.
+	ProviderId string `protobuf:"bytes,1,opt,name=provider_id,json=providerId,proto3" json:"provider_id,omitempty"`
+	// The legal first name of the Provider.
+	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	// The legal last name of the Provider.
+	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	// The primary address at which the Provider practices.
+	AddressLines []string `protobuf:"bytes,4,rep,name=address_lines,json=addressLines,proto3" json:"address_lines,omitempty"`
+	// The primary city in which the Provider practices.
+	City string `protobuf:"bytes,5,opt,name=city,proto3" json:"city,omitempty"`
+	// The primary state in which the Provider practices.
+	State string `protobuf:"bytes,6,opt,name=state,proto3" json:"state,omitempty"`
+	// The primary zip in which the Provider practices.
+	Zip string `protobuf:"bytes,7,opt,name=zip,proto3" json:"zip,omitempty"`
+	// The primary phone number for contacting the Provider.
+	Phone string `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone,omitempty"`
+	// The primary specialty practiced by the Provider.
+	Specialty Specialty `protobuf:"varint,9,opt,name=specialty,proto3,enum=heyrenee.v1.messages.Specialty" json:"specialty,omitempty"`
+	// The National Provider Identifier (NPI) used to identity the Provider.
+	Npi string `protobuf:"bytes,10,opt,name=npi,proto3" json:"npi,omitempty"`
+	// The primary facility of the Provider.
+	Facility string `protobuf:"bytes,11,opt,name=facility,proto3" json:"facility,omitempty"`
+	// The hours that the Provider practices.
+	Hours string `protobuf:"bytes,12,opt,name=hours,proto3" json:"hours,omitempty"`
+	// The ID used to identify the Provider in Ribbon's system.
+	RibbonId string `protobuf:"bytes,13,opt,name=ribbon_id,json=ribbonId,proto3" json:"ribbon_id,omitempty"`
+	// The secondary facility of the Provider.
+	SecondaryFacility string `protobuf:"bytes,14,opt,name=secondary_facility,json=secondaryFacility,proto3" json:"secondary_facility,omitempty"`
+	// The secondary address at which the Provider practices.
+	SecondaryAddressLines []string `protobuf:"bytes,15,rep,name=secondary_address_lines,json=secondaryAddressLines,proto3" json:"secondary_address_lines,omitempty"`
+	// The secondary city in which the Provider practices.
+	SecondaryCity string `protobuf:"bytes,16,opt,name=secondary_city,json=secondaryCity,proto3" json:"secondary_city,omitempty"`
+	// The secondary state in which the Provider practices.
+	SecondaryState string `protobuf:"bytes,17,opt,name=secondary_state,json=secondaryState,proto3" json:"secondary_state,omitempty"`
+	// The secondary zip code in which the Provider practices.
+	SecondaryZip string `protobuf:"bytes,18,opt,name=secondary_zip,json=secondaryZip,proto3" json:"secondary_zip,omitempty"`
+	// The secondary phone number for contacting the Provider.
+	SecondaryPhone string `protobuf:"bytes,19,opt,name=secondary_phone,json=secondaryPhone,proto3" json:"secondary_phone,omitempty"`
+	// The secondary specialty practiced by the Provider.
+	SecondarySpecialty Specialty `protobuf:"varint,20,opt,name=secondary_specialty,json=secondarySpecialty,proto3,enum=heyrenee.v1.messages.Specialty" json:"secondary_specialty,omitempty"`
+	// The secondary hours that the Provider practices.
+	SecondaryHours string `protobuf:"bytes,21,opt,name=secondary_hours,json=secondaryHours,proto3" json:"secondary_hours,omitempty"`
 }
 
 func (x *Provider) Reset() {

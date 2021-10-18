@@ -9,25 +9,26 @@ import "google/protobuf/timestamp.proto";
 
 // An Appointment represents a Patient's scheduled event with a Provider where medical care is provided.
 message Appointment {
+  string patient_id = 1;
   // The Provider that is giving medical care during the Appointment.
   oneof provider {
     // The ID of the Provider.
-    string provider_id = 1;
+    string provider_id = 2;
     // The full Provider object.
-    Provider provider_message = 2;
+    Provider provider_message = 3;
   }
   // The ID of the Appointment.
-  string appointment_id = 3;
+  string appointment_id = 4;
   // The date and time that the Appointment is scheduled for.
-  google.protobuf.Timestamp date = 4;
+  google.protobuf.Timestamp date = 5;
   // The address where the Appointment will take place.
-  repeated string address_lines = 5;
+  repeated string address_lines = 6;
   // The city where the Appointment will take place.
-  string city = 6;
+  string city = 7;
   // The state where the Appointment will take place.
-  string state = 7;
+  string state = 8;
   // The zip code where the Appointment will take place.
-  string zip = 8;
+  string zip = 9;
   // Specific instructions for the Patient to follow for the Appointment.
-  string instructions = 9;
+  string instructions = 10;
 }

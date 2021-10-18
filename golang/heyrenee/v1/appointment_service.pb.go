@@ -21,11 +21,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Specifies the type of Appointment.
 type AppointmentType int32
 
 const (
+	// No Appointment type specified.
 	AppointmentType_APPOINTMENT_TYPE_UNSPECIFIED AppointmentType = 0
-	AppointmentType_APPOINTMENT_UPCOMING         AppointmentType = 1
+	// The Appointment is upcoming, that is it's scheduled datetime is >= the current datetime.
+	AppointmentType_APPOINTMENT_UPCOMING AppointmentType = 1
 )
 
 // Enum value maps for AppointmentType.
@@ -67,12 +70,15 @@ func (AppointmentType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_appointment_service_proto_rawDescGZIP(), []int{0}
 }
 
+// ListAppointmentsRequest is the request message for the ListAppointments method.
 type ListAppointmentsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId       string          `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the Patient to return Appointments for. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The type of Appointments that should be returned.
 	AppointmentType AppointmentType `protobuf:"varint,2,opt,name=appointment_type,json=appointmentType,proto3,enum=heyrenee.v1.AppointmentType" json:"appointment_type,omitempty"`
 }
 
@@ -122,11 +128,13 @@ func (x *ListAppointmentsRequest) GetAppointmentType() AppointmentType {
 	return AppointmentType_APPOINTMENT_TYPE_UNSPECIFIED
 }
 
+// ListAppointmentsResponse is the response message for the ListAppointments method.
 type ListAppointmentsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of Appointments returned.
 	Appointments []*messages.Appointment `protobuf:"bytes,1,rep,name=appointments,proto3" json:"appointments,omitempty"`
 }
 

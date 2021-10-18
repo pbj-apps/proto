@@ -18,6 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppointmentServiceClient interface {
+	// ListAppointments returns a list of Appointments for the specified Patient.
 	ListAppointments(ctx context.Context, in *ListAppointmentsRequest, opts ...grpc.CallOption) (*ListAppointmentsResponse, error)
 }
 
@@ -42,6 +43,7 @@ func (c *appointmentServiceClient) ListAppointments(ctx context.Context, in *Lis
 // All implementations must embed UnimplementedAppointmentServiceServer
 // for forward compatibility
 type AppointmentServiceServer interface {
+	// ListAppointments returns a list of Appointments for the specified Patient.
 	ListAppointments(context.Context, *ListAppointmentsRequest) (*ListAppointmentsResponse, error)
 	mustEmbedUnimplementedAppointmentServiceServer()
 }
