@@ -14,7 +14,7 @@ import "heyrenee/v1/options/auth.proto";
 service AppointmentService {
   // ListAppointments returns a list of Appointments for the specified Patient.
   rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {
-    option (heyrenee.v1.options.authenticate) = true;
+    option (heyrenee.v1.options.authenticated) = true;
   }
 }
 
