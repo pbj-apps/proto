@@ -27,6 +27,7 @@ type Appointment struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Patient that the Appointment belongs to.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
 	// The Provider that is giving medical care during the Appointment.
 	//

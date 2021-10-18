@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 
 // An Appointment represents a Patient's scheduled event with a Provider where medical care is provided.
 message Appointment {
+  // The ID of the Patient that the Appointment belongs to.
   string patient_id = 1;
   // The Provider that is giving medical care during the Appointment.
   oneof provider {

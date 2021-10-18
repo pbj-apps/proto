@@ -17,7 +17,7 @@ message CreateCaregiverRequest {
 }
 
 message GetCaregiverRequest {
-  string caregiver_id = 2;
+  string caregiver_id = 1;
 }
 
 message UpdateCaregiverRequest {
