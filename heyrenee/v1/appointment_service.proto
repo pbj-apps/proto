@@ -6,20 +6,33 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
 import "heyrenee/v1/messages/appointment.proto";
 
+// Appointment Service
+//
+// The Appointment Service provides access to a Patient's Appointments. An Appointment represents a Patient's scheduled
+// event with a Provider where medical care is provided.
 service AppointmentService {
+  // ListAppointments returns a list of Appointments for the specified Patient.
   rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {}
 }
 
+// ListAppointmentsRequest is the request message for the ListAppointments method.
 message ListAppointmentsRequest {
+  // The ID of the Patient to return Appointments for. Required.
   string patient_id = 1;
+  // The type of Appointments that should be returned.
   AppointmentType appointment_type = 2;
 }
 
+// ListAppointmentsResponse is the response message for the ListAppointments method.
 message ListAppointmentsResponse {
+  // The list of Appointments returned.
   repeated heyrenee.v1.messages.Appointment appointments = 1;
 }
 
+// Specifies the type of Appointment.
 enum AppointmentType {
+  // No Appointment type specified.
   APPOINTMENT_TYPE_UNSPECIFIED = 0;
+  // The Appointment is upcoming, that is it's scheduled datetime is >= the current datetime.
   APPOINTMENT_UPCOMING = 1;
 }

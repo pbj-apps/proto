@@ -7,16 +7,27 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 import "heyrenee/v1/messages/provider.proto";
 import "google/protobuf/timestamp.proto";
 
+// An Appointment represents a Patient's scheduled event with a Provider where medical care is provided.
 message Appointment {
+  // The Provider that is giving medical care during the Appointment.
   oneof provider {
+    // The ID of the Provider.
     string provider_id = 1;
+    // The full Provider object.
     Provider provider_message = 2;
   }
+  // The ID of the Appointment.
   string appointment_id = 3;
+  // The date and time that the Appointment is scheduled for.
   google.protobuf.Timestamp date = 4;
+  // The address where the Appointment will take place.
   repeated string address_lines = 5;
+  // The city where the Appointment will take place.
   string city = 6;
+  // The state where the Appointment will take place.
   string state = 7;
+  // The zip code where the Appointment will take place.
   string zip = 8;
+  // Specific instructions for the Patient to follow for the Appointment.
   string instructions = 9;
 }

@@ -6,26 +6,48 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "heyrenee/v1/messages/specialty.proto";
 
+// A Provider represents a medical care provider.
 message Provider {
+  // The ID of the Provider.
   string provider_id = 1;
+  // The legal first name of the Provider.
   string first_name = 2;
+  // The legal last name of the Provider.
   string last_name = 3;
+  // The primary address at which the Provider practices.
   repeated string address_lines = 4;
+  // The primary city in which the Provider practices.
   string city = 5;
+  // The primary state in which the Provider practices.
   string state = 6;
+  // The primary zip in which the Provider practices.
   string zip = 7;
+  // The primary phone number for contacting the Provider.
   string phone = 8;
+  // The primary specialty practiced by the Provider.
   Specialty specialty = 9;
+  // The National Provider Identifier (NPI) used to identity the Provider.
   string npi = 10;
+  // The primary facility of the Provider.
   string facility = 11;
+  // The hours that the Provider practices.
   string hours = 12;
+  // The ID used to identify the Provider in Ribbon's system.
   string ribbon_id = 13;
+  // The secondary facility of the Provider.
   string secondary_facility = 14;
+  // The secondary address at which the Provider practices.
   repeated string secondary_address_lines = 15;
+  // The secondary city in which the Provider practices.
   string secondary_city = 16;
+  // The secondary state in which the Provider practices.
   string secondary_state = 17;
+  // The secondary zip code in which the Provider practices.
   string secondary_zip = 18;
+  // The secondary phone number for contacting the Provider.
   string secondary_phone = 19;
+  // The secondary specialty practiced by the Provider.
   Specialty secondary_specialty = 20;
+  // The secondary hours that the Provider practices.
   string secondary_hours = 21;
 }
