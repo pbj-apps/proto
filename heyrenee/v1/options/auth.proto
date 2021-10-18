@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package heyrenee.v1.options;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/options";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MethodOptions {
+  optional bool authenticate = 50000;
+}
+
+extend google.protobuf.FieldOptions {
+  optional bool authorize = 50000;
+}

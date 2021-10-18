@@ -5,6 +5,7 @@ package heyrenee.v1;
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
 import "heyrenee/v1/messages/appointment.proto";
+import "heyrenee/v1/options/auth.proto";
 
 // Appointment Service
 //
@@ -12,13 +13,15 @@ import "heyrenee/v1/messages/appointment.proto";
 // event with a Provider where medical care is provided.
 service AppointmentService {
   // ListAppointments returns a list of Appointments for the specified Patient.
-  rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {}
+  rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {
+    option (heyrenee.v1.options.authenticate) = true;
+  }
 }
 
 // ListAppointmentsRequest is the request message for the ListAppointments method.
 message ListAppointmentsRequest {
   // The ID of the Patient to return Appointments for. Required.
-  string patient_id = 1;
+  string patient_id = 1 [(heyrenee.v1.options.authorize) = true];
   // The type of Appointments that should be returned.
   AppointmentType appointment_type = 2;
 }
