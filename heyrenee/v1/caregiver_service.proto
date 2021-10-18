@@ -5,10 +5,13 @@ package heyrenee.v1;
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
 import "heyrenee/v1/messages/caregiver.proto";
+import "heyrenee/v1/options/auth.proto";
 
 service CaregiverService {
   rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
-  rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
+  rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
+    option (heyrenee.v1.options.authenticate) = true;
+  }
   rpc UpdateCaregiver(UpdateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
 }
 
@@ -17,7 +20,7 @@ message CreateCaregiverRequest {
 }
 
 message GetCaregiverRequest {
-  string caregiver_id = 1;
+  string caregiver_id = 1 [(heyrenee.v1.options.authorize) = true];
 }
 
 message UpdateCaregiverRequest {
