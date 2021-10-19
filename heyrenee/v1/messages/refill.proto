@@ -7,14 +7,13 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 import "google/protobuf/timestamp.proto";
 
 message Refill {
-  string user_id = 1;
-  string patient_id = 2;
-  string medication_id = 3;
-  string prescription_id = 4;
-  string refill_id = 5;
-  google.protobuf.Timestamp date_written = 6;
-  string pharmacy_id = 9;
-  RefillType refill_type = 10;
+  string patient_id = 1;
+  string medication_id = 2;
+  string prescription_id = 3;
+  string refill_id = 4;
+  google.protobuf.Timestamp date_written = 5;
+  string pharmacy_id = 6;
+  RefillType refill_type = 7;
 }
 
 enum RefillType {

@@ -8,28 +8,28 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "heyrenee/v1/messages/medication.proto";
 import "heyrenee/v1/messages/provider.proto";
+import "heyrenee/v1/options/auth.proto";
 
 message Prescription {
-  string user_id = 1;
-  string patient_id = 2;
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
   oneof medication {
-    string medication_id = 3;
-    Medication medication_message = 4;
+    string medication_id = 2;
+    Medication medication_message = 3;
   }
-  string prescription_id = 5;
+  string prescription_id = 4;
   oneof provider {
-    string provider_id = 6;
-    Provider provider_message = 7;
+    string provider_id = 5;
+    Provider provider_message = 6;
   }
-  string provider_instructions = 8;
-  string patient_instructions = 9;
-  int64 refill_count = 10;
-  google.protobuf.Duration refill_frequency = 11;
-  PrescriptionStatus prescription_status = 12;
-  google.protobuf.Timestamp first_medication_regimen_start = 13;
-  google.protobuf.Duration medication_regimen_duration = 14;
-  int64 medication_doses_per_regimen = 15;
-  repeated google.protobuf.Duration medication_dose_durations_from_regimen_start = 16;
+  string provider_instructions = 7;
+  string patient_instructions = 8;
+  int64 refill_count = 9;
+  google.protobuf.Duration refill_frequency = 10;
+  PrescriptionStatus prescription_status = 11;
+  google.protobuf.Timestamp first_medication_regimen_start = 12;
+  google.protobuf.Duration medication_regimen_duration = 13;
+  int64 medication_doses_per_regimen = 14;
+  repeated google.protobuf.Duration medication_dose_durations_from_regimen_start = 15;
 }
 
 enum PrescriptionStatus {

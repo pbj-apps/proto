@@ -7,15 +7,26 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 import "heyrenee/v1/messages/medication_dose.proto";
 import "heyrenee/v1/messages/prescription.proto";
 import "heyrenee/v1/messages/refill.proto";
+import "heyrenee/v1/options/auth.proto";
 
 service MedicationService {
-  rpc CreatePrescription(CreatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {}
-  rpc UpdatePrescription(UpdatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {}
-  rpc ListPrescriptions(ListPrescriptionsRequest) returns (ListPrescriptionsResponse) {}
+  rpc CreatePrescription(CreatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc UpdatePrescription(UpdatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc ListPrescriptions(ListPrescriptionsRequest) returns (ListPrescriptionsResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
 
-  rpc ListMedicationDoses(ListMedicationDosesRequest) returns (ListMedicationDosesResponse) {}
+  rpc ListMedicationDoses(ListMedicationDosesRequest) returns (ListMedicationDosesResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
 
-  rpc ListRefills(ListRefillsRequest) returns (ListRefillsResponse) {}
+  rpc ListRefills(ListRefillsRequest) returns (ListRefillsResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
 }
 
 message CreatePrescriptionRequest {
@@ -27,7 +38,7 @@ message UpdatePrescriptionRequest {
 }
 
 message ListPrescriptionsRequest {
-  string patient_id = 1;
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
   heyrenee.v1.messages.PrescriptionStatus prescription_status = 2;
 }
 

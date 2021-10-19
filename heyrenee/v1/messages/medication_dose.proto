@@ -7,10 +7,9 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 import "google/protobuf/timestamp.proto";
 
 message MedicationDose {
-  string user_id = 1;
-  string patient_id = 2;
-  string medication_id = 3;
-  string prescription_id = 4;
-  string medication_dose_id = 5;
-  google.protobuf.Timestamp time_taken = 6;
+  string patient_id = 1;
+  string medication_id = 2;
+  string prescription_id = 3;
+  string medication_dose_id = 4;
+  google.protobuf.Timestamp time_taken = 5;
 }
