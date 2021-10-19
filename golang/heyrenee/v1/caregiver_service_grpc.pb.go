@@ -19,8 +19,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CaregiverServiceClient interface {
+	// CreateCaregiver creates a new Caregiver subuser for the User specified by authentication.
 	CreateCaregiver(ctx context.Context, in *CreateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
+	// GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
 	GetCaregiver(ctx context.Context, in *GetCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
+	// UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
 	UpdateCaregiver(ctx context.Context, in *UpdateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
 }
 
@@ -63,8 +66,11 @@ func (c *caregiverServiceClient) UpdateCaregiver(ctx context.Context, in *Update
 // All implementations must embed UnimplementedCaregiverServiceServer
 // for forward compatibility
 type CaregiverServiceServer interface {
+	// CreateCaregiver creates a new Caregiver subuser for the User specified by authentication.
 	CreateCaregiver(context.Context, *CreateCaregiverRequest) (*messages.Caregiver, error)
+	// GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
 	GetCaregiver(context.Context, *GetCaregiverRequest) (*messages.Caregiver, error)
+	// UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
 	UpdateCaregiver(context.Context, *UpdateCaregiverRequest) (*messages.Caregiver, error)
 	mustEmbedUnimplementedCaregiverServiceServer()
 }

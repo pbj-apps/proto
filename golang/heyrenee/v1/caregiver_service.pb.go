@@ -22,11 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Request message for CreateCaregiver.
 type CreateCaregiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Caregiver to create.
 	Caregiver *messages.Caregiver `protobuf:"bytes,1,opt,name=caregiver,proto3" json:"caregiver,omitempty"`
 }
 
@@ -69,6 +71,7 @@ func (x *CreateCaregiverRequest) GetCaregiver() *messages.Caregiver {
 	return nil
 }
 
+// Request message for GetCaregiver.
 type GetCaregiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -107,11 +110,13 @@ func (*GetCaregiverRequest) Descriptor() ([]byte, []int) {
 	return file_heyrenee_v1_caregiver_service_proto_rawDescGZIP(), []int{1}
 }
 
+// Request message for UpdateCaregiver.
 type UpdateCaregiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Caregiver to update the existing Caregiver to.
 	Caregiver *messages.Caregiver `protobuf:"bytes,1,opt,name=caregiver,proto3" json:"caregiver,omitempty"`
 }
 

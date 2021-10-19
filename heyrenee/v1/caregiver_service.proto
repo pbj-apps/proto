@@ -7,24 +7,39 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 import "heyrenee/v1/messages/caregiver.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// Caregiver Service
+//
+// The Caregiver Service provides operations on a User's Caregiver subuser. The User is determined via authentication
+// and as a result Users may only execute CaregiverService methods on their own Caregiver subuser. To create fresh
+// users without authentication, refer to the UserService.
 service CaregiverService {
+  // CreateCaregiver creates a new Caregiver subuser for the User specified by authentication.
   rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
   rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
   rpc UpdateCaregiver(UpdateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 }
 
+// Request message for CreateCaregiver.
 message CreateCaregiverRequest {
+  // The Caregiver to create.
   heyrenee.v1.messages.Caregiver caregiver = 1;
 }
 
-message GetCaregiverRequest {}
+// Request message for GetCaregiver.
+message GetCaregiverRequest {
 
+}
+
+// Request message for UpdateCaregiver.
 message UpdateCaregiverRequest {
+  // The Caregiver to update the existing Caregiver to.
   heyrenee.v1.messages.Caregiver caregiver = 1;
 }
