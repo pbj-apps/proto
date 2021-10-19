@@ -4,9 +4,11 @@ package heyrenee.v1.messages;
 
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
+import "heyrenee/v1/options/auth.proto";
+
 message Caregiver {
   string user_id = 1;
-  string caregiver_id = 2;
+  string caregiver_id = 2 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_CAREGIVER];
   string first_name = 3;
   string last_name = 4;
   string primary_phone = 5;
