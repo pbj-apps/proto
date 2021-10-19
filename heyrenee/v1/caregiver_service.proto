@@ -9,7 +9,7 @@ import "heyrenee/v1/options/auth.proto";
 
 service CaregiverService {
   rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
-    option (heyrenee.v1.options.authenticated) = true;
+    option (heyrenee.v1.options.authenticated) = false;
   }
   rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
     option (heyrenee.v1.options.authenticated) = true;
