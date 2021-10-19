@@ -23,9 +23,7 @@ message CreateCaregiverRequest {
   heyrenee.v1.messages.Caregiver caregiver = 1;
 }
 
-message GetCaregiverRequest {
-  string caregiver_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_CAREGIVER];
-}
+message GetCaregiverRequest {}
 
 message UpdateCaregiverRequest {
   heyrenee.v1.messages.Caregiver caregiver = 1;
