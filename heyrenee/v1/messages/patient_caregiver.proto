@@ -7,16 +7,15 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 import "heyrenee/v1/messages/caregiver.proto";
 
 message PatientCaregiver {
-  string user_id = 1;
-  string patient_id = 2;
+  string patient_id = 1;
   oneof caregiver {
-    string caregiver_id = 3;
-    Caregiver caregiver_message = 4;
+    string caregiver_id = 2;
+    Caregiver caregiver_message = 3;
   }
-  string preferred_name = 5;
-  PatientCaregiverType patient_caregiver_type = 6;
-  PatientCaregiverAccess patient_caregiver_access = 7;
-  PatientCaregiverRelationship patient_caregiver_relationship = 8;
+  string preferred_name = 4;
+  PatientCaregiverType patient_caregiver_type = 5;
+  PatientCaregiverAccess patient_caregiver_access = 6;
+  PatientCaregiverRelationship patient_caregiver_relationship = 7;
 }
 
 enum PatientCaregiverType {
