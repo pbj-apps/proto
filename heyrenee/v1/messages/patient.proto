@@ -7,53 +7,95 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 import "google/protobuf/timestamp.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// A Patient represents a Patient subuser of the HeyRenee system.
 message Patient {
+  // The ID of the Patient.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The Patient's legal first name.
   string first_name = 2;
+  // The Patient's legal middle name.
   string middle_name = 3;
+  // The Patient's legal last name.
   string last_name = 4;
+  // The primary phone number for contacting the Patient.
   string primary_phone = 5;
+  // The Patient's date of birth.
   google.protobuf.Timestamp date_of_birth = 6;
+  // The Patient's sex.
   Sex sex = 7;
+  // The Patient's email address.
   string email = 8;
+  // The address of the Patient's permanent residence.
   repeated string address_lines = 9;
+  // The city of the Patient's permanent residence.
   string city = 10;
+  // The state of the Patient's permanent residence.
   string state = 11;
+  // The zip code of the Patient's permanent residence.
   string zip = 12;
+  // The Patient's preferred name.
   string preferred_name = 13;
+  // The Patient's marital status.
   MaritalStatus marital_status = 14;
+  // The Patient's preferred language.
   Language preferred_language = 15;
+  // The Patient's ethnicity.
   Ethnicity ethnicity = 16;
+  // The mobile phone number for contacting the Patient.
   string mobile_phone = 17;
+  // The alternate phone number for contacting the Patient.
   string other_phone = 18;
+  // Notes about the Patient written by Concierges.
   string notes = 19;
+  // The phonetic pronunciation of the Patient's name.
   string name_pronunciation = 20;
 }
 
+// Sex specifies a biological sex.
 enum Sex {
+  // Sex is not specified.
   SEX_UNSPECIFIED = 0;
+  // The male sex.
   SEX_MALE = 1;
+  // The female sex.
   SEX_FEMALE = 2;
 }
 
+// MaritalStatus specifies a legal marital status.
 enum MaritalStatus {
+  // Marital status is not specified.
   MARITAL_STATUS_UNSPECIFIED = 0;
+  // Marital status is single.
   MARITAL_STATUS_SINGLE = 1;
+  // Marital status is married.
   MARITAL_STATUS_MARRIED = 2;
 }
 
+// Language specifies a language.
 enum Language {
+  // Language is not specified.
   LANGUAGE_UNSPECIFIED = 0;
+  // The english language.
   LANGUAGE_ENGLISH = 1;
+  // The spanish language.
   LANGUAGE_SPANISH = 2;
+  // Any language not otherwise specified in this enum. Differs from LANGUAGE_UNSPECIFIED in that the language is specified
+  // but is not yet supported.
   LANGUAGE_OTHER = 3;
 }
 
+// Ethnicity specifies a legal ethnic grouping.
 enum Ethnicity {
+  // Ethnicity is not specified.
   ETHNICITY_UNSPECIFIED = 0;
+  // Asian American.
   ETHNICITY_ASIAN_AMERICAN = 1;
+  // Black or African American.
   ETHNICITY_BLACK_OR_AFRICAN_AMERICAN = 2;
+  // White or European American.
   ETHNICITY_WHITE_OR_EUROPEAN_AMERICAN = 3;
+  // American Indian or Alaska Native.
   ETHNICITY_AMERICAN_INDIAN_OR_ALASKA_NATIVE = 4;
+  // Native Hawaiian or Pacific Islander.
   ETHNICITY_NATIVE_HAWAIIAN_OR_PACIFIC_ISLANDER = 5;
 }

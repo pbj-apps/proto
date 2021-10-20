@@ -19,7 +19,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PatientServiceClient interface {
+	// GetPatient retrieves a specified Patient subuser.
 	GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
+	// UpdatePatient updates a specified Patient subuser.
 	UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
 	UpdatePatientProvider(ctx context.Context, in *UpdatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
@@ -113,7 +115,9 @@ func (c *patientServiceClient) ListPatientCaregivers(ctx context.Context, in *Li
 // All implementations must embed UnimplementedPatientServiceServer
 // for forward compatibility
 type PatientServiceServer interface {
+	// GetPatient retrieves a specified Patient subuser.
 	GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error)
+	// UpdatePatient updates a specified Patient subuser.
 	UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error)
 	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
 	UpdatePatientProvider(context.Context, *UpdatePatientProviderRequest) (*messages.PatientProvider, error)

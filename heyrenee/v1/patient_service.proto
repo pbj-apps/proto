@@ -9,10 +9,16 @@ import "heyrenee/v1/messages/patient_provider.proto";
 import "heyrenee/v1/messages/patient_caregiver.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// PatientService
+//
+// The PatientService provides methods for management of Patient subusers along with their relationship to other subuser
+// types.
 service PatientService {
+  // GetPatient retrieves a specified Patient subuser.
   rpc GetPatient(GetPatientRequest) returns (heyrenee.v1.messages.Patient) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // UpdatePatient updates a specified Patient subuser.
   rpc UpdatePatient(UpdatePatientRequest) returns (heyrenee.v1.messages.Patient) {
     option (heyrenee.v1.options.authenticated) = true;
   }
@@ -38,11 +44,15 @@ service PatientService {
   }
 }
 
+// Request message for GetPatient.
 message GetPatientRequest {
+  // The ID of the Patient to retrieve.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
 }
 
+// Request message for UpdatePatient.
 message UpdatePatientRequest {
+  // The Patient to update.
   heyrenee.v1.messages.Patient patient = 1;
 }
 
@@ -55,7 +65,7 @@ message UpdatePatientProviderRequest {
 }
 
 message ListPatientProvidersRequest {
-  string patient_id = 1;
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
   heyrenee.v1.messages.PatientProviderStatus patient_provider_status = 2;
   heyrenee.v1.messages.PatientProviderType patient_provider_type = 3;
 }

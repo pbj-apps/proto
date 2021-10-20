@@ -22,12 +22,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Sex specifies a biological sex.
 type Sex int32
 
 const (
+	// Sex is not specified.
 	Sex_SEX_UNSPECIFIED Sex = 0
-	Sex_SEX_MALE        Sex = 1
-	Sex_SEX_FEMALE      Sex = 2
+	// The male sex.
+	Sex_SEX_MALE Sex = 1
+	// The female sex.
+	Sex_SEX_FEMALE Sex = 2
 )
 
 // Enum value maps for Sex.
@@ -71,12 +75,16 @@ func (Sex) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_proto_rawDescGZIP(), []int{0}
 }
 
+// MaritalStatus specifies a legal marital status.
 type MaritalStatus int32
 
 const (
+	// Marital status is not specified.
 	MaritalStatus_MARITAL_STATUS_UNSPECIFIED MaritalStatus = 0
-	MaritalStatus_MARITAL_STATUS_SINGLE      MaritalStatus = 1
-	MaritalStatus_MARITAL_STATUS_MARRIED     MaritalStatus = 2
+	// Marital status is single.
+	MaritalStatus_MARITAL_STATUS_SINGLE MaritalStatus = 1
+	// Marital status is married.
+	MaritalStatus_MARITAL_STATUS_MARRIED MaritalStatus = 2
 )
 
 // Enum value maps for MaritalStatus.
@@ -120,13 +128,19 @@ func (MaritalStatus) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_proto_rawDescGZIP(), []int{1}
 }
 
+// Language specifies a language.
 type Language int32
 
 const (
+	// Language is not specified.
 	Language_LANGUAGE_UNSPECIFIED Language = 0
-	Language_LANGUAGE_ENGLISH     Language = 1
-	Language_LANGUAGE_SPANISH     Language = 2
-	Language_LANGUAGE_OTHER       Language = 3
+	// The english language.
+	Language_LANGUAGE_ENGLISH Language = 1
+	// The spanish language.
+	Language_LANGUAGE_SPANISH Language = 2
+	// Any language not otherwise specified in this enum. Differs from LANGUAGE_UNSPECIFIED in that the language is specified
+	// but is not yet supported.
+	Language_LANGUAGE_OTHER Language = 3
 )
 
 // Enum value maps for Language.
@@ -172,14 +186,21 @@ func (Language) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_proto_rawDescGZIP(), []int{2}
 }
 
+// Ethnicity specifies a legal ethnic grouping.
 type Ethnicity int32
 
 const (
-	Ethnicity_ETHNICITY_UNSPECIFIED                         Ethnicity = 0
-	Ethnicity_ETHNICITY_ASIAN_AMERICAN                      Ethnicity = 1
-	Ethnicity_ETHNICITY_BLACK_OR_AFRICAN_AMERICAN           Ethnicity = 2
-	Ethnicity_ETHNICITY_WHITE_OR_EUROPEAN_AMERICAN          Ethnicity = 3
-	Ethnicity_ETHNICITY_AMERICAN_INDIAN_OR_ALASKA_NATIVE    Ethnicity = 4
+	// Ethnicity is not specified.
+	Ethnicity_ETHNICITY_UNSPECIFIED Ethnicity = 0
+	// Asian American.
+	Ethnicity_ETHNICITY_ASIAN_AMERICAN Ethnicity = 1
+	// Black or African American.
+	Ethnicity_ETHNICITY_BLACK_OR_AFRICAN_AMERICAN Ethnicity = 2
+	// White or European American.
+	Ethnicity_ETHNICITY_WHITE_OR_EUROPEAN_AMERICAN Ethnicity = 3
+	// American Indian or Alaska Native.
+	Ethnicity_ETHNICITY_AMERICAN_INDIAN_OR_ALASKA_NATIVE Ethnicity = 4
+	// Native Hawaiian or Pacific Islander.
 	Ethnicity_ETHNICITY_NATIVE_HAWAIIAN_OR_PACIFIC_ISLANDER Ethnicity = 5
 )
 
@@ -230,31 +251,52 @@ func (Ethnicity) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_proto_rawDescGZIP(), []int{3}
 }
 
+// A Patient represents a Patient subuser of the HeyRenee system.
 type Patient struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId         string                 `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	FirstName         string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	MiddleName        string                 `protobuf:"bytes,3,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
-	LastName          string                 `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	PrimaryPhone      string                 `protobuf:"bytes,5,opt,name=primary_phone,json=primaryPhone,proto3" json:"primary_phone,omitempty"`
-	DateOfBirth       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
-	Sex               Sex                    `protobuf:"varint,7,opt,name=sex,proto3,enum=heyrenee.v1.messages.Sex" json:"sex,omitempty"`
-	Email             string                 `protobuf:"bytes,8,opt,name=email,proto3" json:"email,omitempty"`
-	AddressLines      []string               `protobuf:"bytes,9,rep,name=address_lines,json=addressLines,proto3" json:"address_lines,omitempty"`
-	City              string                 `protobuf:"bytes,10,opt,name=city,proto3" json:"city,omitempty"`
-	State             string                 `protobuf:"bytes,11,opt,name=state,proto3" json:"state,omitempty"`
-	Zip               string                 `protobuf:"bytes,12,opt,name=zip,proto3" json:"zip,omitempty"`
-	PreferredName     string                 `protobuf:"bytes,13,opt,name=preferred_name,json=preferredName,proto3" json:"preferred_name,omitempty"`
-	MaritalStatus     MaritalStatus          `protobuf:"varint,14,opt,name=marital_status,json=maritalStatus,proto3,enum=heyrenee.v1.messages.MaritalStatus" json:"marital_status,omitempty"`
-	PreferredLanguage Language               `protobuf:"varint,15,opt,name=preferred_language,json=preferredLanguage,proto3,enum=heyrenee.v1.messages.Language" json:"preferred_language,omitempty"`
-	Ethnicity         Ethnicity              `protobuf:"varint,16,opt,name=ethnicity,proto3,enum=heyrenee.v1.messages.Ethnicity" json:"ethnicity,omitempty"`
-	MobilePhone       string                 `protobuf:"bytes,17,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
-	OtherPhone        string                 `protobuf:"bytes,18,opt,name=other_phone,json=otherPhone,proto3" json:"other_phone,omitempty"`
-	Notes             string                 `protobuf:"bytes,19,opt,name=notes,proto3" json:"notes,omitempty"`
-	NamePronunciation string                 `protobuf:"bytes,20,opt,name=name_pronunciation,json=namePronunciation,proto3" json:"name_pronunciation,omitempty"`
+	// The ID of the Patient.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The Patient's legal first name.
+	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	// The Patient's legal middle name.
+	MiddleName string `protobuf:"bytes,3,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
+	// The Patient's legal last name.
+	LastName string `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	// The primary phone number for contacting the Patient.
+	PrimaryPhone string `protobuf:"bytes,5,opt,name=primary_phone,json=primaryPhone,proto3" json:"primary_phone,omitempty"`
+	// The Patient's date of birth.
+	DateOfBirth *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
+	// The Patient's sex.
+	Sex Sex `protobuf:"varint,7,opt,name=sex,proto3,enum=heyrenee.v1.messages.Sex" json:"sex,omitempty"`
+	// The Patient's email address.
+	Email string `protobuf:"bytes,8,opt,name=email,proto3" json:"email,omitempty"`
+	// The address of the Patient's permanent residence.
+	AddressLines []string `protobuf:"bytes,9,rep,name=address_lines,json=addressLines,proto3" json:"address_lines,omitempty"`
+	// The city of the Patient's permanent residence.
+	City string `protobuf:"bytes,10,opt,name=city,proto3" json:"city,omitempty"`
+	// The state of the Patient's permanent residence.
+	State string `protobuf:"bytes,11,opt,name=state,proto3" json:"state,omitempty"`
+	// The zip code of the Patient's permanent residence.
+	Zip string `protobuf:"bytes,12,opt,name=zip,proto3" json:"zip,omitempty"`
+	// The Patient's preferred name.
+	PreferredName string `protobuf:"bytes,13,opt,name=preferred_name,json=preferredName,proto3" json:"preferred_name,omitempty"`
+	// The Patient's marital status.
+	MaritalStatus MaritalStatus `protobuf:"varint,14,opt,name=marital_status,json=maritalStatus,proto3,enum=heyrenee.v1.messages.MaritalStatus" json:"marital_status,omitempty"`
+	// The Patient's preferred language.
+	PreferredLanguage Language `protobuf:"varint,15,opt,name=preferred_language,json=preferredLanguage,proto3,enum=heyrenee.v1.messages.Language" json:"preferred_language,omitempty"`
+	// The Patient's ethnicity.
+	Ethnicity Ethnicity `protobuf:"varint,16,opt,name=ethnicity,proto3,enum=heyrenee.v1.messages.Ethnicity" json:"ethnicity,omitempty"`
+	// The mobile phone number for contacting the Patient.
+	MobilePhone string `protobuf:"bytes,17,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
+	// The alternate phone number for contacting the Patient.
+	OtherPhone string `protobuf:"bytes,18,opt,name=other_phone,json=otherPhone,proto3" json:"other_phone,omitempty"`
+	// Notes about the Patient written by Concierges.
+	Notes string `protobuf:"bytes,19,opt,name=notes,proto3" json:"notes,omitempty"`
+	// The phonetic pronunciation of the Patient's name.
+	NamePronunciation string `protobuf:"bytes,20,opt,name=name_pronunciation,json=namePronunciation,proto3" json:"name_pronunciation,omitempty"`
 }
 
 func (x *Patient) Reset() {
