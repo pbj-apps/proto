@@ -52,6 +52,8 @@ message Prescription {
   // The points in time from the start of a regimen that Medication should be taken. Must be positive non-zero durations
   // if supplied.
   repeated google.protobuf.Duration medication_dose_durations_from_regimen_start = 15;
+  // The date the Prescription was written. Required.
+  google.protobuf.Timestamp date_written = 16;
 }
 
 // The status of a Prescription.
