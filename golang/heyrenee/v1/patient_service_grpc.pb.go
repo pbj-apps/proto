@@ -23,14 +23,17 @@ type PatientServiceClient interface {
 	GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	// UpdatePatient updates a specified Patient subuser.
 	UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
-	//
+	// CreatePatientProvider creates a specified PatientProvider.
 	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
-	//
+	// UpdatePatientProvider updates a specified PatientProvider.
 	UpdatePatientProvider(ctx context.Context, in *UpdatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
-	//
+	// ListPatientProviders lists PatientProviders for a specified Patient.
 	ListPatientProviders(ctx context.Context, in *ListPatientProvidersRequest, opts ...grpc.CallOption) (*ListPatientProvidersResponse, error)
+	// CreatePatientCaregiver creates a specified PatientCaregiver.
 	CreatePatientCaregiver(ctx context.Context, in *CreatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
+	// UpdatePatientCaregiver updates a specified PatientCaregiver.
 	UpdatePatientCaregiver(ctx context.Context, in *UpdatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
+	// ListPatientCaregivers lists PatientCaregivers for a specific Patient.
 	ListPatientCaregivers(ctx context.Context, in *ListPatientCaregiversRequest, opts ...grpc.CallOption) (*ListPatientCaregiversResponse, error)
 }
 
@@ -122,14 +125,17 @@ type PatientServiceServer interface {
 	GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error)
 	// UpdatePatient updates a specified Patient subuser.
 	UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error)
-	//
+	// CreatePatientProvider creates a specified PatientProvider.
 	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
-	//
+	// UpdatePatientProvider updates a specified PatientProvider.
 	UpdatePatientProvider(context.Context, *UpdatePatientProviderRequest) (*messages.PatientProvider, error)
-	//
+	// ListPatientProviders lists PatientProviders for a specified Patient.
 	ListPatientProviders(context.Context, *ListPatientProvidersRequest) (*ListPatientProvidersResponse, error)
+	// CreatePatientCaregiver creates a specified PatientCaregiver.
 	CreatePatientCaregiver(context.Context, *CreatePatientCaregiverRequest) (*messages.PatientCaregiver, error)
+	// UpdatePatientCaregiver updates a specified PatientCaregiver.
 	UpdatePatientCaregiver(context.Context, *UpdatePatientCaregiverRequest) (*messages.PatientCaregiver, error)
+	// ListPatientCaregivers lists PatientCaregivers for a specific Patient.
 	ListPatientCaregivers(context.Context, *ListPatientCaregiversRequest) (*ListPatientCaregiversResponse, error)
 	mustEmbedUnimplementedPatientServiceServer()
 }

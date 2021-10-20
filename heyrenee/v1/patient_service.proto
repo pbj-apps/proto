@@ -22,25 +22,27 @@ service PatientService {
   rpc UpdatePatient(UpdatePatientRequest) returns (heyrenee.v1.messages.Patient) {
     option (heyrenee.v1.options.authenticated) = true;
   }
-  //
+  // CreatePatientProvider creates a specified PatientProvider.
   rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {
     option (heyrenee.v1.options.authenticated) = true;
   }
-  //
+  // UpdatePatientProvider updates a specified PatientProvider.
   rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {
     option (heyrenee.v1.options.authenticated) = true;
   }
-  //
+  // ListPatientProviders lists PatientProviders for a specified Patient.
   rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
-
+  // CreatePatientCaregiver creates a specified PatientCaregiver.
   rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // UpdatePatientCaregiver updates a specified PatientCaregiver.
   rpc UpdatePatientCaregiver(UpdatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListPatientCaregivers lists PatientCaregivers for a specific Patient.
   rpc ListPatientCaregivers(ListPatientCaregiversRequest) returns (ListPatientCaregiversResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
@@ -86,18 +88,26 @@ message ListPatientProvidersResponse {
   repeated heyrenee.v1.messages.PatientProvider patient_providers = 1;
 }
 
+// Request message for CreatePatientCaregiver.
 message CreatePatientCaregiverRequest {
+  // The PatientCaregiver to create. Required.
   heyrenee.v1.messages.PatientCaregiver patient_caregiver = 1;
 }
 
+// Request message for UpdatePatientCaregiver.
 message UpdatePatientCaregiverRequest {
+  // The PatientCaregiver to update. Required.
   heyrenee.v1.messages.PatientCaregiver patient_caregiver = 1;
 }
 
+// Request message for ListPatientCaregivers.
 message ListPatientCaregiversRequest {
+  // The ID of the Patient to return PatientCaregivers for.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
 }
 
+// Response message for ListPatientCaregivers.
 message ListPatientCaregiversResponse {
+  // The list of PatientCaregivers.
   repeated heyrenee.v1.messages.PatientCaregiver patient_caregivers = 1;
 }

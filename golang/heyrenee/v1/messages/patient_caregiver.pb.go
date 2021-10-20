@@ -21,11 +21,14 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Specifies a type of PatientCaregiver.
 type PatientCaregiverType int32
 
 const (
+	// The type of PatientCaregiver is unspecified.
 	PatientCaregiverType_PATIENT_CAREGIVER_TYPE_UNSPECIFIED PatientCaregiverType = 0
-	PatientCaregiverType_PATIENT_CAREGIVER_TYPE_PRIMARY     PatientCaregiverType = 1
+	// The Caregiver of the PatientCaregiver is the primary caregiver of the Patient.
+	PatientCaregiverType_PATIENT_CAREGIVER_TYPE_PRIMARY PatientCaregiverType = 1
 )
 
 // Enum value maps for PatientCaregiverType.
@@ -67,12 +70,16 @@ func (PatientCaregiverType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_caregiver_proto_rawDescGZIP(), []int{0}
 }
 
+// Specifies the access that a Caregiver in a PatientCaregiver has to the Patient in a PatientCaregiver.
 type PatientCaregiverAccess int32
 
 const (
+	// The access is not specified.
 	PatientCaregiverAccess_PATIENT_CAREGIVER_ACCESS_UNSPECIFIED PatientCaregiverAccess = 0
-	PatientCaregiverAccess_PATIENT_CAREGIVER_ACCESS_NONE        PatientCaregiverAccess = 1
-	PatientCaregiverAccess_PATIENT_CAREGIVER_ACCESS_DASHBOARD   PatientCaregiverAccess = 2
+	// The Caregiver has no access to the Patient.
+	PatientCaregiverAccess_PATIENT_CAREGIVER_ACCESS_NONE PatientCaregiverAccess = 1
+	// The Caregiver has access to view the Patient dashboard.
+	PatientCaregiverAccess_PATIENT_CAREGIVER_ACCESS_DASHBOARD PatientCaregiverAccess = 2
 )
 
 // Enum value maps for PatientCaregiverAccess.
@@ -116,18 +123,28 @@ func (PatientCaregiverAccess) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_caregiver_proto_rawDescGZIP(), []int{1}
 }
 
+// Specifies the relationship of a Caregiver in a PatientCaregiver to the Patient in a PatientCaregiver.
 type PatientCaregiverRelationship int32
 
 const (
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_UNSPECIFIED     PatientCaregiverRelationship = 0
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_CHILD           PatientCaregiverRelationship = 1
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_PARENT          PatientCaregiverRelationship = 2
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_GRANDPARENT     PatientCaregiverRelationship = 3
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_GRANDCHILD      PatientCaregiverRelationship = 4
+	// The relationship is not specified.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_UNSPECIFIED PatientCaregiverRelationship = 0
+	// The Caregiver is the Patient's child.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_CHILD PatientCaregiverRelationship = 1
+	// The Caregiver is the Patient's parent.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_PARENT PatientCaregiverRelationship = 2
+	// The Caregiver is the Patient's grandparent.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_GRANDPARENT PatientCaregiverRelationship = 3
+	// The Caregiver is the Patient's grandchild.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_GRANDCHILD PatientCaregiverRelationship = 4
+	// The Caregiver is in the Patient's extended family.
 	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_EXTENDED_FAMILY PatientCaregiverRelationship = 5
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_FRIEND          PatientCaregiverRelationship = 6
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_HEALTH_AIDE     PatientCaregiverRelationship = 7
-	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_OTHER           PatientCaregiverRelationship = 8
+	// The Caregiver is the Patient's friend.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_FRIEND PatientCaregiverRelationship = 6
+	// The Caregiver is the Patient's health aide.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_HEALTH_AIDE PatientCaregiverRelationship = 7
+	// The Caregiver has another relationship to the Patient.
+	PatientCaregiverRelationship_PATIENT_CAREGIVER_RELATIONSHIP_OTHER PatientCaregiverRelationship = 8
 )
 
 // Enum value maps for PatientCaregiverRelationship.
@@ -183,19 +200,28 @@ func (PatientCaregiverRelationship) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_caregiver_proto_rawDescGZIP(), []int{2}
 }
 
+// A PatientCaregiver represents a relationship between a Patient and a Caregiver. The relationship indicates that the
+// Caregiver is responsible in some way for managing the healthcare of the Patient.
 type PatientCaregiver struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Patient being cared for by the Caregiver. Required.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The Caregiver that is caring for the Patient. Required.
+	//
 	// Types that are assignable to Caregiver:
 	//	*PatientCaregiver_CaregiverId
 	//	*PatientCaregiver_CaregiverMessage
-	Caregiver                    isPatientCaregiver_Caregiver `protobuf_oneof:"caregiver"`
-	PreferredName                string                       `protobuf:"bytes,4,opt,name=preferred_name,json=preferredName,proto3" json:"preferred_name,omitempty"`
-	PatientCaregiverType         PatientCaregiverType         `protobuf:"varint,5,opt,name=patient_caregiver_type,json=patientCaregiverType,proto3,enum=heyrenee.v1.messages.PatientCaregiverType" json:"patient_caregiver_type,omitempty"`
-	PatientCaregiverAccess       PatientCaregiverAccess       `protobuf:"varint,6,opt,name=patient_caregiver_access,json=patientCaregiverAccess,proto3,enum=heyrenee.v1.messages.PatientCaregiverAccess" json:"patient_caregiver_access,omitempty"`
+	Caregiver isPatientCaregiver_Caregiver `protobuf_oneof:"caregiver"`
+	// The name that the Patient knows the Caregiver by.
+	PreferredName string `protobuf:"bytes,4,opt,name=preferred_name,json=preferredName,proto3" json:"preferred_name,omitempty"`
+	// The type of PatientCaregiver.
+	PatientCaregiverType PatientCaregiverType `protobuf:"varint,5,opt,name=patient_caregiver_type,json=patientCaregiverType,proto3,enum=heyrenee.v1.messages.PatientCaregiverType" json:"patient_caregiver_type,omitempty"`
+	// The access that the Caregiver has to the Patient. Required.
+	PatientCaregiverAccess PatientCaregiverAccess `protobuf:"varint,6,opt,name=patient_caregiver_access,json=patientCaregiverAccess,proto3,enum=heyrenee.v1.messages.PatientCaregiverAccess" json:"patient_caregiver_access,omitempty"`
+	// The relationship of the Caregiver to the Patient. Required.
 	PatientCaregiverRelationship PatientCaregiverRelationship `protobuf:"varint,7,opt,name=patient_caregiver_relationship,json=patientCaregiverRelationship,proto3,enum=heyrenee.v1.messages.PatientCaregiverRelationship" json:"patient_caregiver_relationship,omitempty"`
 }
 
@@ -292,10 +318,12 @@ type isPatientCaregiver_Caregiver interface {
 }
 
 type PatientCaregiver_CaregiverId struct {
+	// The ID of the Caregiver that is caring for the Patient. Required.
 	CaregiverId string `protobuf:"bytes,2,opt,name=caregiver_id,json=caregiverId,proto3,oneof"`
 }
 
 type PatientCaregiver_CaregiverMessage struct {
+	// The Caregiver that is caring for the Patient. Only returned in response, must not be set in requests.
 	CaregiverMessage *Caregiver `protobuf:"bytes,3,opt,name=caregiver_message,json=caregiverMessage,proto3,oneof"`
 }
 

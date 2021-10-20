@@ -334,11 +334,13 @@ func (x *ListPatientProvidersResponse) GetPatientProviders() []*messages.Patient
 	return nil
 }
 
+// Request message for CreatePatientCaregiver.
 type CreatePatientCaregiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The PatientCaregiver to create. Required.
 	PatientCaregiver *messages.PatientCaregiver `protobuf:"bytes,1,opt,name=patient_caregiver,json=patientCaregiver,proto3" json:"patient_caregiver,omitempty"`
 }
 
@@ -381,11 +383,13 @@ func (x *CreatePatientCaregiverRequest) GetPatientCaregiver() *messages.PatientC
 	return nil
 }
 
+// Request message for UpdatePatientCaregiver.
 type UpdatePatientCaregiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The PatientCaregiver to update. Required.
 	PatientCaregiver *messages.PatientCaregiver `protobuf:"bytes,1,opt,name=patient_caregiver,json=patientCaregiver,proto3" json:"patient_caregiver,omitempty"`
 }
 
@@ -428,11 +432,13 @@ func (x *UpdatePatientCaregiverRequest) GetPatientCaregiver() *messages.PatientC
 	return nil
 }
 
+// Request message for ListPatientCaregivers.
 type ListPatientCaregiversRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Patient to return PatientCaregivers for.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
 }
 
@@ -475,11 +481,13 @@ func (x *ListPatientCaregiversRequest) GetPatientId() string {
 	return ""
 }
 
+// Response message for ListPatientCaregivers.
 type ListPatientCaregiversResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of PatientCaregivers.
 	PatientCaregivers []*messages.PatientCaregiver `protobuf:"bytes,1,rep,name=patient_caregivers,json=patientCaregivers,proto3" json:"patient_caregivers,omitempty"`
 }
 

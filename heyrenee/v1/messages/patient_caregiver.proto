@@ -7,37 +7,64 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 import "heyrenee/v1/messages/caregiver.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// A PatientCaregiver represents a relationship between a Patient and a Caregiver. The relationship indicates that the
+// Caregiver is responsible in some way for managing the healthcare of the Patient.
 message PatientCaregiver {
+  // The ID of the Patient being cared for by the Caregiver. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The Caregiver that is caring for the Patient. Required.
   oneof caregiver {
+    // The ID of the Caregiver that is caring for the Patient. Required.
     string caregiver_id = 2;
+    // The Caregiver that is caring for the Patient. Only returned in response, must not be set in requests.
     Caregiver caregiver_message = 3;
   }
+  // The name that the Patient knows the Caregiver by.
   string preferred_name = 4;
+  // The type of PatientCaregiver.
   PatientCaregiverType patient_caregiver_type = 5;
+  // The access that the Caregiver has to the Patient. Required.
   PatientCaregiverAccess patient_caregiver_access = 6;
+  // The relationship of the Caregiver to the Patient. Required.
   PatientCaregiverRelationship patient_caregiver_relationship = 7;
 }
 
+// Specifies a type of PatientCaregiver.
 enum PatientCaregiverType {
+  // The type of PatientCaregiver is unspecified.
   PATIENT_CAREGIVER_TYPE_UNSPECIFIED = 0;
+  // The Caregiver of the PatientCaregiver is the primary caregiver of the Patient.
   PATIENT_CAREGIVER_TYPE_PRIMARY = 1;
 }
 
+// Specifies the access that a Caregiver in a PatientCaregiver has to the Patient in a PatientCaregiver.
 enum PatientCaregiverAccess {
+  // The access is not specified.
   PATIENT_CAREGIVER_ACCESS_UNSPECIFIED = 0;
+  // The Caregiver has no access to the Patient.
   PATIENT_CAREGIVER_ACCESS_NONE = 1;
+  // The Caregiver has access to view the Patient dashboard.
   PATIENT_CAREGIVER_ACCESS_DASHBOARD = 2;
 }
 
+// Specifies the relationship of a Caregiver in a PatientCaregiver to the Patient in a PatientCaregiver.
 enum PatientCaregiverRelationship {
+  // The relationship is not specified.
   PATIENT_CAREGIVER_RELATIONSHIP_UNSPECIFIED = 0;
+  // The Caregiver is the Patient's child.
   PATIENT_CAREGIVER_RELATIONSHIP_CHILD = 1;
+  // The Caregiver is the Patient's parent.
   PATIENT_CAREGIVER_RELATIONSHIP_PARENT = 2;
+  // The Caregiver is the Patient's grandparent.
   PATIENT_CAREGIVER_RELATIONSHIP_GRANDPARENT = 3;
+  // The Caregiver is the Patient's grandchild.
   PATIENT_CAREGIVER_RELATIONSHIP_GRANDCHILD = 4;
+  // The Caregiver is in the Patient's extended family.
   PATIENT_CAREGIVER_RELATIONSHIP_EXTENDED_FAMILY = 5;
+  // The Caregiver is the Patient's friend.
   PATIENT_CAREGIVER_RELATIONSHIP_FRIEND = 6;
+  // The Caregiver is the Patient's health aide.
   PATIENT_CAREGIVER_RELATIONSHIP_HEALTH_AIDE = 7;
+  // The Caregiver has another relationship to the Patient.
   PATIENT_CAREGIVER_RELATIONSHIP_OTHER = 8;
 }
