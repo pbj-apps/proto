@@ -20,15 +20,14 @@ message Patient {
   string city = 10;
   string state = 11;
   string zip = 12;
-  string concierge_id = 13;
-  string preferred_name = 14;
-  MaritalStatus marital_status = 15;
-  Language preferred_language = 16;
-  Ethnicity ethnicity = 17;
-  string mobile_phone = 18;
-  string other_phone = 19;
-  string notes = 20;
-  string name_pronunciation = 21;
+  string preferred_name = 13;
+  MaritalStatus marital_status = 14;
+  Language preferred_language = 15;
+  Ethnicity ethnicity = 16;
+  string mobile_phone = 17;
+  string other_phone = 18;
+  string notes = 19;
+  string name_pronunciation = 20;
 }
 
 enum Sex {
