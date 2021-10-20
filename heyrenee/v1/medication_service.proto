@@ -63,7 +63,7 @@ message ListPrescriptionsResponse {
 
 // Request message for ListMedicationDoses.
 message ListMedicationDosesRequest {
-  // The ID of the Prescription to return MedicationDoses for.
+  // The ID of the Prescription to return MedicationDoses for. Required.
   string prescription_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PRESCRIPTION];
 }
 
@@ -75,7 +75,7 @@ message ListMedicationDosesResponse {
 
 // Request message for ListRefills.
 message ListRefillsRequest {
-  // The ID of the Prescription to return Refills for.
+  // The ID of the Prescription to return Refills for. Required.
   string prescription_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PRESCRIPTION];
 }
 

@@ -28,7 +28,7 @@ type GetPatientRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ID of the Patient to retrieve.
+	// The ID of the Patient to retrieve. Required.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
 }
 
@@ -77,7 +77,7 @@ type UpdatePatientRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The Patient to update.
+	// The Patient to update. Required.
 	Patient *messages.Patient `protobuf:"bytes,1,opt,name=patient,proto3" json:"patient,omitempty"`
 }
 

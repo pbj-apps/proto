@@ -257,21 +257,21 @@ type Patient struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ID of the Patient.
+	// The ID of the Patient. Required.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	// The Patient's legal first name.
+	// The Patient's legal first name. Required.
 	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	// The Patient's legal middle name.
 	MiddleName string `protobuf:"bytes,3,opt,name=middle_name,json=middleName,proto3" json:"middle_name,omitempty"`
-	// The Patient's legal last name.
+	// The Patient's legal last name. Required.
 	LastName string `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	// The primary phone number for contacting the Patient.
+	// The primary phone number for contacting the Patient. Required.
 	PrimaryPhone string `protobuf:"bytes,5,opt,name=primary_phone,json=primaryPhone,proto3" json:"primary_phone,omitempty"`
-	// The Patient's date of birth.
+	// The Patient's date of birth. Required.
 	DateOfBirth *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
 	// The Patient's sex.
 	Sex Sex `protobuf:"varint,7,opt,name=sex,proto3,enum=heyrenee.v1.messages.Sex" json:"sex,omitempty"`
-	// The Patient's email address.
+	// The Patient's email address. Required.
 	Email string `protobuf:"bytes,8,opt,name=email,proto3" json:"email,omitempty"`
 	// The address of the Patient's permanent residence.
 	AddressLines []string `protobuf:"bytes,9,rep,name=address_lines,json=addressLines,proto3" json:"address_lines,omitempty"`
@@ -285,7 +285,7 @@ type Patient struct {
 	PreferredName string `protobuf:"bytes,13,opt,name=preferred_name,json=preferredName,proto3" json:"preferred_name,omitempty"`
 	// The Patient's marital status.
 	MaritalStatus MaritalStatus `protobuf:"varint,14,opt,name=marital_status,json=maritalStatus,proto3,enum=heyrenee.v1.messages.MaritalStatus" json:"marital_status,omitempty"`
-	// The Patient's preferred language.
+	// The Patient's preferred language. Required, must not be LANGUAGE_UNSPECIFIED.
 	PreferredLanguage Language `protobuf:"varint,15,opt,name=preferred_language,json=preferredLanguage,proto3,enum=heyrenee.v1.messages.Language" json:"preferred_language,omitempty"`
 	// The Patient's ethnicity.
 	Ethnicity Ethnicity `protobuf:"varint,16,opt,name=ethnicity,proto3,enum=heyrenee.v1.messages.Ethnicity" json:"ethnicity,omitempty"`

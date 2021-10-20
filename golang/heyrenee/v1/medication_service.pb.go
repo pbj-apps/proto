@@ -233,7 +233,7 @@ type ListMedicationDosesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ID of the Prescription to return MedicationDoses for.
+	// The ID of the Prescription to return MedicationDoses for. Required.
 	PrescriptionId string `protobuf:"bytes,1,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
 }
 
@@ -331,7 +331,7 @@ type ListRefillsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The ID of the Prescription to return Refills for.
+	// The ID of the Prescription to return Refills for. Required.
 	PrescriptionId string `protobuf:"bytes,1,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
 }
 

@@ -9,21 +9,21 @@ import "heyrenee/v1/options/auth.proto";
 
 // A Patient represents a Patient subuser of the HeyRenee system.
 message Patient {
-  // The ID of the Patient.
+  // The ID of the Patient. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
-  // The Patient's legal first name.
+  // The Patient's legal first name. Required.
   string first_name = 2;
   // The Patient's legal middle name.
   string middle_name = 3;
-  // The Patient's legal last name.
+  // The Patient's legal last name. Required.
   string last_name = 4;
-  // The primary phone number for contacting the Patient.
+  // The primary phone number for contacting the Patient. Required.
   string primary_phone = 5;
-  // The Patient's date of birth.
+  // The Patient's date of birth. Required.
   google.protobuf.Timestamp date_of_birth = 6;
   // The Patient's sex.
   Sex sex = 7;
-  // The Patient's email address.
+  // The Patient's email address. Required.
   string email = 8;
   // The address of the Patient's permanent residence.
   repeated string address_lines = 9;
@@ -37,7 +37,7 @@ message Patient {
   string preferred_name = 13;
   // The Patient's marital status.
   MaritalStatus marital_status = 14;
-  // The Patient's preferred language.
+  // The Patient's preferred language. Required, must not be LANGUAGE_UNSPECIFIED.
   Language preferred_language = 15;
   // The Patient's ethnicity.
   Ethnicity ethnicity = 16;
