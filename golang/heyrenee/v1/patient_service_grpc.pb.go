@@ -19,7 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PatientServiceClient interface {
-	CreatePatient(ctx context.Context, in *CreatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
@@ -36,15 +35,6 @@ type patientServiceClient struct {
 
 func NewPatientServiceClient(cc grpc.ClientConnInterface) PatientServiceClient {
 	return &patientServiceClient{cc}
-}
-
-func (c *patientServiceClient) CreatePatient(ctx context.Context, in *CreatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error) {
-	out := new(messages.Patient)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/CreatePatient", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *patientServiceClient) GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error) {
@@ -123,7 +113,6 @@ func (c *patientServiceClient) ListPatientCaregivers(ctx context.Context, in *Li
 // All implementations must embed UnimplementedPatientServiceServer
 // for forward compatibility
 type PatientServiceServer interface {
-	CreatePatient(context.Context, *CreatePatientRequest) (*messages.Patient, error)
 	GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error)
 	UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error)
 	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
@@ -139,9 +128,6 @@ type PatientServiceServer interface {
 type UnimplementedPatientServiceServer struct {
 }
 
-func (UnimplementedPatientServiceServer) CreatePatient(context.Context, *CreatePatientRequest) (*messages.Patient, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePatient not implemented")
-}
 func (UnimplementedPatientServiceServer) GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPatient not implemented")
 }
@@ -177,24 +163,6 @@ type UnsafePatientServiceServer interface {
 
 func RegisterPatientServiceServer(s grpc.ServiceRegistrar, srv PatientServiceServer) {
 	s.RegisterService(&PatientService_ServiceDesc, srv)
-}
-
-func _PatientService_CreatePatient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePatientRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PatientServiceServer).CreatePatient(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.PatientService/CreatePatient",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PatientServiceServer).CreatePatient(ctx, req.(*CreatePatientRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _PatientService_GetPatient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -348,10 +316,6 @@ var PatientService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "heyrenee.v1.PatientService",
 	HandlerType: (*PatientServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreatePatient",
-			Handler:    _PatientService_CreatePatient_Handler,
-		},
 		{
 			MethodName: "GetPatient",
 			Handler:    _PatientService_GetPatient_Handler,

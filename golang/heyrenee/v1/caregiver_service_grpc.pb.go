@@ -19,8 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CaregiverServiceClient interface {
-	// CreateCaregiver creates a new Caregiver subuser for the User specified by authentication.
-	CreateCaregiver(ctx context.Context, in *CreateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
 	// GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
 	GetCaregiver(ctx context.Context, in *GetCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
 	// UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
@@ -33,15 +31,6 @@ type caregiverServiceClient struct {
 
 func NewCaregiverServiceClient(cc grpc.ClientConnInterface) CaregiverServiceClient {
 	return &caregiverServiceClient{cc}
-}
-
-func (c *caregiverServiceClient) CreateCaregiver(ctx context.Context, in *CreateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error) {
-	out := new(messages.Caregiver)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.CaregiverService/CreateCaregiver", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *caregiverServiceClient) GetCaregiver(ctx context.Context, in *GetCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error) {
@@ -66,8 +55,6 @@ func (c *caregiverServiceClient) UpdateCaregiver(ctx context.Context, in *Update
 // All implementations must embed UnimplementedCaregiverServiceServer
 // for forward compatibility
 type CaregiverServiceServer interface {
-	// CreateCaregiver creates a new Caregiver subuser for the User specified by authentication.
-	CreateCaregiver(context.Context, *CreateCaregiverRequest) (*messages.Caregiver, error)
 	// GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
 	GetCaregiver(context.Context, *GetCaregiverRequest) (*messages.Caregiver, error)
 	// UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
@@ -79,9 +66,6 @@ type CaregiverServiceServer interface {
 type UnimplementedCaregiverServiceServer struct {
 }
 
-func (UnimplementedCaregiverServiceServer) CreateCaregiver(context.Context, *CreateCaregiverRequest) (*messages.Caregiver, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCaregiver not implemented")
-}
 func (UnimplementedCaregiverServiceServer) GetCaregiver(context.Context, *GetCaregiverRequest) (*messages.Caregiver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCaregiver not implemented")
 }
@@ -99,24 +83,6 @@ type UnsafeCaregiverServiceServer interface {
 
 func RegisterCaregiverServiceServer(s grpc.ServiceRegistrar, srv CaregiverServiceServer) {
 	s.RegisterService(&CaregiverService_ServiceDesc, srv)
-}
-
-func _CaregiverService_CreateCaregiver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateCaregiverRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CaregiverServiceServer).CreateCaregiver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.CaregiverService/CreateCaregiver",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CaregiverServiceServer).CreateCaregiver(ctx, req.(*CreateCaregiverRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _CaregiverService_GetCaregiver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -162,10 +128,6 @@ var CaregiverService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "heyrenee.v1.CaregiverService",
 	HandlerType: (*CaregiverServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreateCaregiver",
-			Handler:    _CaregiverService_CreateCaregiver_Handler,
-		},
 		{
 			MethodName: "GetCaregiver",
 			Handler:    _CaregiverService_GetCaregiver_Handler,

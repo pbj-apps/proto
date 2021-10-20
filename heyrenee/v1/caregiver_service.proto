@@ -13,10 +13,6 @@ import "heyrenee/v1/options/auth.proto";
 // and as a result Users may only execute CaregiverService methods on their own Caregiver subuser. To create fresh
 // users without authentication, refer to the UserService.
 service CaregiverService {
-  // CreateCaregiver creates a new Caregiver subuser for the User specified by authentication.
-  rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
   // GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
   rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
     option (heyrenee.v1.options.authenticated) = true;
@@ -27,16 +23,8 @@ service CaregiverService {
   }
 }
 
-// Request message for CreateCaregiver.
-message CreateCaregiverRequest {
-  // The Caregiver to create. Required.
-  heyrenee.v1.messages.Caregiver caregiver = 1;
-}
-
 // Request message for GetCaregiver.
-message GetCaregiverRequest {
-
-}
+message GetCaregiverRequest {}
 
 // Request message for UpdateCaregiver.
 message UpdateCaregiverRequest {
