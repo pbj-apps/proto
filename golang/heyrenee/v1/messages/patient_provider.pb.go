@@ -21,12 +21,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Specifies a PatientProvider's status.
 type PatientProviderStatus int32
 
 const (
+	// The PatientProvider's status is unspecified.
 	PatientProviderStatus_PATIENT_PROVIDER_STATUS_UNSPECIFIED PatientProviderStatus = 0
-	PatientProviderStatus_PATIENT_PROVIDER_ACTIVE             PatientProviderStatus = 1
-	PatientProviderStatus_PATIENT_PROVIDER_INACTIVE           PatientProviderStatus = 2
+	// The Provider of the PatientProvider is actively providing healthcare services to the Patient of the PatientProvider.
+	PatientProviderStatus_PATIENT_PROVIDER_ACTIVE PatientProviderStatus = 1
+	// The Provider of the PatientProvider is not actively providing healthcare services to the Patient of the
+	// PatientProvider, but has at some point in the past.
+	PatientProviderStatus_PATIENT_PROVIDER_INACTIVE PatientProviderStatus = 2
 )
 
 // Enum value maps for PatientProviderStatus.
@@ -70,11 +75,14 @@ func (PatientProviderStatus) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_provider_proto_rawDescGZIP(), []int{0}
 }
 
+// Specifies a PatientProvider's type.
 type PatientProviderType int32
 
 const (
+	// The PatientProvider's type in unspecified.
 	PatientProviderType_PATIENT_PROVIDER_TYPE_UNSPECIFIED PatientProviderType = 0
-	PatientProviderType_PATIENT_PROVIDER_TYPE_PRIMARY     PatientProviderType = 1
+	// The Provider of the PatientProvider is the primary provider for the Patient of the PatientProvider.
+	PatientProviderType_PATIENT_PROVIDER_TYPE_PRIMARY PatientProviderType = 1
 )
 
 // Enum value maps for PatientProviderType.
@@ -116,22 +124,33 @@ func (PatientProviderType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_provider_proto_rawDescGZIP(), []int{1}
 }
 
+// A PatientProvider represents a relationship between a Patient and Provider resource. The relationship indicates that
+// the Provider is either currently or has in the past provided healthcare services for the Patient.
 type PatientProvider struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Patient that is receiving healthcare services from the Provider. Required.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The Provider that is providing healthcare services to the Patient. Required.
+	//
 	// Types that are assignable to Provider:
 	//	*PatientProvider_ProviderId
 	//	*PatientProvider_ProviderMessage
-	Provider              isPatientProvider_Provider `protobuf_oneof:"provider"`
-	CellPhone             string                     `protobuf:"bytes,4,opt,name=cell_phone,json=cellPhone,proto3" json:"cell_phone,omitempty"`
-	ContactInstructions   string                     `protobuf:"bytes,5,opt,name=contact_instructions,json=contactInstructions,proto3" json:"contact_instructions,omitempty"`
-	ContactInfo           string                     `protobuf:"bytes,6,opt,name=contact_info,json=contactInfo,proto3" json:"contact_info,omitempty"`
-	PatientProviderStatus PatientProviderStatus      `protobuf:"varint,7,opt,name=patient_provider_status,json=patientProviderStatus,proto3,enum=heyrenee.v1.messages.PatientProviderStatus" json:"patient_provider_status,omitempty"`
-	PatientProviderType   PatientProviderType        `protobuf:"varint,8,opt,name=patient_provider_type,json=patientProviderType,proto3,enum=heyrenee.v1.messages.PatientProviderType" json:"patient_provider_type,omitempty"`
-	Specialty             Specialty                  `protobuf:"varint,9,opt,name=specialty,proto3,enum=heyrenee.v1.messages.Specialty" json:"specialty,omitempty"`
+	Provider isPatientProvider_Provider `protobuf_oneof:"provider"`
+	// The cell phone number specifically for this Patient to use to contact this Provider.
+	CellPhone string `protobuf:"bytes,4,opt,name=cell_phone,json=cellPhone,proto3" json:"cell_phone,omitempty"`
+	// Contact instructions specifically for how this Patient should contact this Provider.
+	ContactInstructions string `protobuf:"bytes,5,opt,name=contact_instructions,json=contactInstructions,proto3" json:"contact_instructions,omitempty"`
+	// Contact information specifically for this Patient to contact this Provider with.
+	ContactInfo string `protobuf:"bytes,6,opt,name=contact_info,json=contactInfo,proto3" json:"contact_info,omitempty"`
+	// The status of the PatientProvider. Required, must not be PATIENT_PROVIDER_STATUS_UNSPECIFIED.
+	PatientProviderStatus PatientProviderStatus `protobuf:"varint,7,opt,name=patient_provider_status,json=patientProviderStatus,proto3,enum=heyrenee.v1.messages.PatientProviderStatus" json:"patient_provider_status,omitempty"`
+	// The type of PatientProvider.
+	PatientProviderType PatientProviderType `protobuf:"varint,8,opt,name=patient_provider_type,json=patientProviderType,proto3,enum=heyrenee.v1.messages.PatientProviderType" json:"patient_provider_type,omitempty"`
+	// The specialty that this Provider specifically offers this Patient.
+	Specialty Specialty `protobuf:"varint,9,opt,name=specialty,proto3,enum=heyrenee.v1.messages.Specialty" json:"specialty,omitempty"`
 }
 
 func (x *PatientProvider) Reset() {
@@ -241,10 +260,13 @@ type isPatientProvider_Provider interface {
 }
 
 type PatientProvider_ProviderId struct {
+	// The ID of the Provider that is providing healthcare services to the Patient. Required.
 	ProviderId string `protobuf:"bytes,2,opt,name=provider_id,json=providerId,proto3,oneof"`
 }
 
 type PatientProvider_ProviderMessage struct {
+	// The Provider that is providing healthcare services to the Patient. Only returned in responses, must not be set
+	// in requests.
 	ProviderMessage *Provider `protobuf:"bytes,3,opt,name=provider_message,json=providerMessage,proto3,oneof"`
 }
 

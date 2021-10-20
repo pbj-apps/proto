@@ -23,8 +23,11 @@ type PatientServiceClient interface {
 	GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	// UpdatePatient updates a specified Patient subuser.
 	UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
+	//
 	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
+	//
 	UpdatePatientProvider(ctx context.Context, in *UpdatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
+	//
 	ListPatientProviders(ctx context.Context, in *ListPatientProvidersRequest, opts ...grpc.CallOption) (*ListPatientProvidersResponse, error)
 	CreatePatientCaregiver(ctx context.Context, in *CreatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
 	UpdatePatientCaregiver(ctx context.Context, in *UpdatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
@@ -119,8 +122,11 @@ type PatientServiceServer interface {
 	GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error)
 	// UpdatePatient updates a specified Patient subuser.
 	UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error)
+	//
 	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
+	//
 	UpdatePatientProvider(context.Context, *UpdatePatientProviderRequest) (*messages.PatientProvider, error)
+	//
 	ListPatientProviders(context.Context, *ListPatientProvidersRequest) (*ListPatientProvidersResponse, error)
 	CreatePatientCaregiver(context.Context, *CreatePatientCaregiverRequest) (*messages.PatientCaregiver, error)
 	UpdatePatientCaregiver(context.Context, *UpdatePatientCaregiverRequest) (*messages.PatientCaregiver, error)

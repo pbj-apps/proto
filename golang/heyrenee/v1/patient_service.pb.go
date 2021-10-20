@@ -120,11 +120,13 @@ func (x *UpdatePatientRequest) GetPatient() *messages.Patient {
 	return nil
 }
 
+// Request message for CreatePatientProvider.
 type CreatePatientProviderRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The PatientProvider to create. Required.
 	PatientProvider *messages.PatientProvider `protobuf:"bytes,1,opt,name=patient_provider,json=patientProvider,proto3" json:"patient_provider,omitempty"`
 }
 
@@ -167,11 +169,13 @@ func (x *CreatePatientProviderRequest) GetPatientProvider() *messages.PatientPro
 	return nil
 }
 
+// Request message for UpdatePatientProvider.
 type UpdatePatientProviderRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The PatientProvider to update. Required.
 	PatientProvider *messages.PatientProvider `protobuf:"bytes,1,opt,name=patient_provider,json=patientProvider,proto3" json:"patient_provider,omitempty"`
 }
 
@@ -214,14 +218,18 @@ func (x *UpdatePatientProviderRequest) GetPatientProvider() *messages.PatientPro
 	return nil
 }
 
+// Request message for ListPatientProviders.
 type ListPatientProvidersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId             string                         `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the Patient to return PatientProviders for. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The PatientProvider status. If specified, only PatientProviders with this status will be returned.
 	PatientProviderStatus messages.PatientProviderStatus `protobuf:"varint,2,opt,name=patient_provider_status,json=patientProviderStatus,proto3,enum=heyrenee.v1.messages.PatientProviderStatus" json:"patient_provider_status,omitempty"`
-	PatientProviderType   messages.PatientProviderType   `protobuf:"varint,3,opt,name=patient_provider_type,json=patientProviderType,proto3,enum=heyrenee.v1.messages.PatientProviderType" json:"patient_provider_type,omitempty"`
+	// The PatientProvider type. If specified, only PatientProviders of this type will be returned.
+	PatientProviderType messages.PatientProviderType `protobuf:"varint,3,opt,name=patient_provider_type,json=patientProviderType,proto3,enum=heyrenee.v1.messages.PatientProviderType" json:"patient_provider_type,omitempty"`
 }
 
 func (x *ListPatientProvidersRequest) Reset() {

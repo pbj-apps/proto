@@ -8,27 +8,48 @@ import "heyrenee/v1/messages/provider.proto";
 import "heyrenee/v1/messages/specialty.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// A PatientProvider represents a relationship between a Patient and Provider resource. The relationship indicates that
+// the Provider is either currently or has in the past provided healthcare services for the Patient.
 message PatientProvider {
+  // The ID of the Patient that is receiving healthcare services from the Provider. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The Provider that is providing healthcare services to the Patient. Required.
   oneof provider {
+    // The ID of the Provider that is providing healthcare services to the Patient. Required.
     string provider_id = 2;
+    // The Provider that is providing healthcare services to the Patient. Only returned in responses, must not be set
+    // in requests.
     Provider provider_message = 3;
   }
+  // The cell phone number specifically for this Patient to use to contact this Provider.
   string cell_phone = 4;
+  // Contact instructions specifically for how this Patient should contact this Provider.
   string contact_instructions = 5;
+  // Contact information specifically for this Patient to contact this Provider with.
   string contact_info = 6;
+  // The status of the PatientProvider. Required, must not be PATIENT_PROVIDER_STATUS_UNSPECIFIED.
   PatientProviderStatus patient_provider_status = 7;
+  // The type of PatientProvider.
   PatientProviderType patient_provider_type = 8;
+  // The specialty that this Provider specifically offers this Patient.
   Specialty specialty = 9;
 }
 
+// Specifies a PatientProvider's status.
 enum PatientProviderStatus {
+  // The PatientProvider's status is unspecified.
   PATIENT_PROVIDER_STATUS_UNSPECIFIED = 0;
+  // The Provider of the PatientProvider is actively providing healthcare services to the Patient of the PatientProvider.
   PATIENT_PROVIDER_ACTIVE = 1;
+  // The Provider of the PatientProvider is not actively providing healthcare services to the Patient of the
+  // PatientProvider, but has at some point in the past.
   PATIENT_PROVIDER_INACTIVE = 2;
 }
 
+// Specifies a PatientProvider's type.
 enum PatientProviderType {
+  // The PatientProvider's type in unspecified.
   PATIENT_PROVIDER_TYPE_UNSPECIFIED = 0;
+  // The Provider of the PatientProvider is the primary provider for the Patient of the PatientProvider.
   PATIENT_PROVIDER_TYPE_PRIMARY = 1;
 }
