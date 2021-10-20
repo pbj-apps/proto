@@ -5,30 +5,30 @@ package heyrenee.v1.messages;
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "google/protobuf/timestamp.proto";
+import "heyrenee/v1/options/auth.proto";
 
 message Patient {
-  string user_id = 1;
-  string patient_id = 2;
-  string first_name = 3;
-  string middle_name = 4;
-  string last_name = 5;
-  string primary_phone = 6;
-  google.protobuf.Timestamp date_of_birth = 7;
-  Sex sex = 8;
-  string email = 9;
-  repeated string address_lines = 10;
-  string city = 11;
-  string state = 12;
-  string zip = 13;
-  string concierge_id = 14;
-  string preferred_name = 15;
-  MaritalStatus marital_status = 16;
-  Language preferred_language = 17;
-  Ethnicity ethnicity = 18;
-  string mobile_phone = 19;
-  string other_phone = 20;
-  string notes = 21;
-  string name_pronunciation = 22;
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  string first_name = 2;
+  string middle_name = 3;
+  string last_name = 4;
+  string primary_phone = 5;
+  google.protobuf.Timestamp date_of_birth = 6;
+  Sex sex = 7;
+  string email = 8;
+  repeated string address_lines = 9;
+  string city = 10;
+  string state = 11;
+  string zip = 12;
+  string concierge_id = 13;
+  string preferred_name = 14;
+  MaritalStatus marital_status = 15;
+  Language preferred_language = 16;
+  Ethnicity ethnicity = 17;
+  string mobile_phone = 18;
+  string other_phone = 19;
+  string notes = 20;
+  string name_pronunciation = 21;
 }
 
 enum Sex {

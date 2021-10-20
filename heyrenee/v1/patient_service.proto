@@ -7,19 +7,36 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 import "heyrenee/v1/messages/patient.proto";
 import "heyrenee/v1/messages/patient_provider.proto";
 import "heyrenee/v1/messages/patient_caregiver.proto";
+import "heyrenee/v1/options/auth.proto";
 
 service PatientService {
-  rpc CreatePatient(CreatePatientRequest) returns (heyrenee.v1.messages.Patient) {}
-  rpc GetPatient(GetPatientRequest) returns (heyrenee.v1.messages.Patient) {}
-  rpc UpdatePatient(UpdatePatientRequest) returns (heyrenee.v1.messages.Patient) {}
-
-  rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
-  rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
-  rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {}
-
-  rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
-  rpc UpdatePatientCaregiver(UpdatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
-  rpc ListPatientCaregivers(ListPatientCaregiversRequest) returns (ListPatientCaregiversResponse) {}
+  rpc CreatePatient(CreatePatientRequest) returns (heyrenee.v1.messages.Patient) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc GetPatient(GetPatientRequest) returns (heyrenee.v1.messages.Patient) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc UpdatePatient(UpdatePatientRequest) returns (heyrenee.v1.messages.Patient) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc UpdatePatientCaregiver(UpdatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc ListPatientCaregivers(ListPatientCaregiversRequest) returns (ListPatientCaregiversResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
 }
 
 message CreatePatientRequest {
@@ -27,8 +44,7 @@ message CreatePatientRequest {
 }
 
 message GetPatientRequest {
-  string user_id = 1;
-  string patient_id = 2;
+  string patient_id = 1;
 }
 
 message UpdatePatientRequest {
