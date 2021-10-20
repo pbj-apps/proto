@@ -9,19 +9,18 @@ import "google/protobuf/timestamp.proto";
 import "heyrenee/v1/messages/provider.proto";
 
 message RpmSchedule {
-  string user_id = 1;
-  string patient_id = 2;
-  string rpm_schedule_id = 3;
-  RpmScheduleType rpm_schedule_type = 4;
-  google.protobuf.Timestamp first_measurement_regimen_start = 5;
-  google.protobuf.Duration measurement_regimen_duration = 6;
-  int64 measurements_per_regimen = 7;
-  repeated google.protobuf.Duration measurement_durations_from_regimen_start = 8;
+  string patient_id = 1;
+  string rpm_schedule_id = 2;
+  RpmScheduleType rpm_schedule_type = 3;
+  google.protobuf.Timestamp first_measurement_regimen_start = 4;
+  google.protobuf.Duration measurement_regimen_duration = 5;
+  int64 measurements_per_regimen = 6;
+  repeated google.protobuf.Duration measurement_durations_from_regimen_start = 7;
   oneof provider {
-    string provider_id = 9;
-    Provider provider_message = 10;
+    string provider_id = 8;
+    Provider provider_message = 9;
   }
-   RpmScheduleStatus rpm_schedule_status = 11;
+   RpmScheduleStatus rpm_schedule_status = 10;
 }
 
 enum RpmScheduleType {
