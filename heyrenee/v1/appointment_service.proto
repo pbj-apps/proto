@@ -7,9 +7,9 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 import "heyrenee/v1/messages/appointment.proto";
 import "heyrenee/v1/options/auth.proto";
 
-// Appointment Service
+// AppointmentService
 //
-// The Appointment Service provides access to a Patient's Appointments. An Appointment represents a Patient's scheduled
+// The AppointmentService provides access to a Patient's Appointments. An Appointment represents a Patient's scheduled
 // event with a Provider where medical care is provided.
 service AppointmentService {
   // ListAppointments returns a list of Appointments for the specified Patient.

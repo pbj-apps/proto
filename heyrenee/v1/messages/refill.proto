@@ -6,18 +6,30 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "google/protobuf/timestamp.proto";
 
+// A Refill represents a refill of a prescribed Medication.
 message Refill {
+  // The ID of the Patient who the Prescription was refilled for.
   string patient_id = 1;
+  // The ID of the Medication that was refilled.
   string medication_id = 2;
+  // The ID of the Prescription that was refilled.
   string prescription_id = 3;
+  // The ID of the Refill.
   string refill_id = 4;
-  google.protobuf.Timestamp date_written = 5;
+  // The date and time at which Refill occurred.
+  google.protobuf.Timestamp date_time_refilled = 5;
+  // The ID of the Pharmacy that supplied the Refill.
   string pharmacy_id = 6;
+  // The type of Refill.
   RefillType refill_type = 7;
 }
 
+// Specifies the type of a Refill.
 enum RefillType {
+  // Refill type is unspecified.
   REFILL_TYPE_UNSPECIFIED = 0;
+  // The Refill was delivered to the Patient.
   REFILL_DELIVERY = 1;
+  // The Refill was picked up by the Patient.
   REFILL_PICKUP = 2;
 }

@@ -20,29 +20,56 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// A Medication represents a distinct and unique medication
 type Medication struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MedicationId       string   `protobuf:"bytes,1,opt,name=medication_id,json=medicationId,proto3" json:"medication_id,omitempty"`
-	Rxcui              string   `protobuf:"bytes,2,opt,name=rxcui,proto3" json:"rxcui,omitempty"`
-	GenericRxcui       string   `protobuf:"bytes,3,opt,name=generic_rxcui,json=genericRxcui,proto3" json:"generic_rxcui,omitempty"`
-	TermType           string   `protobuf:"bytes,4,opt,name=term_type,json=termType,proto3" json:"term_type,omitempty"`
-	FullName           string   `protobuf:"bytes,5,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
-	RxNormDoseForm     string   `protobuf:"bytes,6,opt,name=rx_norm_dose_form,json=rxNormDoseForm,proto3" json:"rx_norm_dose_form,omitempty"`
-	FullGenericName    string   `protobuf:"bytes,7,opt,name=full_generic_name,json=fullGenericName,proto3" json:"full_generic_name,omitempty"`
-	BrandName          string   `protobuf:"bytes,8,opt,name=brand_name,json=brandName,proto3" json:"brand_name,omitempty"`
-	DisplayName        string   `protobuf:"bytes,9,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	Route              string   `protobuf:"bytes,10,opt,name=route,proto3" json:"route,omitempty"`
-	NewDoseForm        string   `protobuf:"bytes,11,opt,name=new_dose_form,json=newDoseForm,proto3" json:"new_dose_form,omitempty"`
-	Strength           string   `protobuf:"bytes,12,opt,name=strength,proto3" json:"strength,omitempty"`
-	SuppressFor        string   `protobuf:"bytes,13,opt,name=suppress_for,json=suppressFor,proto3" json:"suppress_for,omitempty"`
+	// The ID of the Medication..
+	MedicationId string `protobuf:"bytes,1,opt,name=medication_id,json=medicationId,proto3" json:"medication_id,omitempty"`
+	// The RxNorm unique identifier for the clinical drug, which can be one of the following term types:
+	//    - Semantic Clinical Drug (SCD) e.g. azithromycin 250 MG Oral Capsule.
+	//    - Semantic Branded Drug (SBD) e.g. azithromycin 250 MG Oral Capsule [Zithromax].
+	//    - Generic Pack (GPCK) e.g. {6 (azithromycin 250 MG Oral Tablet) } Pack
+	//    - Branded Pack (BPCK) e.g. {6 (azithromycin 250 MG Oral Tablet [Zithromax]) } Pack [Z-PAKS].
+	Rxcui string `protobuf:"bytes,2,opt,name=rxcui,proto3" json:"rxcui,omitempty"`
+	// The corresponding generic clinical drug.
+	GenericRxcui string `protobuf:"bytes,3,opt,name=generic_rxcui,json=genericRxcui,proto3" json:"generic_rxcui,omitempty"`
+	// The term type in RxNorm.
+	TermType string `protobuf:"bytes,4,opt,name=term_type,json=termType,proto3" json:"term_type,omitempty"`
+	// The full RxNorm name of the clinical drug.
+	FullName string `protobuf:"bytes,5,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	// Dose form and intended route information from RxNorm.
+	RxNormDoseForm string `protobuf:"bytes,6,opt,name=rx_norm_dose_form,json=rxNormDoseForm,proto3" json:"rx_norm_dose_form,omitempty"`
+	// The generic part of the full RxNorm name.
+	FullGenericName string `protobuf:"bytes,7,opt,name=full_generic_name,json=fullGenericName,proto3" json:"full_generic_name,omitempty"`
+	// The brand name part of the full RxNorm name.
+	BrandName string `protobuf:"bytes,8,opt,name=brand_name,json=brandName,proto3" json:"brand_name,omitempty"`
+	// Drug name (either generic or brand name) and intended route e.g. INDERAL (Oral-pill).
+	DisplayName string `protobuf:"bytes,9,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	// Intended route derived from RXN_DOSE_FORM.
+	Route string `protobuf:"bytes,10,opt,name=route,proto3" json:"route,omitempty"`
+	// Dose form derived from RXN_DOSE_FORM.
+	NewDoseForm string `protobuf:"bytes,11,opt,name=new_dose_form,json=newDoseForm,proto3" json:"new_dose_form,omitempty"`
+	// Strength information parsed from the RxNorm full name.
+	Strength string `protobuf:"bytes,12,opt,name=strength,proto3" json:"strength,omitempty"`
+	// To flag drug names deemed not likely to be useful for data entry. For example, long generic drug names with multiple
+	// ingredients (e.g. Bacitracin/Hydrocortisone/Neomycin/Polymyxin B) are suppressed because they are almost always
+	// prescribed by their brand names (e.g. CORTISPORIN OINTMENT). Any non-empty value means that a row should be suppressed.
+	SuppressFor string `protobuf:"bytes,13,opt,name=suppress_for,json=suppressFor,proto3" json:"suppress_for,omitempty"`
+	// Commonly used synonyms or abbreviations for the drug e.g. MOM for Milk of Magnesia.
 	DisplayNameSynonym []string `protobuf:"bytes,14,rep,name=display_name_synonym,json=displayNameSynonym,proto3" json:"display_name_synonym,omitempty"`
-	SxdgRxcui          string   `protobuf:"bytes,15,opt,name=sxdg_rxcui,json=sxdgRxcui,proto3" json:"sxdg_rxcui,omitempty"`
-	SxdgTermType       string   `protobuf:"bytes,16,opt,name=sxdg_term_type,json=sxdgTermType,proto3" json:"sxdg_term_type,omitempty"`
-	SxdgName           string   `protobuf:"bytes,17,opt,name=sxdg_name,json=sxdgName,proto3" json:"sxdg_name,omitempty"`
-	PrescribableName   string   `protobuf:"bytes,18,opt,name=prescribable_name,json=prescribableName,proto3" json:"prescribable_name,omitempty"`
+	// The RxNorm unique identifier for the entity represented by the DISPLAY_NAME (drug + intended route). The
+	// corresponding TTY (term type) in RxNorm is either SCDG (Semantic Clinical Doseform Group) or SBDG (Semantic Branded
+	// Doseform Group), as represented in the field SXDG_TTY.
+	SxdgRxcui string `protobuf:"bytes,15,opt,name=sxdg_rxcui,json=sxdgRxcui,proto3" json:"sxdg_rxcui,omitempty"`
+	// The RxNorm TTY of the semantic doseform group.
+	SxdgTermType string `protobuf:"bytes,16,opt,name=sxdg_term_type,json=sxdgTermType,proto3" json:"sxdg_term_type,omitempty"`
+	// The RxNorm name of the semantic doseform group.
+	SxdgName string `protobuf:"bytes,17,opt,name=sxdg_name,json=sxdgName,proto3" json:"sxdg_name,omitempty"`
+	// The RxNorm prescribable name.
+	PrescribableName string `protobuf:"bytes,18,opt,name=prescribable_name,json=prescribableName,proto3" json:"prescribable_name,omitempty"`
 }
 
 func (x *Medication) Reset() {

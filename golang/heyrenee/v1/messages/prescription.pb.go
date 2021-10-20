@@ -23,12 +23,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// The status of a Prescription.
 type PrescriptionStatus int32
 
 const (
+	// The Prescription status is unspecified.
 	PrescriptionStatus_PRESCRIPTION_STATUS_UNSPECIFIED PrescriptionStatus = 0
-	PrescriptionStatus_PRESCRIPTION_ACTIVE             PrescriptionStatus = 1
-	PrescriptionStatus_PRESCRIPTION_INACTIVE           PrescriptionStatus = 2
+	// The Prescription is currently active (i.e. currently being taken by the Patient).
+	PrescriptionStatus_PRESCRIPTION_ACTIVE PrescriptionStatus = 1
+	// The Prescription is inactive.
+	PrescriptionStatus_PRESCRIPTION_INACTIVE PrescriptionStatus = 2
 )
 
 // Enum value maps for PrescriptionStatus.
@@ -72,30 +76,50 @@ func (PrescriptionStatus) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_prescription_proto_rawDescGZIP(), []int{0}
 }
 
+// A Prescription represents a Patient's Prescription for Medication written by a Provider. Multiple written prescriptions
+// for the same Medication will have separate Prescription resources.
 type Prescription struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Patient that the Prescription is written for. Required.
 	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The Medication that the Prescription is written for. Required.
+	//
 	// Types that are assignable to Medication:
 	//	*Prescription_MedicationId
 	//	*Prescription_MedicationMessage
-	Medication     isPrescription_Medication `protobuf_oneof:"medication"`
-	PrescriptionId string                    `protobuf:"bytes,4,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
+	Medication isPrescription_Medication `protobuf_oneof:"medication"`
+	// The ID of the Prescription. Must be empty in create requests, required in update requests.
+	PrescriptionId string `protobuf:"bytes,4,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
+	// The Provider that wrote the Prescription. Required.
+	//
 	// Types that are assignable to Provider:
 	//	*Prescription_ProviderId
 	//	*Prescription_ProviderMessage
-	Provider                                isPrescription_Provider `protobuf_oneof:"provider"`
-	ProviderInstructions                    string                  `protobuf:"bytes,7,opt,name=provider_instructions,json=providerInstructions,proto3" json:"provider_instructions,omitempty"`
-	PatientInstructions                     string                  `protobuf:"bytes,8,opt,name=patient_instructions,json=patientInstructions,proto3" json:"patient_instructions,omitempty"`
-	RefillCount                             int64                   `protobuf:"varint,9,opt,name=refill_count,json=refillCount,proto3" json:"refill_count,omitempty"`
-	RefillFrequency                         *durationpb.Duration    `protobuf:"bytes,10,opt,name=refill_frequency,json=refillFrequency,proto3" json:"refill_frequency,omitempty"`
-	PrescriptionStatus                      PrescriptionStatus      `protobuf:"varint,11,opt,name=prescription_status,json=prescriptionStatus,proto3,enum=heyrenee.v1.messages.PrescriptionStatus" json:"prescription_status,omitempty"`
-	FirstMedicationRegimenStart             *timestamppb.Timestamp  `protobuf:"bytes,12,opt,name=first_medication_regimen_start,json=firstMedicationRegimenStart,proto3" json:"first_medication_regimen_start,omitempty"`
-	MedicationRegimenDuration               *durationpb.Duration    `protobuf:"bytes,13,opt,name=medication_regimen_duration,json=medicationRegimenDuration,proto3" json:"medication_regimen_duration,omitempty"`
-	MedicationDosesPerRegimen               int64                   `protobuf:"varint,14,opt,name=medication_doses_per_regimen,json=medicationDosesPerRegimen,proto3" json:"medication_doses_per_regimen,omitempty"`
-	MedicationDoseDurationsFromRegimenStart []*durationpb.Duration  `protobuf:"bytes,15,rep,name=medication_dose_durations_from_regimen_start,json=medicationDoseDurationsFromRegimenStart,proto3" json:"medication_dose_durations_from_regimen_start,omitempty"`
+	Provider isPrescription_Provider `protobuf_oneof:"provider"`
+	// Instructions supplied by the Provider on how the prescribed Medication should be taken.
+	ProviderInstructions string `protobuf:"bytes,7,opt,name=provider_instructions,json=providerInstructions,proto3" json:"provider_instructions,omitempty"`
+	// Instructions supplied by the Patient on how the prescribed Medication should be taken.
+	PatientInstructions string `protobuf:"bytes,8,opt,name=patient_instructions,json=patientInstructions,proto3" json:"patient_instructions,omitempty"`
+	// The total number of refills included in the Prescription. Required, must be > 0.
+	RefillCount int64 `protobuf:"varint,9,opt,name=refill_count,json=refillCount,proto3" json:"refill_count,omitempty"`
+	// The amount of time that must elapse after a refill before the Prescription can be refilled again. Required, must be
+	// a positive non-zero duration.
+	RefillFrequency *durationpb.Duration `protobuf:"bytes,10,opt,name=refill_frequency,json=refillFrequency,proto3" json:"refill_frequency,omitempty"`
+	// The current status of the Prescription. Required, must not be PRESCRIPTION_STATUS_UNSPECIFIED.
+	PrescriptionStatus PrescriptionStatus `protobuf:"varint,11,opt,name=prescription_status,json=prescriptionStatus,proto3,enum=heyrenee.v1.messages.PrescriptionStatus" json:"prescription_status,omitempty"`
+	// When the first regimen for this Prescription begins. A regimen specifies a certain number of times that Medication
+	// should be taken in a certain period of time. Required.
+	FirstMedicationRegimenStart *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=first_medication_regimen_start,json=firstMedicationRegimenStart,proto3" json:"first_medication_regimen_start,omitempty"`
+	// The duration of a regimen for this Prescription. Required, must be a positive non-zero duration.
+	MedicationRegimenDuration *durationpb.Duration `protobuf:"bytes,13,opt,name=medication_regimen_duration,json=medicationRegimenDuration,proto3" json:"medication_regimen_duration,omitempty"`
+	// The number of doses of Medication that must be taken during a single regimen. Required, must be > 0.
+	MedicationDosesPerRegimen int64 `protobuf:"varint,14,opt,name=medication_doses_per_regimen,json=medicationDosesPerRegimen,proto3" json:"medication_doses_per_regimen,omitempty"`
+	// The points in time from the start of a regimen that Medication should be taken. Must be positive non-zero durations
+	// if supplied.
+	MedicationDoseDurationsFromRegimenStart []*durationpb.Duration `protobuf:"bytes,15,rep,name=medication_dose_durations_from_regimen_start,json=medicationDoseDurationsFromRegimenStart,proto3" json:"medication_dose_durations_from_regimen_start,omitempty"`
 }
 
 func (x *Prescription) Reset() {
@@ -254,10 +278,12 @@ type isPrescription_Medication interface {
 }
 
 type Prescription_MedicationId struct {
+	// The ID of the Medication that the Prescription is written for. Required.
 	MedicationId string `protobuf:"bytes,2,opt,name=medication_id,json=medicationId,proto3,oneof"`
 }
 
 type Prescription_MedicationMessage struct {
+	// The Medication that the Prescription is written for. Only returned in responses, must not be set in requests.
 	MedicationMessage *Medication `protobuf:"bytes,3,opt,name=medication_message,json=medicationMessage,proto3,oneof"`
 }
 
@@ -270,10 +296,12 @@ type isPrescription_Provider interface {
 }
 
 type Prescription_ProviderId struct {
+	// The ID of the Provider that wrote the Prescription. Required.
 	ProviderId string `protobuf:"bytes,5,opt,name=provider_id,json=providerId,proto3,oneof"`
 }
 
 type Prescription_ProviderMessage struct {
+	// The Provider that wrote the Prescription. Only returned in responses, must not be set in requests.
 	ProviderMessage *Provider `protobuf:"bytes,6,opt,name=provider_message,json=providerMessage,proto3,oneof"`
 }
 

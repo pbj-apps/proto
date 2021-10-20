@@ -6,10 +6,16 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "google/protobuf/timestamp.proto";
 
+// A MedicationDose represents a single dose of Medication taken by a Patient as specified in a Prescription.
 message MedicationDose {
+  // The ID of the Patient who took the MedicationDose.
   string patient_id = 1;
+  // The ID of the Medication that was taken.
   string medication_id = 2;
+  // The ID of the Prescription that prescribed the Medication that was taken.
   string prescription_id = 3;
+  // The ID of the MedicationDose.
   string medication_dose_id = 4;
+  // The time at which the MedicationDose was taken.
   google.protobuf.Timestamp time_taken = 5;
 }

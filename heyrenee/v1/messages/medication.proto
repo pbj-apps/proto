@@ -4,23 +4,50 @@ package heyrenee.v1.messages;
 
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
+// A Medication represents a distinct and unique medication
 message Medication {
+  // The ID of the Medication..
   string medication_id = 1;
+  // The RxNorm unique identifier for the clinical drug, which can be one of the following term types:
+  //    - Semantic Clinical Drug (SCD) e.g. azithromycin 250 MG Oral Capsule.
+  //    - Semantic Branded Drug (SBD) e.g. azithromycin 250 MG Oral Capsule [Zithromax].
+  //    - Generic Pack (GPCK) e.g. {6 (azithromycin 250 MG Oral Tablet) } Pack
+  //    - Branded Pack (BPCK) e.g. {6 (azithromycin 250 MG Oral Tablet [Zithromax]) } Pack [Z-PAKS].
   string rxcui = 2;
+  // The corresponding generic clinical drug.
   string generic_rxcui = 3;
+  // The term type in RxNorm.
   string term_type = 4;
+  // The full RxNorm name of the clinical drug.
   string full_name = 5;
+  // Dose form and intended route information from RxNorm.
   string rx_norm_dose_form = 6;
+  // The generic part of the full RxNorm name.
   string full_generic_name = 7;
+  // The brand name part of the full RxNorm name.
   string brand_name = 8;
+  // Drug name (either generic or brand name) and intended route e.g. INDERAL (Oral-pill).
   string display_name = 9;
+  // Intended route derived from RXN_DOSE_FORM.
   string route = 10;
+  // Dose form derived from RXN_DOSE_FORM.
   string new_dose_form = 11;
+  // Strength information parsed from the RxNorm full name.
   string strength = 12;
+  // To flag drug names deemed not likely to be useful for data entry. For example, long generic drug names with multiple
+  // ingredients (e.g. Bacitracin/Hydrocortisone/Neomycin/Polymyxin B) are suppressed because they are almost always
+  // prescribed by their brand names (e.g. CORTISPORIN OINTMENT). Any non-empty value means that a row should be suppressed.
   string suppress_for = 13;
+  // Commonly used synonyms or abbreviations for the drug e.g. MOM for Milk of Magnesia.
   repeated string display_name_synonym = 14;
+  // The RxNorm unique identifier for the entity represented by the DISPLAY_NAME (drug + intended route). The
+  // corresponding TTY (term type) in RxNorm is either SCDG (Semantic Clinical Doseform Group) or SBDG (Semantic Branded
+  // Doseform Group), as represented in the field SXDG_TTY.
   string sxdg_rxcui = 15;
+  // The RxNorm TTY of the semantic doseform group.
   string sxdg_term_type = 16;
+  // The RxNorm name of the semantic doseform group.
   string sxdg_name = 17;
+  // The RxNorm prescribable name.
   string prescribable_name = 18;
 }

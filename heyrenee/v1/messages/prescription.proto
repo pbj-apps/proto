@@ -10,30 +10,56 @@ import "heyrenee/v1/messages/medication.proto";
 import "heyrenee/v1/messages/provider.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// A Prescription represents a Patient's Prescription for Medication written by a Provider. Multiple written prescriptions
+// for the same Medication will have separate Prescription resources.
 message Prescription {
+  // The ID of the Patient that the Prescription is written for. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The Medication that the Prescription is written for. Required.
   oneof medication {
+    // The ID of the Medication that the Prescription is written for. Required.
     string medication_id = 2;
+    // The Medication that the Prescription is written for. Only returned in responses, must not be set in requests.
     Medication medication_message = 3;
   }
+  // The ID of the Prescription. Must be empty in create requests, required in update requests.
   string prescription_id = 4;
+  // The Provider that wrote the Prescription. Required.
   oneof provider {
+    // The ID of the Provider that wrote the Prescription. Required.
     string provider_id = 5;
+    // The Provider that wrote the Prescription. Only returned in responses, must not be set in requests.
     Provider provider_message = 6;
   }
+  // Instructions supplied by the Provider on how the prescribed Medication should be taken.
   string provider_instructions = 7;
+  // Instructions supplied by the Patient on how the prescribed Medication should be taken.
   string patient_instructions = 8;
+  // The total number of refills included in the Prescription. Required, must be > 0.
   int64 refill_count = 9;
+  // The amount of time that must elapse after a refill before the Prescription can be refilled again. Required, must be
+  // a positive non-zero duration.
   google.protobuf.Duration refill_frequency = 10;
+  // The current status of the Prescription. Required, must not be PRESCRIPTION_STATUS_UNSPECIFIED.
   PrescriptionStatus prescription_status = 11;
+  // When the first regimen for this Prescription begins. A regimen specifies a certain number of times that Medication
+  // should be taken in a certain period of time. Required.
   google.protobuf.Timestamp first_medication_regimen_start = 12;
+  // The duration of a regimen for this Prescription. Required, must be a positive non-zero duration.
   google.protobuf.Duration medication_regimen_duration = 13;
+  // The number of doses of Medication that must be taken during a single regimen. Required, must be > 0.
   int64 medication_doses_per_regimen = 14;
+  // The points in time from the start of a regimen that Medication should be taken. Must be positive non-zero durations
+  // if supplied.
   repeated google.protobuf.Duration medication_dose_durations_from_regimen_start = 15;
 }
 
+// The status of a Prescription.
 enum PrescriptionStatus {
+  // The Prescription status is unspecified.
   PRESCRIPTION_STATUS_UNSPECIFIED = 0;
+  // The Prescription is currently active (i.e. currently being taken by the Patient).
   PRESCRIPTION_ACTIVE = 1;
+  // The Prescription is inactive.
   PRESCRIPTION_INACTIVE = 2;
 }

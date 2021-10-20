@@ -21,16 +21,22 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// A MedicationDose represents a single dose of Medication taken by a Patient as specified in a Prescription.
 type MedicationDose struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId        string                 `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	MedicationId     string                 `protobuf:"bytes,2,opt,name=medication_id,json=medicationId,proto3" json:"medication_id,omitempty"`
-	PrescriptionId   string                 `protobuf:"bytes,3,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
-	MedicationDoseId string                 `protobuf:"bytes,4,opt,name=medication_dose_id,json=medicationDoseId,proto3" json:"medication_dose_id,omitempty"`
-	TimeTaken        *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time_taken,json=timeTaken,proto3" json:"time_taken,omitempty"`
+	// The ID of the Patient who took the MedicationDose.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the Medication that was taken.
+	MedicationId string `protobuf:"bytes,2,opt,name=medication_id,json=medicationId,proto3" json:"medication_id,omitempty"`
+	// The ID of the Prescription that prescribed the Medication that was taken.
+	PrescriptionId string `protobuf:"bytes,3,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
+	// The ID of the MedicationDose.
+	MedicationDoseId string `protobuf:"bytes,4,opt,name=medication_dose_id,json=medicationDoseId,proto3" json:"medication_dose_id,omitempty"`
+	// The time at which the MedicationDose was taken.
+	TimeTaken *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time_taken,json=timeTaken,proto3" json:"time_taken,omitempty"`
 }
 
 func (x *MedicationDose) Reset() {

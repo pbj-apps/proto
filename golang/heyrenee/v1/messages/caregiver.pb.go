@@ -28,17 +28,17 @@ type Caregiver struct {
 
 	// The ID of the Caregiver. Only populated in responses, must be empty in requests.
 	CaregiverId string `protobuf:"bytes,1,opt,name=caregiver_id,json=caregiverId,proto3" json:"caregiver_id,omitempty"`
-	// The legal first name of the Caregiver.
+	// The legal first name of the Caregiver. Required.
 	FirstName string `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	// The legal last name of the Caregiver.
+	// The legal last name of the Caregiver. Required.
 	LastName string `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	// The primary phone number for contacting the Caregiver.
+	// The primary phone number for contacting the Caregiver. Required.
 	PrimaryPhone string `protobuf:"bytes,4,opt,name=primary_phone,json=primaryPhone,proto3" json:"primary_phone,omitempty"`
 	// The mobile phone number for contacting the Caregiver.
 	MobilePhone string `protobuf:"bytes,5,opt,name=mobile_phone,json=mobilePhone,proto3" json:"mobile_phone,omitempty"`
 	// The alternate phone number for contacting the Caregiver.
 	OtherPhone string `protobuf:"bytes,6,opt,name=other_phone,json=otherPhone,proto3" json:"other_phone,omitempty"`
-	// The email address for contacting the Caregiver.
+	// The email address for contacting the Caregiver. Required.
 	Email string `protobuf:"bytes,7,opt,name=email,proto3" json:"email,omitempty"`
 	// The Caregiver's permanent residential address.
 	AddressLines []string `protobuf:"bytes,8,rep,name=address_lines,json=addressLines,proto3" json:"address_lines,omitempty"`

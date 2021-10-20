@@ -9,55 +9,78 @@ import "heyrenee/v1/messages/prescription.proto";
 import "heyrenee/v1/messages/refill.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// MedicationService
+//
+// The MedicationService provides operations on the Medication related resources that belonging to specific Patients.
 service MedicationService {
+  // CreatePrescription creates the provided Prescription resource.
   rpc CreatePrescription(CreatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // UpdatePrescription updates the provided Prescription resource.
   rpc UpdatePrescription(UpdatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListPrescriptions lists the Prescription resources for the specified Patient.
   rpc ListPrescriptions(ListPrescriptionsRequest) returns (ListPrescriptionsResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
-
+  // ListMedicationDoses lists the MedicationDoses for the specified Prescription.
   rpc ListMedicationDoses(ListMedicationDosesRequest) returns (ListMedicationDosesResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
-
+  // ListRefills lists the Refills for the specified Prescription.
   rpc ListRefills(ListRefillsRequest) returns (ListRefillsResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 }
 
+// Request message for CreatePrescription.
 message CreatePrescriptionRequest {
+  // The Prescription resource to create. Required.
   heyrenee.v1.messages.Prescription prescription = 1;
 }
 
+// Request message for UpdatePrescription.
 message UpdatePrescriptionRequest {
+  // The Prescription resource to update. Required.
   heyrenee.v1.messages.Prescription prescription = 1;
 }
 
+// Request message for ListPrescriptions.
 message ListPrescriptionsRequest {
+  // The ID of the Patient to return Prescriptions for. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The status of Prescriptions that should be returned.
   heyrenee.v1.messages.PrescriptionStatus prescription_status = 2;
 }
 
+// Response message for ListPrescriptions.
 message ListPrescriptionsResponse {
+  // The list of Prescriptions.
   repeated heyrenee.v1.messages.Prescription prescriptions = 1;
 }
 
+// Request message for ListMedicationDoses.
 message ListMedicationDosesRequest {
+  // The ID of the Prescription to return MedicationDoses for.
   string prescription_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PRESCRIPTION];
 }
 
+// Response message for ListMedicationDoses.
 message ListMedicationDosesResponse {
+  // The list of MedicationDoses.
   repeated heyrenee.v1.messages.MedicationDose medication_doses = 1;
 }
 
+// Request message for ListRefills.
 message ListRefillsRequest {
+  // The ID of the Prescription to return Refills for.
   string prescription_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PRESCRIPTION];
 }
 
+// Response message for ListRefills.
 message ListRefillsResponse {
+  // The list of Refills.
   repeated heyrenee.v1.messages.Refill refills = 1;
 }

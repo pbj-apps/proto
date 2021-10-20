@@ -28,7 +28,7 @@ type CreateCaregiverRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The Caregiver to create.
+	// The Caregiver to create. Required.
 	Caregiver *messages.Caregiver `protobuf:"bytes,1,opt,name=caregiver,proto3" json:"caregiver,omitempty"`
 }
 
@@ -116,7 +116,7 @@ type UpdateCaregiverRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The Caregiver to update the existing Caregiver to.
+	// The Caregiver to update. Required.
 	Caregiver *messages.Caregiver `protobuf:"bytes,1,opt,name=caregiver,proto3" json:"caregiver,omitempty"`
 }
 

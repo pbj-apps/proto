@@ -19,10 +19,15 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MedicationServiceClient interface {
+	// CreatePrescription creates the provided Prescription resource.
 	CreatePrescription(ctx context.Context, in *CreatePrescriptionRequest, opts ...grpc.CallOption) (*messages.Prescription, error)
+	// UpdatePrescription updates the provided Prescription resource.
 	UpdatePrescription(ctx context.Context, in *UpdatePrescriptionRequest, opts ...grpc.CallOption) (*messages.Prescription, error)
+	// ListPrescriptions lists the Prescription resources for the specified Patient.
 	ListPrescriptions(ctx context.Context, in *ListPrescriptionsRequest, opts ...grpc.CallOption) (*ListPrescriptionsResponse, error)
+	// ListMedicationDoses lists the MedicationDoses for the specified Prescription.
 	ListMedicationDoses(ctx context.Context, in *ListMedicationDosesRequest, opts ...grpc.CallOption) (*ListMedicationDosesResponse, error)
+	// ListRefills lists the Refills for the specified Prescription.
 	ListRefills(ctx context.Context, in *ListRefillsRequest, opts ...grpc.CallOption) (*ListRefillsResponse, error)
 }
 
@@ -83,10 +88,15 @@ func (c *medicationServiceClient) ListRefills(ctx context.Context, in *ListRefil
 // All implementations must embed UnimplementedMedicationServiceServer
 // for forward compatibility
 type MedicationServiceServer interface {
+	// CreatePrescription creates the provided Prescription resource.
 	CreatePrescription(context.Context, *CreatePrescriptionRequest) (*messages.Prescription, error)
+	// UpdatePrescription updates the provided Prescription resource.
 	UpdatePrescription(context.Context, *UpdatePrescriptionRequest) (*messages.Prescription, error)
+	// ListPrescriptions lists the Prescription resources for the specified Patient.
 	ListPrescriptions(context.Context, *ListPrescriptionsRequest) (*ListPrescriptionsResponse, error)
+	// ListMedicationDoses lists the MedicationDoses for the specified Prescription.
 	ListMedicationDoses(context.Context, *ListMedicationDosesRequest) (*ListMedicationDosesResponse, error)
+	// ListRefills lists the Refills for the specified Prescription.
 	ListRefills(context.Context, *ListRefillsRequest) (*ListRefillsResponse, error)
 	mustEmbedUnimplementedMedicationServiceServer()
 }

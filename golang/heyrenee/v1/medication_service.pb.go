@@ -22,11 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Request message for CreatePrescription.
 type CreatePrescriptionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Prescription resource to create. Required.
 	Prescription *messages.Prescription `protobuf:"bytes,1,opt,name=prescription,proto3" json:"prescription,omitempty"`
 }
 
@@ -69,11 +71,13 @@ func (x *CreatePrescriptionRequest) GetPrescription() *messages.Prescription {
 	return nil
 }
 
+// Request message for UpdatePrescription.
 type UpdatePrescriptionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Prescription resource to update. Required.
 	Prescription *messages.Prescription `protobuf:"bytes,1,opt,name=prescription,proto3" json:"prescription,omitempty"`
 }
 
@@ -116,12 +120,15 @@ func (x *UpdatePrescriptionRequest) GetPrescription() *messages.Prescription {
 	return nil
 }
 
+// Request message for ListPrescriptions.
 type ListPrescriptionsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId          string                      `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the Patient to return Prescriptions for. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The status of Prescriptions that should be returned.
 	PrescriptionStatus messages.PrescriptionStatus `protobuf:"varint,2,opt,name=prescription_status,json=prescriptionStatus,proto3,enum=heyrenee.v1.messages.PrescriptionStatus" json:"prescription_status,omitempty"`
 }
 
@@ -171,11 +178,13 @@ func (x *ListPrescriptionsRequest) GetPrescriptionStatus() messages.Prescription
 	return messages.PrescriptionStatus(0)
 }
 
+// Response message for ListPrescriptions.
 type ListPrescriptionsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of Prescriptions.
 	Prescriptions []*messages.Prescription `protobuf:"bytes,1,rep,name=prescriptions,proto3" json:"prescriptions,omitempty"`
 }
 
@@ -218,11 +227,13 @@ func (x *ListPrescriptionsResponse) GetPrescriptions() []*messages.Prescription 
 	return nil
 }
 
+// Request message for ListMedicationDoses.
 type ListMedicationDosesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Prescription to return MedicationDoses for.
 	PrescriptionId string `protobuf:"bytes,1,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
 }
 
@@ -265,11 +276,13 @@ func (x *ListMedicationDosesRequest) GetPrescriptionId() string {
 	return ""
 }
 
+// Response message for ListMedicationDoses.
 type ListMedicationDosesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of MedicationDoses.
 	MedicationDoses []*messages.MedicationDose `protobuf:"bytes,1,rep,name=medication_doses,json=medicationDoses,proto3" json:"medication_doses,omitempty"`
 }
 
@@ -312,11 +325,13 @@ func (x *ListMedicationDosesResponse) GetMedicationDoses() []*messages.Medicatio
 	return nil
 }
 
+// Request message for ListRefills.
 type ListRefillsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the Prescription to return Refills for.
 	PrescriptionId string `protobuf:"bytes,1,opt,name=prescription_id,json=prescriptionId,proto3" json:"prescription_id,omitempty"`
 }
 
@@ -359,11 +374,13 @@ func (x *ListRefillsRequest) GetPrescriptionId() string {
 	return ""
 }
 
+// Response message for ListRefills.
 type ListRefillsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of Refills.
 	Refills []*messages.Refill `protobuf:"bytes,1,rep,name=refills,proto3" json:"refills,omitempty"`
 }
 
