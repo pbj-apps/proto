@@ -4,10 +4,12 @@ package heyrenee.v1.messages;
 
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
+import "heyrenee/v1/options/auth.proto";
+
 // A Caregiver represents a subuser that has access to the dashboard to monitor patients that they are caregivers for.
 message Caregiver {
-  // The ID of the Caregiver. Only populated in responses, must be empty in requests.
-  string caregiver_id = 1;
+  // The ID of the Caregiver. Required.
+  string caregiver_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_CAREGIVER];
   // The legal first name of the Caregiver. Required.
   string first_name = 2;
   // The legal last name of the Caregiver. Required.

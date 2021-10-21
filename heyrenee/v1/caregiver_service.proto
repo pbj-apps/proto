@@ -24,7 +24,10 @@ service CaregiverService {
 }
 
 // Request message for GetCaregiver.
-message GetCaregiverRequest {}
+message GetCaregiverRequest {
+  // The ID of the Caregiver to retrieve. Required.
+  string caregiver_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_CAREGIVER];
+}
 
 // Request message for UpdateCaregiver.
 message UpdateCaregiverRequest {
