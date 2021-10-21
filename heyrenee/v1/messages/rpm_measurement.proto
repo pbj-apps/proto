@@ -6,38 +6,66 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "google/protobuf/timestamp.proto";
 
+// An RpmMeasurement represents a single event where an RPM device was used to take a measurement.
 message RpmMeasurement {
+  // The ID of the Patient that this measurement is for.
   string patient_id = 1;
+  // The ID of the RpmSchedule that this measurement is part of.
   string rpm_schedule_id = 2;
+  // The ID of the RpmMeasurement.
   string rpm_measurement_id = 3;
+  // A list of the results of this RpmMeasurement.
   repeated RpmMeasurementResult rpm_measurement_results = 4;
+  // The time at which the measurement was taken.
   google.protobuf.Timestamp time_taken = 5;
 }
 
+// An RpmMeasurementResult represents a single value output from an RpmMeasurement event.
 message RpmMeasurementResult {
+  // The ID of the RpmMeasurementResult.
   string rpm_measurement_result_id = 1;
+  // The value of the result.
   double value = 2;
+  // The unit that the value of the result is in.
   RpmMeasurementResultUnit rpm_measurement_result_unit = 3;
+  // The type of RpmMeasurementResult.
   RpmMeasurementResultType rpm_measurement_result_type = 4;
 }
 
+// Specifies the unit that an RpmMeasurementResult is in.
 enum RpmMeasurementResultUnit {
+  // The unit is not specified.
   RPM_MEASUREMENT_RESULT_UNIT_UNSPECIFIED = 0;
+  // The unit is beats per minute (BPM).
   RPM_MEASUREMENT_RESULT_UNIT_BPM = 1;
+  // The unit is pounds (lbs).
   RPM_MEASUREMENT_RESULT_UNIT_LBS = 2;
+  // The unit is a percentage.
   RPM_MEASUREMENT_RESULT_UNIT_PERCENTAGE = 3;
+  // The unit is milligram per decilitre (mg/dL).
   RPM_MEASUREMENT_RESULT_UNIT_MG_DL = 4;
+  // The unit is millimeters of mercury (mmHg).
   RPM_MEASUREMENT_RESULT_UNIT_MM_HG = 5;
+  // The unit is celsius.
   RPM_MEASUREMENT_RESULT_UNIT_CELSIUS = 6;
 }
 
+// Specifies the type of an RpmMeasurementResult.
 enum RpmMeasurementResultType {
+  // The type is not specified.
   RPM_MEASUREMENT_RESULT_TYPE_UNSPECIFIED = 0;
+  // The result is a weight measurement.
   RPM_MEASUREMENT_RESULT_TYPE_WEIGHT = 1;
+  // The result is a blood oxygen measurement.
   RPM_MEASUREMENT_RESULT_TYPE_SPO2 = 2;
+  // The result is a heart rate measurement.
   RPM_MEASUREMENT_RESULT_TYPE_BPM = 3;
+  // The result is a blood sugar measurement.
   RPM_MEASUREMENT_RESULT_TYPE_GLUCOSE = 4;
+  // The result is a diastolic blood pressure measurement.
   RPM_MEASUREMENT_RESULT_TYPE_DIA = 5;
+  // The result is a systolic blood pressure measurement.
   RPM_MEASUREMENT_RESULT_TYPE_SYS = 6;
+  // The result is a body temperature measurement.
   RPM_MEASUREMENT_RESULT_TYPE_TEMP = 7;
 }

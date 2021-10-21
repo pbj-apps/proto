@@ -8,33 +8,61 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "heyrenee/v1/messages/provider.proto";
 
+// An RpmSchedule represents a schedule of when a patient should use remote patient monitoring (RPM) devices to take
+// specific types of RPM measurements. Each schedule specifies a certain number of measurements that should be taken
+// within a certain period of time and at certain times (e.g. two measurements in 24 hours at 8 hours and 16 hours).
+// A regimen refers to single period where measurements are taken (e.g. the two measurements taken on 10/24 at 8:00 and
+// 16:00).
 message RpmSchedule {
+  // The ID of the Patient that this schedule is for.
   string patient_id = 1;
+  // The ID of the RpmSchedules.
   string rpm_schedule_id = 2;
+  // The type of RpmSchedule.
   RpmScheduleType rpm_schedule_type = 3;
+  // The start time of the first regimen of this schedule.
   google.protobuf.Timestamp first_measurement_regimen_start = 4;
+  // The duration of a regimen within this schedule.
   google.protobuf.Duration measurement_regimen_duration = 5;
+  // The number of measurements that must be taken during a single regimen.
   int64 measurements_per_regimen = 6;
+  // The lengths of time after the beginning of a regimen that measurements should be taken.
   repeated google.protobuf.Duration measurement_durations_from_regimen_start = 7;
+  // The Provider who established this schedule.
   oneof provider {
+    // The ID of the Provider who established this schedule.
     string provider_id = 8;
+    // The Provider who established this schedule.
     Provider provider_message = 9;
   }
-   RpmScheduleStatus rpm_schedule_status = 10;
+  // The status of the RpmSchedule.
+  RpmScheduleStatus rpm_schedule_status = 10;
 }
 
+// RpmScheduleType specifies the type of an RpmSchedule.
 enum RpmScheduleType {
+  // The RpmSchedule type is not specified.
   RPM_SCHEDULE_TYPE_UNSPECIFIED = 0;
+  // The RpmSchedule is for heart rate monitoring.
   RPM_SCHEDULE_TYPE_HEART_RATE = 1;
+  // The RpmSchedule is for blood pressure monitoring.
   RPM_SCHEDULE_TYPE_BLOOD_PRESSURE = 2;
+  // The RpmSchedule is for pulse monitoring.
   RPM_SCHEDULE_TYPE_PULSE = 3;
+  // The RpmSchedule is for Sp02 monitoring.
   RPM_SCHEDULE_TYPE_SP_O2 = 4;
+  // The RpmSchedule is for weight monitoring.
   RPM_SCHEDULE_TYPE_WEIGHT = 5;
+  // The RpmSchedule is for glucose monitoring.
   RPM_SCHEDULE_TYPE_GLUCOSE = 6;
 }
 
+// RpmScheduleStatus specifies the status of an RpmSchedule/
 enum RpmScheduleStatus {
+  // The RpmSchedule status is not specified.
   RPM_SCHEDULE_STATUS_UNSPECIFIED = 0;
+  // The RpmSchedule is currently active (i.e. the Patient is currently taking RPM measurements for this schedule).
   RPM_SCHEDULE_ACTIVE = 1;
+  // The RpmSchedule is inactive.
   RPM_SCHEDULE_INACTIVE = 2;
 }
