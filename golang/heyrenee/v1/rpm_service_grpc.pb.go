@@ -18,7 +18,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RpmServiceClient interface {
+	// ListRpmSchedules retrieves a list of a Patient's RpmSchedules. These schedules specify when a patient should use
+	// RPM devices to take different RPM measurements.
 	ListRpmSchedules(ctx context.Context, in *ListRpmSchedulesRequest, opts ...grpc.CallOption) (*ListRpmSchedulesResponse, error)
+	// ListRpmMeasurements retrieves a list of RpmMeasurements for a specific RpmSchedule. These measurements represent a
+	// single event where an RPM device was used to take a measurement. The RpmMeasurement contains a list of RpmResults
+	// where each individual result of the measurement event is listed.
 	ListRpmMeasurements(ctx context.Context, in *ListRpmMeasurementsRequest, opts ...grpc.CallOption) (*ListRpmMeasurementsResponse, error)
 }
 
@@ -52,7 +57,12 @@ func (c *rpmServiceClient) ListRpmMeasurements(ctx context.Context, in *ListRpmM
 // All implementations must embed UnimplementedRpmServiceServer
 // for forward compatibility
 type RpmServiceServer interface {
+	// ListRpmSchedules retrieves a list of a Patient's RpmSchedules. These schedules specify when a patient should use
+	// RPM devices to take different RPM measurements.
 	ListRpmSchedules(context.Context, *ListRpmSchedulesRequest) (*ListRpmSchedulesResponse, error)
+	// ListRpmMeasurements retrieves a list of RpmMeasurements for a specific RpmSchedule. These measurements represent a
+	// single event where an RPM device was used to take a measurement. The RpmMeasurement contains a list of RpmResults
+	// where each individual result of the measurement event is listed.
 	ListRpmMeasurements(context.Context, *ListRpmMeasurementsRequest) (*ListRpmMeasurementsResponse, error)
 	mustEmbedUnimplementedRpmServiceServer()
 }

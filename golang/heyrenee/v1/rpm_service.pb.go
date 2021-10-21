@@ -22,12 +22,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Request message for ListRpmSchedules.
 type ListRpmSchedulesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId         string                     `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the Patient to return RpmSchedules for. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The status of the RpmSchedules. If specified, only RpmSchedules of this status are returned.
 	RpmScheduleStatus messages.RpmScheduleStatus `protobuf:"varint,2,opt,name=rpm_schedule_status,json=rpmScheduleStatus,proto3,enum=heyrenee.v1.messages.RpmScheduleStatus" json:"rpm_schedule_status,omitempty"`
 }
 
@@ -77,11 +80,13 @@ func (x *ListRpmSchedulesRequest) GetRpmScheduleStatus() messages.RpmScheduleSta
 	return messages.RpmScheduleStatus(0)
 }
 
+// Response message for ListRpmSchedules.
 type ListRpmSchedulesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of RpmSchedules.
 	RpmSchedules []*messages.RpmSchedule `protobuf:"bytes,1,rep,name=rpm_schedules,json=rpmSchedules,proto3" json:"rpm_schedules,omitempty"`
 }
 
@@ -124,11 +129,13 @@ func (x *ListRpmSchedulesResponse) GetRpmSchedules() []*messages.RpmSchedule {
 	return nil
 }
 
+// Request message for ListRpmMeasurements.
 type ListRpmMeasurementsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The ID of the RpmSchedule to return RpmMeasurements for. Required.
 	RpmScheduleId string `protobuf:"bytes,1,opt,name=rpm_schedule_id,json=rpmScheduleId,proto3" json:"rpm_schedule_id,omitempty"`
 }
 
@@ -171,11 +178,13 @@ func (x *ListRpmMeasurementsRequest) GetRpmScheduleId() string {
 	return ""
 }
 
+// Response message for ListRpmMeasurements.
 type ListRpmMeasurementsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The list of RpmMeasurements.
 	RpmMeasurements []*messages.RpmMeasurement `protobuf:"bytes,1,rep,name=rpm_measurements,json=rpmMeasurements,proto3" json:"rpm_measurements,omitempty"`
 }
 

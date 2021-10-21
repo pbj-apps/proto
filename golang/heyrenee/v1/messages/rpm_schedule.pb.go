@@ -22,16 +22,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// RpmScheduleType specifies the type of an RpmSchedule.
 type RpmScheduleType int32
 
 const (
-	RpmScheduleType_RPM_SCHEDULE_TYPE_UNSPECIFIED    RpmScheduleType = 0
-	RpmScheduleType_RPM_SCHEDULE_TYPE_HEART_RATE     RpmScheduleType = 1
+	// The RpmSchedule type is not specified.
+	RpmScheduleType_RPM_SCHEDULE_TYPE_UNSPECIFIED RpmScheduleType = 0
+	// The RpmSchedule is for heart rate monitoring.
+	RpmScheduleType_RPM_SCHEDULE_TYPE_HEART_RATE RpmScheduleType = 1
+	// The RpmSchedule is for blood pressure monitoring.
 	RpmScheduleType_RPM_SCHEDULE_TYPE_BLOOD_PRESSURE RpmScheduleType = 2
-	RpmScheduleType_RPM_SCHEDULE_TYPE_PULSE          RpmScheduleType = 3
-	RpmScheduleType_RPM_SCHEDULE_TYPE_SP_O2          RpmScheduleType = 4
-	RpmScheduleType_RPM_SCHEDULE_TYPE_WEIGHT         RpmScheduleType = 5
-	RpmScheduleType_RPM_SCHEDULE_TYPE_GLUCOSE        RpmScheduleType = 6
+	// The RpmSchedule is for pulse monitoring.
+	RpmScheduleType_RPM_SCHEDULE_TYPE_PULSE RpmScheduleType = 3
+	// The RpmSchedule is for Sp02 monitoring.
+	RpmScheduleType_RPM_SCHEDULE_TYPE_SP_O2 RpmScheduleType = 4
+	// The RpmSchedule is for weight monitoring.
+	RpmScheduleType_RPM_SCHEDULE_TYPE_WEIGHT RpmScheduleType = 5
+	// The RpmSchedule is for glucose monitoring.
+	RpmScheduleType_RPM_SCHEDULE_TYPE_GLUCOSE RpmScheduleType = 6
 )
 
 // Enum value maps for RpmScheduleType.
@@ -83,12 +91,16 @@ func (RpmScheduleType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_rpm_schedule_proto_rawDescGZIP(), []int{0}
 }
 
+// RpmScheduleStatus specifies the status of an RpmSchedule/
 type RpmScheduleStatus int32
 
 const (
+	// The RpmSchedule status is not specified.
 	RpmScheduleStatus_RPM_SCHEDULE_STATUS_UNSPECIFIED RpmScheduleStatus = 0
-	RpmScheduleStatus_RPM_SCHEDULE_ACTIVE             RpmScheduleStatus = 1
-	RpmScheduleStatus_RPM_SCHEDULE_INACTIVE           RpmScheduleStatus = 2
+	// The RpmSchedule is currently active (i.e. the Patient is currently taking RPM measurements for this schedule).
+	RpmScheduleStatus_RPM_SCHEDULE_ACTIVE RpmScheduleStatus = 1
+	// The RpmSchedule is inactive.
+	RpmScheduleStatus_RPM_SCHEDULE_INACTIVE RpmScheduleStatus = 2
 )
 
 // Enum value maps for RpmScheduleStatus.
@@ -132,23 +144,38 @@ func (RpmScheduleStatus) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_rpm_schedule_proto_rawDescGZIP(), []int{1}
 }
 
+// An RpmSchedule represents a schedule of when a patient should use remote patient monitoring (RPM) devices to take
+// specific types of RPM measurements. Each schedule specifies a certain number of measurements that should be taken
+// within a certain period of time and at certain times (e.g. two measurements in 24 hours at 8 hours and 16 hours).
+// A regimen refers to single period where measurements are taken (e.g. the two measurements taken on 10/24 at 8:00 and
+// 16:00).
 type RpmSchedule struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId                            string                 `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	RpmScheduleId                        string                 `protobuf:"bytes,2,opt,name=rpm_schedule_id,json=rpmScheduleId,proto3" json:"rpm_schedule_id,omitempty"`
-	RpmScheduleType                      RpmScheduleType        `protobuf:"varint,3,opt,name=rpm_schedule_type,json=rpmScheduleType,proto3,enum=heyrenee.v1.messages.RpmScheduleType" json:"rpm_schedule_type,omitempty"`
-	FirstMeasurementRegimenStart         *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=first_measurement_regimen_start,json=firstMeasurementRegimenStart,proto3" json:"first_measurement_regimen_start,omitempty"`
-	MeasurementRegimenDuration           *durationpb.Duration   `protobuf:"bytes,5,opt,name=measurement_regimen_duration,json=measurementRegimenDuration,proto3" json:"measurement_regimen_duration,omitempty"`
-	MeasurementsPerRegimen               int64                  `protobuf:"varint,6,opt,name=measurements_per_regimen,json=measurementsPerRegimen,proto3" json:"measurements_per_regimen,omitempty"`
+	// The ID of the Patient that this schedule is for.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the RpmSchedules.
+	RpmScheduleId string `protobuf:"bytes,2,opt,name=rpm_schedule_id,json=rpmScheduleId,proto3" json:"rpm_schedule_id,omitempty"`
+	// The type of RpmSchedule.
+	RpmScheduleType RpmScheduleType `protobuf:"varint,3,opt,name=rpm_schedule_type,json=rpmScheduleType,proto3,enum=heyrenee.v1.messages.RpmScheduleType" json:"rpm_schedule_type,omitempty"`
+	// The start time of the first regimen of this schedule.
+	FirstMeasurementRegimenStart *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=first_measurement_regimen_start,json=firstMeasurementRegimenStart,proto3" json:"first_measurement_regimen_start,omitempty"`
+	// The duration of a regimen within this schedule.
+	MeasurementRegimenDuration *durationpb.Duration `protobuf:"bytes,5,opt,name=measurement_regimen_duration,json=measurementRegimenDuration,proto3" json:"measurement_regimen_duration,omitempty"`
+	// The number of measurements that must be taken during a single regimen.
+	MeasurementsPerRegimen int64 `protobuf:"varint,6,opt,name=measurements_per_regimen,json=measurementsPerRegimen,proto3" json:"measurements_per_regimen,omitempty"`
+	// The lengths of time after the beginning of a regimen that measurements should be taken.
 	MeasurementDurationsFromRegimenStart []*durationpb.Duration `protobuf:"bytes,7,rep,name=measurement_durations_from_regimen_start,json=measurementDurationsFromRegimenStart,proto3" json:"measurement_durations_from_regimen_start,omitempty"`
+	// The Provider who established this schedule.
+	//
 	// Types that are assignable to Provider:
 	//	*RpmSchedule_ProviderId
 	//	*RpmSchedule_ProviderMessage
-	Provider          isRpmSchedule_Provider `protobuf_oneof:"provider"`
-	RpmScheduleStatus RpmScheduleStatus      `protobuf:"varint,10,opt,name=rpm_schedule_status,json=rpmScheduleStatus,proto3,enum=heyrenee.v1.messages.RpmScheduleStatus" json:"rpm_schedule_status,omitempty"`
+	Provider isRpmSchedule_Provider `protobuf_oneof:"provider"`
+	// The status of the RpmSchedule.
+	RpmScheduleStatus RpmScheduleStatus `protobuf:"varint,10,opt,name=rpm_schedule_status,json=rpmScheduleStatus,proto3,enum=heyrenee.v1.messages.RpmScheduleStatus" json:"rpm_schedule_status,omitempty"`
 }
 
 func (x *RpmSchedule) Reset() {
@@ -265,10 +292,12 @@ type isRpmSchedule_Provider interface {
 }
 
 type RpmSchedule_ProviderId struct {
+	// The ID of the Provider who established this schedule.
 	ProviderId string `protobuf:"bytes,8,opt,name=provider_id,json=providerId,proto3,oneof"`
 }
 
 type RpmSchedule_ProviderMessage struct {
+	// The Provider who established this schedule.
 	ProviderMessage *Provider `protobuf:"bytes,9,opt,name=provider_message,json=providerMessage,proto3,oneof"`
 }
 

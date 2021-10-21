@@ -21,14 +21,21 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Specifies the type of authorization on a field.
 type FieldAuthorization int32
 
 const (
-	FieldAuthorization_FIELD_AUTHORIZATION_NONE         FieldAuthorization = 0
-	FieldAuthorization_FIELD_AUTHORIZATION_PATIENT      FieldAuthorization = 1
-	FieldAuthorization_FIELD_AUTHORIZATION_CAREGIVER    FieldAuthorization = 2
-	FieldAuthorization_FIELD_AUTHORIZATION_CONCIERGE    FieldAuthorization = 3
+	// The field has no authorization.
+	FieldAuthorization_FIELD_AUTHORIZATION_NONE FieldAuthorization = 0
+	// The field is a Patient ID and access to that Patient ID must be authorized.
+	FieldAuthorization_FIELD_AUTHORIZATION_PATIENT FieldAuthorization = 1
+	// The field is a Caregiver ID and access to that Caregiver ID must be authorized.
+	FieldAuthorization_FIELD_AUTHORIZATION_CAREGIVER FieldAuthorization = 2
+	// The field is a Concierge ID and access to that Concierge ID must be authorized.
+	FieldAuthorization_FIELD_AUTHORIZATION_CONCIERGE FieldAuthorization = 3
+	// The field is a Prescription ID and access to that Prescription ID must be authorized.
 	FieldAuthorization_FIELD_AUTHORIZATION_PRESCRIPTION FieldAuthorization = 4
+	// The field is an RpmSchedule ID and access to that RpmSchedule ID must be authorized.
 	FieldAuthorization_FIELD_AUTHORIZATION_RPM_SCHEDULE FieldAuthorization = 5
 )
 
@@ -100,12 +107,16 @@ var file_heyrenee_v1_options_auth_proto_extTypes = []protoimpl.ExtensionInfo{
 
 // Extension fields to descriptorpb.MethodOptions.
 var (
+	// If true, indicates that the method is authenticated.
+	//
 	// optional bool authenticated = 50000;
 	E_Authenticated = &file_heyrenee_v1_options_auth_proto_extTypes[0]
 )
 
 // Extension fields to descriptorpb.FieldOptions.
 var (
+	// If specified, indicates that the field requires authorization and the type of authorization.
+	//
 	// optional heyrenee.v1.options.FieldAuthorization field_authorization = 50000;
 	E_FieldAuthorization = &file_heyrenee_v1_options_auth_proto_extTypes[1]
 )

@@ -21,16 +21,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Specifies the unit that an RpmMeasurementResult is in.
 type RpmMeasurementResultUnit int32
 
 const (
+	// The unit is not specified.
 	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_UNSPECIFIED RpmMeasurementResultUnit = 0
-	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_BPM         RpmMeasurementResultUnit = 1
-	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_LBS         RpmMeasurementResultUnit = 2
-	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_PERCENTAGE  RpmMeasurementResultUnit = 3
-	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_MG_DL       RpmMeasurementResultUnit = 4
-	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_MM_HG       RpmMeasurementResultUnit = 5
-	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_CELSIUS     RpmMeasurementResultUnit = 6
+	// The unit is beats per minute (BPM).
+	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_BPM RpmMeasurementResultUnit = 1
+	// The unit is pounds (lbs).
+	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_LBS RpmMeasurementResultUnit = 2
+	// The unit is a percentage.
+	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_PERCENTAGE RpmMeasurementResultUnit = 3
+	// The unit is milligram per decilitre (mg/dL).
+	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_MG_DL RpmMeasurementResultUnit = 4
+	// The unit is millimeters of mercury (mmHg).
+	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_MM_HG RpmMeasurementResultUnit = 5
+	// The unit is celsius.
+	RpmMeasurementResultUnit_RPM_MEASUREMENT_RESULT_UNIT_CELSIUS RpmMeasurementResultUnit = 6
 )
 
 // Enum value maps for RpmMeasurementResultUnit.
@@ -82,17 +90,26 @@ func (RpmMeasurementResultUnit) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_rpm_measurement_proto_rawDescGZIP(), []int{0}
 }
 
+// Specifies the type of an RpmMeasurementResult.
 type RpmMeasurementResultType int32
 
 const (
+	// The type is not specified.
 	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_UNSPECIFIED RpmMeasurementResultType = 0
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_WEIGHT      RpmMeasurementResultType = 1
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_SPO2        RpmMeasurementResultType = 2
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_BPM         RpmMeasurementResultType = 3
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_GLUCOSE     RpmMeasurementResultType = 4
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_DIA         RpmMeasurementResultType = 5
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_SYS         RpmMeasurementResultType = 6
-	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_TEMP        RpmMeasurementResultType = 7
+	// The result is a weight measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_WEIGHT RpmMeasurementResultType = 1
+	// The result is a blood oxygen measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_SPO2 RpmMeasurementResultType = 2
+	// The result is a heart rate measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_BPM RpmMeasurementResultType = 3
+	// The result is a blood sugar measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_GLUCOSE RpmMeasurementResultType = 4
+	// The result is a diastolic blood pressure measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_DIA RpmMeasurementResultType = 5
+	// The result is a systolic blood pressure measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_SYS RpmMeasurementResultType = 6
+	// The result is a body temperature measurement.
+	RpmMeasurementResultType_RPM_MEASUREMENT_RESULT_TYPE_TEMP RpmMeasurementResultType = 7
 )
 
 // Enum value maps for RpmMeasurementResultType.
@@ -146,16 +163,22 @@ func (RpmMeasurementResultType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_rpm_measurement_proto_rawDescGZIP(), []int{1}
 }
 
+// An RpmMeasurement represents a single event where an RPM device was used to take a measurement.
 type RpmMeasurement struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId             string                  `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	RpmScheduleId         string                  `protobuf:"bytes,2,opt,name=rpm_schedule_id,json=rpmScheduleId,proto3" json:"rpm_schedule_id,omitempty"`
-	RpmMeasurementId      string                  `protobuf:"bytes,3,opt,name=rpm_measurement_id,json=rpmMeasurementId,proto3" json:"rpm_measurement_id,omitempty"`
+	// The ID of the Patient that this measurement is for.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the RpmSchedule that this measurement is part of.
+	RpmScheduleId string `protobuf:"bytes,2,opt,name=rpm_schedule_id,json=rpmScheduleId,proto3" json:"rpm_schedule_id,omitempty"`
+	// The ID of the RpmMeasurement.
+	RpmMeasurementId string `protobuf:"bytes,3,opt,name=rpm_measurement_id,json=rpmMeasurementId,proto3" json:"rpm_measurement_id,omitempty"`
+	// A list of the results of this RpmMeasurement.
 	RpmMeasurementResults []*RpmMeasurementResult `protobuf:"bytes,4,rep,name=rpm_measurement_results,json=rpmMeasurementResults,proto3" json:"rpm_measurement_results,omitempty"`
-	TimeTaken             *timestamppb.Timestamp  `protobuf:"bytes,5,opt,name=time_taken,json=timeTaken,proto3" json:"time_taken,omitempty"`
+	// The time at which the measurement was taken.
+	TimeTaken *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=time_taken,json=timeTaken,proto3" json:"time_taken,omitempty"`
 }
 
 func (x *RpmMeasurement) Reset() {
@@ -225,14 +248,19 @@ func (x *RpmMeasurement) GetTimeTaken() *timestamppb.Timestamp {
 	return nil
 }
 
+// An RpmMeasurementResult represents a single value output from an RpmMeasurement event.
 type RpmMeasurementResult struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	RpmMeasurementResultId   string                   `protobuf:"bytes,1,opt,name=rpm_measurement_result_id,json=rpmMeasurementResultId,proto3" json:"rpm_measurement_result_id,omitempty"`
-	Value                    float64                  `protobuf:"fixed64,2,opt,name=value,proto3" json:"value,omitempty"`
+	// The ID of the RpmMeasurementResult.
+	RpmMeasurementResultId string `protobuf:"bytes,1,opt,name=rpm_measurement_result_id,json=rpmMeasurementResultId,proto3" json:"rpm_measurement_result_id,omitempty"`
+	// The value of the result.
+	Value float64 `protobuf:"fixed64,2,opt,name=value,proto3" json:"value,omitempty"`
+	// The unit that the value of the result is in.
 	RpmMeasurementResultUnit RpmMeasurementResultUnit `protobuf:"varint,3,opt,name=rpm_measurement_result_unit,json=rpmMeasurementResultUnit,proto3,enum=heyrenee.v1.messages.RpmMeasurementResultUnit" json:"rpm_measurement_result_unit,omitempty"`
+	// The type of RpmMeasurementResult.
 	RpmMeasurementResultType RpmMeasurementResultType `protobuf:"varint,4,opt,name=rpm_measurement_result_type,json=rpmMeasurementResultType,proto3,enum=heyrenee.v1.messages.RpmMeasurementResultType" json:"rpm_measurement_result_type,omitempty"`
 }
 

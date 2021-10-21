@@ -4,7 +4,10 @@ package heyrenee.v1.messages;
 
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
+// Specialty specifies a healthcare speciality.
 enum Specialty {
+  // The specialty is not specified.
   SPECIALTY_UNSPECIFIED = 0;
-  SPECIALTY_ENDOCRINOLOGIST = 1;
+  // The specialty is Endocrinology.
+  SPECIALTY_ENDOCRINOLOGY = 1;
 }

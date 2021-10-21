@@ -7,18 +7,27 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/options";
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.MethodOptions {
+  // If true, indicates that the method is authenticated.
   bool authenticated = 50000;
 }
 
 extend google.protobuf.FieldOptions {
+  // If specified, indicates that the field requires authorization and the type of authorization.
   FieldAuthorization field_authorization = 50000;
 }
 
+// Specifies the type of authorization on a field.
 enum FieldAuthorization {
+  // The field has no authorization.
   FIELD_AUTHORIZATION_NONE = 0;
+  // The field is a Patient ID and access to that Patient ID must be authorized.
   FIELD_AUTHORIZATION_PATIENT = 1;
+  // The field is a Caregiver ID and access to that Caregiver ID must be authorized.
   FIELD_AUTHORIZATION_CAREGIVER = 2;
+  // The field is a Concierge ID and access to that Concierge ID must be authorized.
   FIELD_AUTHORIZATION_CONCIERGE = 3;
+  // The field is a Prescription ID and access to that Prescription ID must be authorized.
   FIELD_AUTHORIZATION_PRESCRIPTION = 4;
+  // The field is an RpmSchedule ID and access to that RpmSchedule ID must be authorized.
   FIELD_AUTHORIZATION_RPM_SCHEDULE = 5;
 }
