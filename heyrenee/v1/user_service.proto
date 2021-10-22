@@ -20,7 +20,9 @@ service UserService {
   // CreateCaregiver creates a new User with a Caregiver subuser.
   rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
   // CreateConcierge creates a new User with a Concierge subuser.
-  rpc CreateConcierge(CreateConciergeRequest) returns (heyrenee.v1.messages.Concierge) {}
+  rpc CreateConcierge(CreateConciergeRequest) returns (heyrenee.v1.messages.Concierge) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
 }
 
 message CreatePatientRequest {
