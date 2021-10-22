@@ -47,6 +47,8 @@ service UserService {
 message CreatePatientRequest {
   // The Patient to create. Required.
   heyrenee.v1.messages.Patient patient = 1;
+  // Hash of the Patient's password. If not provided, a random password will be generated.
+  string password_hash = 2;
 }
 
 // Request message for GetPatient.
@@ -66,6 +68,8 @@ message UpdatePatientRequest {
 message CreateCaregiverRequest {
   // The Caregiver to create. Required.
   heyrenee.v1.messages.Caregiver caregiver = 1;
+  // Hash of the Caregiver's password. If not provided, a random password will be generated.
+  string password_hash = 2;
 }
 
 // Request message for GetCaregiver.
@@ -84,4 +88,6 @@ message UpdateCaregiverRequest {
 message CreateConciergeRequest {
   // The Concierge to create. Required.
   heyrenee.v1.messages.Concierge concierge = 1;
+  // Hash of the Concierge's password. If not provided, a random password will be generated.
+  string password_hash = 2;
 }
