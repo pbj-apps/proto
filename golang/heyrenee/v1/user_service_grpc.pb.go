@@ -29,9 +29,9 @@ type UserServiceClient interface {
 	UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	// CreateCaregiver creates a new User with a Caregiver subuser.
 	CreateCaregiver(ctx context.Context, in *CreateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
-	// GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
+	// GetCaregiver retrieves a specified Caregiver subuser.
 	GetCaregiver(ctx context.Context, in *GetCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
-	// UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
+	// UpdateCaregiver updates a specified Caregiver subuser.
 	UpdateCaregiver(ctx context.Context, in *UpdateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
 	// CreateConcierge creates a new User with a Concierge subuser.
 	CreateConcierge(ctx context.Context, in *CreateConciergeRequest, opts ...grpc.CallOption) (*messages.Concierge, error)
@@ -122,9 +122,9 @@ type UserServiceServer interface {
 	UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error)
 	// CreateCaregiver creates a new User with a Caregiver subuser.
 	CreateCaregiver(context.Context, *CreateCaregiverRequest) (*messages.Caregiver, error)
-	// GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
+	// GetCaregiver retrieves a specified Caregiver subuser.
 	GetCaregiver(context.Context, *GetCaregiverRequest) (*messages.Caregiver, error)
-	// UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
+	// UpdateCaregiver updates a specified Caregiver subuser.
 	UpdateCaregiver(context.Context, *UpdateCaregiverRequest) (*messages.Caregiver, error)
 	// CreateConcierge creates a new User with a Concierge subuser.
 	CreateConcierge(context.Context, *CreateConciergeRequest) (*messages.Concierge, error)

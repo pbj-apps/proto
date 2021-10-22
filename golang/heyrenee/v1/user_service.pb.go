@@ -22,11 +22,13 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Request message for CreatePatient.
 type CreatePatientRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Patient to create. Required.
 	Patient *messages.Patient `protobuf:"bytes,1,opt,name=patient,proto3" json:"patient,omitempty"`
 }
 
@@ -167,11 +169,13 @@ func (x *UpdatePatientRequest) GetPatient() *messages.Patient {
 	return nil
 }
 
+// Request message for CreateCaregiver.
 type CreateCaregiverRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Caregiver to create. Required.
 	Caregiver *messages.Caregiver `protobuf:"bytes,1,opt,name=caregiver,proto3" json:"caregiver,omitempty"`
 }
 
@@ -312,11 +316,13 @@ func (x *UpdateCaregiverRequest) GetCaregiver() *messages.Caregiver {
 	return nil
 }
 
+// Request message for CreateConcierge.
 type CreateConciergeRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// The Concierge to create. Required.
 	Concierge *messages.Concierge `protobuf:"bytes,1,opt,name=concierge,proto3" json:"concierge,omitempty"`
 }
 
