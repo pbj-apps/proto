@@ -19,10 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PatientServiceClient interface {
-	// GetPatient retrieves a specified Patient subuser.
-	GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
-	// UpdatePatient updates a specified Patient subuser.
-	UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error)
 	// CreatePatientProvider creates a specified PatientProvider.
 	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
 	// UpdatePatientProvider updates a specified PatientProvider.
@@ -43,24 +39,6 @@ type patientServiceClient struct {
 
 func NewPatientServiceClient(cc grpc.ClientConnInterface) PatientServiceClient {
 	return &patientServiceClient{cc}
-}
-
-func (c *patientServiceClient) GetPatient(ctx context.Context, in *GetPatientRequest, opts ...grpc.CallOption) (*messages.Patient, error) {
-	out := new(messages.Patient)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/GetPatient", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *patientServiceClient) UpdatePatient(ctx context.Context, in *UpdatePatientRequest, opts ...grpc.CallOption) (*messages.Patient, error) {
-	out := new(messages.Patient)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/UpdatePatient", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *patientServiceClient) CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error) {
@@ -121,10 +99,6 @@ func (c *patientServiceClient) ListPatientCaregivers(ctx context.Context, in *Li
 // All implementations must embed UnimplementedPatientServiceServer
 // for forward compatibility
 type PatientServiceServer interface {
-	// GetPatient retrieves a specified Patient subuser.
-	GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error)
-	// UpdatePatient updates a specified Patient subuser.
-	UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error)
 	// CreatePatientProvider creates a specified PatientProvider.
 	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
 	// UpdatePatientProvider updates a specified PatientProvider.
@@ -144,12 +118,6 @@ type PatientServiceServer interface {
 type UnimplementedPatientServiceServer struct {
 }
 
-func (UnimplementedPatientServiceServer) GetPatient(context.Context, *GetPatientRequest) (*messages.Patient, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPatient not implemented")
-}
-func (UnimplementedPatientServiceServer) UpdatePatient(context.Context, *UpdatePatientRequest) (*messages.Patient, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePatient not implemented")
-}
 func (UnimplementedPatientServiceServer) CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientProvider not implemented")
 }
@@ -179,42 +147,6 @@ type UnsafePatientServiceServer interface {
 
 func RegisterPatientServiceServer(s grpc.ServiceRegistrar, srv PatientServiceServer) {
 	s.RegisterService(&PatientService_ServiceDesc, srv)
-}
-
-func _PatientService_GetPatient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPatientRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PatientServiceServer).GetPatient(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.PatientService/GetPatient",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PatientServiceServer).GetPatient(ctx, req.(*GetPatientRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PatientService_UpdatePatient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePatientRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PatientServiceServer).UpdatePatient(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.PatientService/UpdatePatient",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PatientServiceServer).UpdatePatient(ctx, req.(*UpdatePatientRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _PatientService_CreatePatientProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -332,14 +264,6 @@ var PatientService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "heyrenee.v1.PatientService",
 	HandlerType: (*PatientServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetPatient",
-			Handler:    _PatientService_GetPatient_Handler,
-		},
-		{
-			MethodName: "UpdatePatient",
-			Handler:    _PatientService_UpdatePatient_Handler,
-		},
 		{
 			MethodName: "CreatePatientProvider",
 			Handler:    _PatientService_CreatePatientProvider_Handler,

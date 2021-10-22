@@ -17,8 +17,24 @@ service UserService {
   // a Patient subuser will be created. If the request is authenticated by a Caregiver or Concierge subuser then the new
   // Patient subuser will be created with a PatientCaregiver or a PatientConcierge for the authenticated subuser.
   rpc CreatePatient(CreatePatientRequest) returns (heyrenee.v1.messages.Patient) {}
+  // GetPatient retrieves a specified Patient subuser.
+  rpc GetPatient(GetPatientRequest) returns (heyrenee.v1.messages.Patient) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  // UpdatePatient updates a specified Patient subuser.
+  rpc UpdatePatient(UpdatePatientRequest) returns (heyrenee.v1.messages.Patient) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
   // CreateCaregiver creates a new User with a Caregiver subuser.
   rpc CreateCaregiver(CreateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {}
+  // GetCaregiver retrieves the Caregiver subuser for the User specified by authentication.
+  rpc GetCaregiver(GetCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  // UpdateCaregiver updates the Caregiver subuser for the User specified by authentication.
+  rpc UpdateCaregiver(UpdateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
   // CreateConcierge creates a new User with a Concierge subuser.
   rpc CreateConcierge(CreateConciergeRequest) returns (heyrenee.v1.messages.Concierge) {
     option (heyrenee.v1.options.authenticated) = true;
@@ -29,7 +45,32 @@ message CreatePatientRequest {
   heyrenee.v1.messages.Patient patient = 1;
 }
 
+// Request message for GetPatient.
+message GetPatientRequest {
+  // The ID of the Patient to retrieve. Required.
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+}
+
+// Request message for UpdatePatient.
+message UpdatePatientRequest {
+  // The Patient to update. Required.
+  heyrenee.v1.messages.Patient patient = 1;
+}
+
+
 message CreateCaregiverRequest {
+  heyrenee.v1.messages.Caregiver caregiver = 1;
+}
+
+// Request message for GetCaregiver.
+message GetCaregiverRequest {
+  // The ID of the Caregiver to retrieve. Required.
+  string caregiver_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_CAREGIVER];
+}
+
+// Request message for UpdateCaregiver.
+message UpdateCaregiverRequest {
+  // The Caregiver to update. Required.
   heyrenee.v1.messages.Caregiver caregiver = 1;
 }
 
