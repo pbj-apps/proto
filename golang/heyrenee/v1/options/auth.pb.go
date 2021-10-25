@@ -107,7 +107,7 @@ var file_heyrenee_v1_options_auth_proto_extTypes = []protoimpl.ExtensionInfo{
 
 // Extension fields to descriptorpb.MethodOptions.
 var (
-	// If true, indicates that the method is authenticated.
+	// If true, indicates that the method requires authentication.
 	//
 	// optional bool authenticated = 50000;
 	E_Authenticated = &file_heyrenee_v1_options_auth_proto_extTypes[0]
@@ -115,7 +115,8 @@ var (
 
 // Extension fields to descriptorpb.FieldOptions.
 var (
-	// If specified, indicates that the field requires authorization and the type of authorization.
+	// If specified, indicates that the field requires authorization and the type of authorization. Access to the field will
+	// only be authorized if the method is also authenticated.
 	//
 	// optional heyrenee.v1.options.FieldAuthorization field_authorization = 50000;
 	E_FieldAuthorization = &file_heyrenee_v1_options_auth_proto_extTypes[1]

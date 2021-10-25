@@ -219,9 +219,9 @@ type PatientCaregiver struct {
 	PreferredName string `protobuf:"bytes,4,opt,name=preferred_name,json=preferredName,proto3" json:"preferred_name,omitempty"`
 	// The type of PatientCaregiver.
 	PatientCaregiverType PatientCaregiverType `protobuf:"varint,5,opt,name=patient_caregiver_type,json=patientCaregiverType,proto3,enum=heyrenee.v1.messages.PatientCaregiverType" json:"patient_caregiver_type,omitempty"`
-	// The access that the Caregiver has to the Patient. Required.
+	// The access that the Caregiver has to the Patient. Required, must not be unspecified.
 	PatientCaregiverAccess PatientCaregiverAccess `protobuf:"varint,6,opt,name=patient_caregiver_access,json=patientCaregiverAccess,proto3,enum=heyrenee.v1.messages.PatientCaregiverAccess" json:"patient_caregiver_access,omitempty"`
-	// The relationship of the Caregiver to the Patient. Required.
+	// The relationship of the Caregiver to the Patient. Required, must not be unspecified.
 	PatientCaregiverRelationship PatientCaregiverRelationship `protobuf:"varint,7,opt,name=patient_caregiver_relationship,json=patientCaregiverRelationship,proto3,enum=heyrenee.v1.messages.PatientCaregiverRelationship" json:"patient_caregiver_relationship,omitempty"`
 }
 

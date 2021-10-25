@@ -23,9 +23,9 @@ message PatientCaregiver {
   string preferred_name = 4;
   // The type of PatientCaregiver.
   PatientCaregiverType patient_caregiver_type = 5;
-  // The access that the Caregiver has to the Patient. Required.
+  // The access that the Caregiver has to the Patient. Required, must not be unspecified.
   PatientCaregiverAccess patient_caregiver_access = 6;
-  // The relationship of the Caregiver to the Patient. Required.
+  // The relationship of the Caregiver to the Patient. Required, must not be unspecified.
   PatientCaregiverRelationship patient_caregiver_relationship = 7;
 }
 
