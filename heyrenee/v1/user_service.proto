@@ -69,7 +69,7 @@ message CreateCaregiverRequest {
   // The Caregiver to create. Required.
   heyrenee.v1.messages.Caregiver caregiver = 1;
   // Hash of the Caregiver's password. If not provided, a random password will be generated.
-  string hash = 2;
+  string password = 2;
 }
 
 // Request message for GetCaregiver.
