@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
+
+import "heyrenee/v1/messages/insurance.proto";
+import "heyrenee/v1/options/auth.proto";
+
+service InsuranceService {
+  rpc CreateInsurance(CreateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc UpdateInsurance(UpdateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc ListInsurance(ListInsuranceRequest) returns (ListInsuranceResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+}
+
+// Request message for CreateInsurance.
+message CreateInsuranceRequest {
+  // The Insurance resource to create. Required.
+  heyrenee.v1.messages.Insurance insurance = 1;
+}
+
+// Request message for UpdateInsurance.
+message UpdateInsuranceRequest {
+  // The Insurance resource to update. Required.
+  heyrenee.v1.messages.Insurance insurance = 1;
+}
+
+// Request message for ListInsurance.
+message ListInsuranceRequest {
+  // The ID of the Patient to return Insurance for. Required.
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The status of Insurance that should be returned.
+  heyrenee.v1.messages.InsuranceStatus insurance_status = 2;
+}
+
+// Response message for ListInsurance.
+message ListInsuranceResponse {
+  // The list of Insurance.
+  repeated heyrenee.v1.messages.Insurance insurance = 1;
+}
