@@ -33,8 +33,6 @@ type UserServiceClient interface {
 	GetCaregiver(ctx context.Context, in *GetCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
 	// UpdateCaregiver updates a specified Caregiver subuser.
 	UpdateCaregiver(ctx context.Context, in *UpdateCaregiverRequest, opts ...grpc.CallOption) (*messages.Caregiver, error)
-	// CreateConcierge creates a new User with a Concierge subuser.
-	CreateConcierge(ctx context.Context, in *CreateConciergeRequest, opts ...grpc.CallOption) (*messages.Concierge, error)
 }
 
 type userServiceClient struct {
@@ -99,15 +97,6 @@ func (c *userServiceClient) UpdateCaregiver(ctx context.Context, in *UpdateCareg
 	return out, nil
 }
 
-func (c *userServiceClient) CreateConcierge(ctx context.Context, in *CreateConciergeRequest, opts ...grpc.CallOption) (*messages.Concierge, error) {
-	out := new(messages.Concierge)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.UserService/CreateConcierge", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -126,8 +115,6 @@ type UserServiceServer interface {
 	GetCaregiver(context.Context, *GetCaregiverRequest) (*messages.Caregiver, error)
 	// UpdateCaregiver updates a specified Caregiver subuser.
 	UpdateCaregiver(context.Context, *UpdateCaregiverRequest) (*messages.Caregiver, error)
-	// CreateConcierge creates a new User with a Concierge subuser.
-	CreateConcierge(context.Context, *CreateConciergeRequest) (*messages.Concierge, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -152,9 +139,6 @@ func (UnimplementedUserServiceServer) GetCaregiver(context.Context, *GetCaregive
 }
 func (UnimplementedUserServiceServer) UpdateCaregiver(context.Context, *UpdateCaregiverRequest) (*messages.Caregiver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCaregiver not implemented")
-}
-func (UnimplementedUserServiceServer) CreateConcierge(context.Context, *CreateConciergeRequest) (*messages.Concierge, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateConcierge not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -277,24 +261,6 @@ func _UserService_UpdateCaregiver_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CreateConcierge_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateConciergeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).CreateConcierge(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.UserService/CreateConcierge",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateConcierge(ctx, req.(*CreateConciergeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -325,10 +291,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateCaregiver",
 			Handler:    _UserService_UpdateCaregiver_Handler,
-		},
-		{
-			MethodName: "CreateConcierge",
-			Handler:    _UserService_CreateConcierge_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

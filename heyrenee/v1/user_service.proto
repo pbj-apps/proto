@@ -7,7 +7,6 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 import "heyrenee/v1/options/auth.proto";
 import "heyrenee/v1/messages/patient.proto";
 import "heyrenee/v1/messages/caregiver.proto";
-import "heyrenee/v1/messages/concierge.proto";
 
 // UserService
 //
@@ -34,11 +33,6 @@ service UserService {
   }
   // UpdateCaregiver updates a specified Caregiver subuser.
   rpc UpdateCaregiver(UpdateCaregiverRequest) returns (heyrenee.v1.messages.Caregiver) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
-
-  // CreateConcierge creates a new User with a Concierge subuser.
-  rpc CreateConcierge(CreateConciergeRequest) returns (heyrenee.v1.messages.Concierge) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 }
@@ -82,12 +76,4 @@ message GetCaregiverRequest {
 message UpdateCaregiverRequest {
   // The Caregiver to update. Required.
   heyrenee.v1.messages.Caregiver caregiver = 1;
-}
-
-// Request message for CreateConcierge.
-message CreateConciergeRequest {
-  // The Concierge to create. Required.
-  heyrenee.v1.messages.Concierge concierge = 1;
-  // The Concierge's password. If not provided, a random password will be generated.
-  string password = 2;
 }
