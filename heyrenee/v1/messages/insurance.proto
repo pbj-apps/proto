@@ -21,12 +21,12 @@ message Insurance {
   string group_number = 12;
   string policy_number = 13;
   string rx_policy_number = 14;
-  string claims_address_lines = 15;
+  repeated string claims_address_lines = 15;
   string claims_city = 16;
   string claims_state = 17;
   string claims_zip = 18;
   string claims_phone = 19;
-  string rx_claims_address_lines = 29;
+  repeated string rx_claims_address_lines = 29;
   string rx_claims_city = 21;
   string rx_claims_state = 22;
   string rx_claims_zip = 23;
