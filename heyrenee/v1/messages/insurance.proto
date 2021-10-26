@@ -11,25 +11,26 @@ message Insurance {
   string insurance_id = 2;
   string insurer = 3;
   InsuranceType insurance_type = 4;
-  string policy_owner_name = 5;
-  repeated string policy_owner_address_lines = 6;
-  string policy_owner_city = 7;
-  string policy_owner_state = 8;
-  string policy_owner_zip = 9;
-  string group_number = 10;
-  string policy_number = 11;
-  string rx_policy_number = 12;
-  string claims_address_lines = 13;
-  string claims_city = 14;
-  string claims_state = 15;
-  string claims_zip = 16;
-  string claims_phone = 17;
-  string rx_claims_address_lines = 18;
-  string rx_claims_city = 19;
-  string rx_claims_state = 20;
-  string rx_claims_zip = 21;
-  string rx_claims_phone = 22;
-  InsuranceStatus insurance_status = 23;
+  InsuranceStatus insurance_status = 5;
+  string policy_owner_name = 6;
+  repeated string policy_owner_address_lines = 7;
+  string policy_owner_city = 8;
+  string policy_owner_state = 9;
+  string policy_owner_zip = 10;
+  string policy_owner_phone = 11;
+  string group_number = 12;
+  string policy_number = 13;
+  string rx_policy_number = 14;
+  string claims_address_lines = 15;
+  string claims_city = 16;
+  string claims_state = 17;
+  string claims_zip = 18;
+  string claims_phone = 19;
+  string rx_claims_address_lines = 29;
+  string rx_claims_city = 21;
+  string rx_claims_state = 22;
+  string rx_claims_zip = 23;
+  string rx_claims_phone = 24;
 }
 
 enum InsuranceType {
