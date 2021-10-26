@@ -25,7 +25,7 @@ message ListAppointmentsRequest {
   string page_token = 1;
   // The total number of results to include in a single page of results. Minimum is 1, maximum is 100, and default is
   // 25.
-  int32 page_count = 2;
+  int64 page_count = 2;
   // The ID of the Patient to return Appointments for. Required.
   string patient_id = 3 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
   // The type of Appointments that should be returned.
