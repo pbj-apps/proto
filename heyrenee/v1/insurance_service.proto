@@ -7,13 +7,19 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 import "heyrenee/v1/messages/insurance.proto";
 import "heyrenee/v1/options/auth.proto";
 
+// InsuranceService
+//
+// The InsuranceService provides operations on insurance related resources that belong to specific Patients.
 service InsuranceService {
+  // CreateInsurance creates a provided Insurance resource.
   rpc CreateInsurance(CreateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // UpdateInsurance updates a provided Insurance resource.
   rpc UpdateInsurance(UpdateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListInsurance lists Insurance resources for a specified Patient.
   rpc ListInsurance(ListInsuranceRequest) returns (ListInsuranceResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }

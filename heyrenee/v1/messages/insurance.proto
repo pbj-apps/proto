@@ -6,45 +6,82 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "heyrenee/v1/options/auth.proto";
 
+// Insurance represents an insurance policy that is currently or has in the past covered a Patient.
 message Insurance {
+  // The ID of the Patient that the Insurance covers. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The ID of the Insurance. Must not be provided for Create requests, required for all other requests.
   string insurance_id = 2;
+  // The name of the insuring company. Required.
   string insurer = 3;
+  // The type of Insurance. Required, must not be unspecified.
   InsuranceType insurance_type = 4;
+  // The status of the Insurance. Required, must not be unspecified.
   InsuranceStatus insurance_status = 5;
+  // The name of the policy owner or primary insured. Required.
   string policy_owner_name = 6;
+  // The address lines on file with the insurance company for the policy owner or primary insured. Required.
   repeated string policy_owner_address_lines = 7;
+  // The city on file with the insurance company for the policy owner or primary insured. Required.
   string policy_owner_city = 8;
+  // The state on file with the insurance company for the policy owner or primary insured. Required.
   string policy_owner_state = 9;
+  // The zip code on file with the insurance company for the policy owner or primary insured. Required.
   string policy_owner_zip = 10;
+  // The phone number on file with the insurance company for the policy owner or primary insured. Required.
   string policy_owner_phone = 11;
+  // The group number of the insurance policy. Required.
   string group_number = 12;
+  // The policy number of the insurance policy. Required.
   string policy_number = 13;
+  // The Rx policy number of the insurance policy.
   string rx_policy_number = 14;
+  // The address lines for filing claims. Required.
   repeated string claims_address_lines = 15;
+  // The city for filing claims. Required.
   string claims_city = 16;
+  // The state for filing claims. Required.
   string claims_state = 17;
+  // The zip code for filing claims. Required.
   string claims_zip = 18;
+  // The phone number for filing claims. Required.
   string claims_phone = 19;
+  // The address lines for filing Rx claims.
   repeated string rx_claims_address_lines = 29;
+  // The city for filing Rx claims.
   string rx_claims_city = 21;
+  // The state for filing Rx claims.
   string rx_claims_state = 22;
+  // The zip code for filing Rx claims.
   string rx_claims_zip = 23;
+  // The phone number for filing Rx claims.
   string rx_claims_phone = 24;
 }
 
+// InsuranceType specifies the type of insurance policy represented by an Insurance resource.
 enum InsuranceType {
+  // The Insurance type is not specified.
   INSURANCE_TYPE_UNSPECIFIED = 0;
+  // The Insurance is a medicaid policy.
   INSURANCE_TYPE_MEDICAID = 1;
+  // The Insurance is a medicare policy.
   INSURANCE_TYPE_MEDICARE = 2;
+  // The Insurance is a medicare advantage policy.
   INSURANCE_TYPE_MEDICARE_ADVANTAGE = 3;
+  // The Insurance is a Veterans Affairs policy.
   INSURANCE_TYPE_VETERANS_AFFAIRS= 4;
+  // The Insurance is an employer based policy.
   INSURANCE_TYPE_EMPLOYER_BASED = 5;
+  // The Insurance is a supplied by private insurance.
   INSURANCE_TYPE_PRIVATE = 6;
 }
 
+// InsuranceStatus represents the status of the insurance policy represented by an Insurance resource.
 enum InsuranceStatus {
+  // The Insurance status is not specified.
   INSURANCE_STATUS_UNSPECIFIED = 0;
+  // The Insurance is currently and covering the Patient.
   INSURANCE_STATUS_ACTIVE = 1;
+  // The Insurance is inactive and no longer covering the Patient.
   INSURANCE_STATUS_INACTIVE = 2;
 }

@@ -19,8 +19,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type InsuranceServiceClient interface {
+	// CreateInsurance creates a provided Insurance resource.
 	CreateInsurance(ctx context.Context, in *CreateInsuranceRequest, opts ...grpc.CallOption) (*messages.Insurance, error)
+	// UpdateInsurance updates a provided Insurance resource.
 	UpdateInsurance(ctx context.Context, in *UpdateInsuranceRequest, opts ...grpc.CallOption) (*messages.Insurance, error)
+	// ListInsurance lists Insurance resources for a specified Patient.
 	ListInsurance(ctx context.Context, in *ListInsuranceRequest, opts ...grpc.CallOption) (*ListInsuranceResponse, error)
 }
 
@@ -63,8 +66,11 @@ func (c *insuranceServiceClient) ListInsurance(ctx context.Context, in *ListInsu
 // All implementations must embed UnimplementedInsuranceServiceServer
 // for forward compatibility
 type InsuranceServiceServer interface {
+	// CreateInsurance creates a provided Insurance resource.
 	CreateInsurance(context.Context, *CreateInsuranceRequest) (*messages.Insurance, error)
+	// UpdateInsurance updates a provided Insurance resource.
 	UpdateInsurance(context.Context, *UpdateInsuranceRequest) (*messages.Insurance, error)
+	// ListInsurance lists Insurance resources for a specified Patient.
 	ListInsurance(context.Context, *ListInsuranceRequest) (*ListInsuranceResponse, error)
 	mustEmbedUnimplementedInsuranceServiceServer()
 }

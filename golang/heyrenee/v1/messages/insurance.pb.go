@@ -21,16 +21,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// InsuranceType specifies the type of insurance policy represented by an Insurance resource.
 type InsuranceType int32
 
 const (
-	InsuranceType_INSURANCE_TYPE_UNSPECIFIED        InsuranceType = 0
-	InsuranceType_INSURANCE_TYPE_MEDICAID           InsuranceType = 1
-	InsuranceType_INSURANCE_TYPE_MEDICARE           InsuranceType = 2
+	// The Insurance type is not specified.
+	InsuranceType_INSURANCE_TYPE_UNSPECIFIED InsuranceType = 0
+	// The Insurance is a medicaid policy.
+	InsuranceType_INSURANCE_TYPE_MEDICAID InsuranceType = 1
+	// The Insurance is a medicare policy.
+	InsuranceType_INSURANCE_TYPE_MEDICARE InsuranceType = 2
+	// The Insurance is a medicare advantage policy.
 	InsuranceType_INSURANCE_TYPE_MEDICARE_ADVANTAGE InsuranceType = 3
-	InsuranceType_INSURANCE_TYPE_VETERANS_AFFAIRS   InsuranceType = 4
-	InsuranceType_INSURANCE_TYPE_EMPLOYER_BASED     InsuranceType = 5
-	InsuranceType_INSURANCE_TYPE_PRIVATE            InsuranceType = 6
+	// The Insurance is a Veterans Affairs policy.
+	InsuranceType_INSURANCE_TYPE_VETERANS_AFFAIRS InsuranceType = 4
+	// The Insurance is an employer based policy.
+	InsuranceType_INSURANCE_TYPE_EMPLOYER_BASED InsuranceType = 5
+	// The Insurance is a supplied by private insurance.
+	InsuranceType_INSURANCE_TYPE_PRIVATE InsuranceType = 6
 )
 
 // Enum value maps for InsuranceType.
@@ -82,12 +90,16 @@ func (InsuranceType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_insurance_proto_rawDescGZIP(), []int{0}
 }
 
+// InsuranceStatus represents the status of the insurance policy represented by an Insurance resource.
 type InsuranceStatus int32
 
 const (
+	// The Insurance status is not specified.
 	InsuranceStatus_INSURANCE_STATUS_UNSPECIFIED InsuranceStatus = 0
-	InsuranceStatus_INSURANCE_STATUS_ACTIVE      InsuranceStatus = 1
-	InsuranceStatus_INSURANCE_STATUS_INACTIVE    InsuranceStatus = 2
+	// The Insurance is currently and covering the Patient.
+	InsuranceStatus_INSURANCE_STATUS_ACTIVE InsuranceStatus = 1
+	// The Insurance is inactive and no longer covering the Patient.
+	InsuranceStatus_INSURANCE_STATUS_INACTIVE InsuranceStatus = 2
 )
 
 // Enum value maps for InsuranceStatus.
@@ -131,35 +143,60 @@ func (InsuranceStatus) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_insurance_proto_rawDescGZIP(), []int{1}
 }
 
+// Insurance represents an insurance policy that is currently or has in the past covered a Patient.
 type Insurance struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId               string          `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	InsuranceId             string          `protobuf:"bytes,2,opt,name=insurance_id,json=insuranceId,proto3" json:"insurance_id,omitempty"`
-	Insurer                 string          `protobuf:"bytes,3,opt,name=insurer,proto3" json:"insurer,omitempty"`
-	InsuranceType           InsuranceType   `protobuf:"varint,4,opt,name=insurance_type,json=insuranceType,proto3,enum=heyrenee.v1.messages.InsuranceType" json:"insurance_type,omitempty"`
-	InsuranceStatus         InsuranceStatus `protobuf:"varint,5,opt,name=insurance_status,json=insuranceStatus,proto3,enum=heyrenee.v1.messages.InsuranceStatus" json:"insurance_status,omitempty"`
-	PolicyOwnerName         string          `protobuf:"bytes,6,opt,name=policy_owner_name,json=policyOwnerName,proto3" json:"policy_owner_name,omitempty"`
-	PolicyOwnerAddressLines []string        `protobuf:"bytes,7,rep,name=policy_owner_address_lines,json=policyOwnerAddressLines,proto3" json:"policy_owner_address_lines,omitempty"`
-	PolicyOwnerCity         string          `protobuf:"bytes,8,opt,name=policy_owner_city,json=policyOwnerCity,proto3" json:"policy_owner_city,omitempty"`
-	PolicyOwnerState        string          `protobuf:"bytes,9,opt,name=policy_owner_state,json=policyOwnerState,proto3" json:"policy_owner_state,omitempty"`
-	PolicyOwnerZip          string          `protobuf:"bytes,10,opt,name=policy_owner_zip,json=policyOwnerZip,proto3" json:"policy_owner_zip,omitempty"`
-	PolicyOwnerPhone        string          `protobuf:"bytes,11,opt,name=policy_owner_phone,json=policyOwnerPhone,proto3" json:"policy_owner_phone,omitempty"`
-	GroupNumber             string          `protobuf:"bytes,12,opt,name=group_number,json=groupNumber,proto3" json:"group_number,omitempty"`
-	PolicyNumber            string          `protobuf:"bytes,13,opt,name=policy_number,json=policyNumber,proto3" json:"policy_number,omitempty"`
-	RxPolicyNumber          string          `protobuf:"bytes,14,opt,name=rx_policy_number,json=rxPolicyNumber,proto3" json:"rx_policy_number,omitempty"`
-	ClaimsAddressLines      []string        `protobuf:"bytes,15,rep,name=claims_address_lines,json=claimsAddressLines,proto3" json:"claims_address_lines,omitempty"`
-	ClaimsCity              string          `protobuf:"bytes,16,opt,name=claims_city,json=claimsCity,proto3" json:"claims_city,omitempty"`
-	ClaimsState             string          `protobuf:"bytes,17,opt,name=claims_state,json=claimsState,proto3" json:"claims_state,omitempty"`
-	ClaimsZip               string          `protobuf:"bytes,18,opt,name=claims_zip,json=claimsZip,proto3" json:"claims_zip,omitempty"`
-	ClaimsPhone             string          `protobuf:"bytes,19,opt,name=claims_phone,json=claimsPhone,proto3" json:"claims_phone,omitempty"`
-	RxClaimsAddressLines    []string        `protobuf:"bytes,29,rep,name=rx_claims_address_lines,json=rxClaimsAddressLines,proto3" json:"rx_claims_address_lines,omitempty"`
-	RxClaimsCity            string          `protobuf:"bytes,21,opt,name=rx_claims_city,json=rxClaimsCity,proto3" json:"rx_claims_city,omitempty"`
-	RxClaimsState           string          `protobuf:"bytes,22,opt,name=rx_claims_state,json=rxClaimsState,proto3" json:"rx_claims_state,omitempty"`
-	RxClaimsZip             string          `protobuf:"bytes,23,opt,name=rx_claims_zip,json=rxClaimsZip,proto3" json:"rx_claims_zip,omitempty"`
-	RxClaimsPhone           string          `protobuf:"bytes,24,opt,name=rx_claims_phone,json=rxClaimsPhone,proto3" json:"rx_claims_phone,omitempty"`
+	// The ID of the Patient that the Insurance covers. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the Insurance. Must not be provided for Create requests, required for all other requests.
+	InsuranceId string `protobuf:"bytes,2,opt,name=insurance_id,json=insuranceId,proto3" json:"insurance_id,omitempty"`
+	// The name of the insuring company. Required.
+	Insurer string `protobuf:"bytes,3,opt,name=insurer,proto3" json:"insurer,omitempty"`
+	// The type of Insurance. Required, must not be unspecified.
+	InsuranceType InsuranceType `protobuf:"varint,4,opt,name=insurance_type,json=insuranceType,proto3,enum=heyrenee.v1.messages.InsuranceType" json:"insurance_type,omitempty"`
+	// The status of the Insurance. Required, must not be unspecified.
+	InsuranceStatus InsuranceStatus `protobuf:"varint,5,opt,name=insurance_status,json=insuranceStatus,proto3,enum=heyrenee.v1.messages.InsuranceStatus" json:"insurance_status,omitempty"`
+	// The name of the policy owner or primary insured. Required.
+	PolicyOwnerName string `protobuf:"bytes,6,opt,name=policy_owner_name,json=policyOwnerName,proto3" json:"policy_owner_name,omitempty"`
+	// The address lines on file with the insurance company for the policy owner or primary insured. Required.
+	PolicyOwnerAddressLines []string `protobuf:"bytes,7,rep,name=policy_owner_address_lines,json=policyOwnerAddressLines,proto3" json:"policy_owner_address_lines,omitempty"`
+	// The city on file with the insurance company for the policy owner or primary insured. Required.
+	PolicyOwnerCity string `protobuf:"bytes,8,opt,name=policy_owner_city,json=policyOwnerCity,proto3" json:"policy_owner_city,omitempty"`
+	// The state on file with the insurance company for the policy owner or primary insured. Required.
+	PolicyOwnerState string `protobuf:"bytes,9,opt,name=policy_owner_state,json=policyOwnerState,proto3" json:"policy_owner_state,omitempty"`
+	// The zip code on file with the insurance company for the policy owner or primary insured. Required.
+	PolicyOwnerZip string `protobuf:"bytes,10,opt,name=policy_owner_zip,json=policyOwnerZip,proto3" json:"policy_owner_zip,omitempty"`
+	// The phone number on file with the insurance company for the policy owner or primary insured. Required.
+	PolicyOwnerPhone string `protobuf:"bytes,11,opt,name=policy_owner_phone,json=policyOwnerPhone,proto3" json:"policy_owner_phone,omitempty"`
+	// The group number of the insurance policy. Required.
+	GroupNumber string `protobuf:"bytes,12,opt,name=group_number,json=groupNumber,proto3" json:"group_number,omitempty"`
+	// The policy number of the insurance policy. Required.
+	PolicyNumber string `protobuf:"bytes,13,opt,name=policy_number,json=policyNumber,proto3" json:"policy_number,omitempty"`
+	// The Rx policy number of the insurance policy.
+	RxPolicyNumber string `protobuf:"bytes,14,opt,name=rx_policy_number,json=rxPolicyNumber,proto3" json:"rx_policy_number,omitempty"`
+	// The address lines for filing claims. Required.
+	ClaimsAddressLines []string `protobuf:"bytes,15,rep,name=claims_address_lines,json=claimsAddressLines,proto3" json:"claims_address_lines,omitempty"`
+	// The city for filing claims. Required.
+	ClaimsCity string `protobuf:"bytes,16,opt,name=claims_city,json=claimsCity,proto3" json:"claims_city,omitempty"`
+	// The state for filing claims. Required.
+	ClaimsState string `protobuf:"bytes,17,opt,name=claims_state,json=claimsState,proto3" json:"claims_state,omitempty"`
+	// The zip code for filing claims. Required.
+	ClaimsZip string `protobuf:"bytes,18,opt,name=claims_zip,json=claimsZip,proto3" json:"claims_zip,omitempty"`
+	// The phone number for filing claims. Required.
+	ClaimsPhone string `protobuf:"bytes,19,opt,name=claims_phone,json=claimsPhone,proto3" json:"claims_phone,omitempty"`
+	// The address lines for filing Rx claims.
+	RxClaimsAddressLines []string `protobuf:"bytes,29,rep,name=rx_claims_address_lines,json=rxClaimsAddressLines,proto3" json:"rx_claims_address_lines,omitempty"`
+	// The city for filing Rx claims.
+	RxClaimsCity string `protobuf:"bytes,21,opt,name=rx_claims_city,json=rxClaimsCity,proto3" json:"rx_claims_city,omitempty"`
+	// The state for filing Rx claims.
+	RxClaimsState string `protobuf:"bytes,22,opt,name=rx_claims_state,json=rxClaimsState,proto3" json:"rx_claims_state,omitempty"`
+	// The zip code for filing Rx claims.
+	RxClaimsZip string `protobuf:"bytes,23,opt,name=rx_claims_zip,json=rxClaimsZip,proto3" json:"rx_claims_zip,omitempty"`
+	// The phone number for filing Rx claims.
+	RxClaimsPhone string `protobuf:"bytes,24,opt,name=rx_claims_phone,json=rxClaimsPhone,proto3" json:"rx_claims_phone,omitempty"`
 }
 
 func (x *Insurance) Reset() {
