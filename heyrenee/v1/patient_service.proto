@@ -12,6 +12,9 @@ import "heyrenee/v1/options/auth.proto";
 //
 // The PatientService provides methods for management of Patient subusers along with their relationship to other subuser
 // types.
+//
+// URLs
+//  Scratch: patient-service-fugckz6xoq-uc.a.run.app:443
 service PatientService {
   // CreatePatientProvider creates a specified PatientProvider.
   rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {

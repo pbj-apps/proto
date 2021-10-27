@@ -12,6 +12,9 @@ import "heyrenee/v1/options/auth.proto";
 // MedicationService
 //
 // The MedicationService provides operations on the Medication related resources that belonging to specific Patients.
+//
+// URLs
+//  Scratch: medication-service-fugckz6xoq-uc.a.run.app:443
 service MedicationService {
   // CreatePrescription creates the provided Prescription resource.
   rpc CreatePrescription(CreatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {

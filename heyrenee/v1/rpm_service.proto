@@ -11,6 +11,9 @@ import "heyrenee/v1/options/auth.proto";
 // RpmService
 //
 // The RpmService provides access to resources related to Remote Patient Monitoring (RPM).
+//
+// URLs
+//  Scratch: rpm-service-fugckz6xoq-uc.a.run.app:443
 service RpmService {
   // ListRpmSchedules retrieves a list of a Patient's RpmSchedules. These schedules specify when a patient should use
   // RPM devices to take different RPM measurements.

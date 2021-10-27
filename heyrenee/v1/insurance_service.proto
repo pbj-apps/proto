@@ -10,6 +10,9 @@ import "heyrenee/v1/options/auth.proto";
 // InsuranceService
 //
 // The InsuranceService provides operations on insurance related resources that belong to specific Patients.
+//
+// URLs
+//  Scratch: insurance-service-fugckz6xoq-uc.a.run.app:443
 service InsuranceService {
   // CreateInsurance creates a provided Insurance resource.
   rpc CreateInsurance(CreateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {

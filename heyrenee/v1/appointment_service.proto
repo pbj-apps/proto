@@ -11,6 +11,9 @@ import "heyrenee/v1/options/auth.proto";
 //
 // The AppointmentService provides access to a Patient's Appointments. An Appointment represents a Patient's scheduled
 // event with a Provider where medical care is provided.
+//
+// URLs
+//  Scratch: appointment-service-fugckz6xoq-uc.a.run.app:443
 service AppointmentService {
   // ListAppointments returns a list of Appointments for the specified Patient.
   rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {
