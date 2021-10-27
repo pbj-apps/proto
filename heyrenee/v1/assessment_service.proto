@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
+
+import "heyrenee/v1/messages/assessment.proto";
+import "heyrenee/v1/options/auth.proto";
+
+service AssessmentService {
+  rpc GetLatestAssessment(GetLatestAssessmentRequest) returns (heyrenee.v1.messages.Assessment) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+}
+
+message GetLatestAssessmentRequest {
+  AssessmentType assessment_type = 1;
+}

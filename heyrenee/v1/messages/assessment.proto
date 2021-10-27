@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+import "heyrenee/v1/messages/assessment_question.proto";
+
+message Assessment {
+  string assessment_id = 1;
+  AssessmentType assessment_type = 2;
+  AssessmentStatus assessment_status = 3;
+  repeated AssessmentQuestion assessment_questions = 4;
+}
+
+enum AssessmentType {
+  ASSESSMENT_TYPE_UNSPECIFIED = 0;
+  ASSESSMENT_TYPE_HEALTH_LITERACY = 1;
+  ASSESSMENT_TYPE_TECHNOLOGY_LITERACY = 2;
+  ASSESSMENT_TYPE_HEALTH_REVIEW = 3;
+  ASSESSMENT_TYPE_SDOH_REVIEW = 4;
+  ASSESSMENT_TYPE_SATISFACTION = 5;
+}
+
+enum AssessmentStatus {
+  ASSESSMENT_STATUS_UNSPECIFIED = 0;
+  ASSESSMENT_STATUS_LATEST = 1;
+  ASSESSMENT_STATUS_ARCHIVED = 2;
+}

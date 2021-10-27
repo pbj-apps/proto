@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+import "heyrenee/v1/messages/provider.proto";
+
+message AssessmentQuestion {
+  string assessment_id = 1;
+  string assessment_question_id = 2;
+  string question_text = 3;
+  AnswerType answer_type = 4;
+  repeated string radial_choices = 5;
+  string checkbox_label = 6;
+}
+
+enum AnswerType {
+  ANSWER_TYPE_UNSPECIFIED = 0;
+  ANSWER_TYPE_CHECKBOX= 1;
+  ANSWER_TYPE_RADIAL = 2;
+}
