@@ -14,7 +14,7 @@ message PatientAssessment {
   AssessmentType assessment_type = 3;
   heyrenee.v1.enums.Language assessment_language = 4;
   google.protobuf.Timestamp date_time_taken = 5;
-  float score = 6;
+  double score = 6;
 }
 
 enum AssessmentType {
