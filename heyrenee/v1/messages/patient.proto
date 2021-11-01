@@ -6,6 +6,7 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "google/protobuf/timestamp.proto";
 import "heyrenee/v1/options/auth.proto";
+import "heyrenee/v1/enums/language.proto";
 
 // A Patient represents a Patient subuser of the HeyRenee system.
 message Patient {
@@ -38,7 +39,7 @@ message Patient {
   // The Patient's marital status.
   MaritalStatus marital_status = 14;
   // The Patient's preferred language. Required, must not be LANGUAGE_UNSPECIFIED.
-  Language preferred_language = 15;
+  heyrenee.v1.enums.Language preferred_language = 15;
   // The Patient's ethnicity.
   Ethnicity ethnicity = 16;
   // The mobile phone number for contacting the Patient.
@@ -69,19 +70,6 @@ enum MaritalStatus {
   MARITAL_STATUS_SINGLE = 1;
   // Marital status is married.
   MARITAL_STATUS_MARRIED = 2;
-}
-
-// Language specifies a language.
-enum Language {
-  // Language is not specified.
-  LANGUAGE_UNSPECIFIED = 0;
-  // The english language.
-  LANGUAGE_ENGLISH = 1;
-  // The spanish language.
-  LANGUAGE_SPANISH = 2;
-  // Any language not otherwise specified in this enum. Differs from LANGUAGE_UNSPECIFIED in that the language is specified
-  // but is not yet supported.
-  LANGUAGE_OTHER = 3;
 }
 
 // Ethnicity specifies a legal ethnic grouping.

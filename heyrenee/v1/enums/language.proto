@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package heyrenee.v1.enums;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/enums";
+
+// Language specifies a language.
+enum Language {
+  // Language is not specified.
+  LANGUAGE_UNSPECIFIED = 0;
+  // The english language.
+  LANGUAGE_ENGLISH = 1;
+  // The spanish language.
+  LANGUAGE_SPANISH = 2;
+  // Any language not otherwise specified in this enum. Differs from LANGUAGE_UNSPECIFIED in that the language is specified
+  // but is not yet supported.
+  LANGUAGE_OTHER = 3;
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+import "heyrenee/v1/options/auth.proto";
+import "heyrenee/v1/enums/language.proto";
+import "google/protobuf/timestamp.proto";
+
+message PatientSatisfactionQuestionnaire {
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  string patient_satisfaction_questionnaire_id = 2;
+  heyrenee.v1.enums.Language questionnaire_language = 3;
+  google.protobuf.Timestamp date_time_answered = 4;
+  int64 health_status = 5;
+  int64 medical_care_satisfaction = 6;
+  int64 health_satisfaction = 7;
+  int64 hey_renee_satisfaction = 8;
+  int64 primary_care_provider_satisfaction = 9;
+}
