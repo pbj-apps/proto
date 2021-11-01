@@ -35,6 +35,8 @@ type PatientServiceClient interface {
 	ListPatientAssessments(ctx context.Context, in *ListPatientAssessmentsRequest, opts ...grpc.CallOption) (*ListPatientAssessmentsResponse, error)
 	CreatePatientSatisfactionQuestionnaire(ctx context.Context, in *CreatePatientSatisfactionQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSatisfactionQuestionnaire, error)
 	ListPatientSatisfactionQuestionnaires(ctx context.Context, in *ListPatientSatisfactionQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSatisfactionQuestionnairesResponse, error)
+	CreatePatientHealthQuestionnaire(ctx context.Context, in *CreatePatientHealthQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientHealthQuestionnaire, error)
+	ListPatientHealthQuestionnaires(ctx context.Context, in *ListPatientHealthQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientHealthQuestionnairesResponse, error)
 }
 
 type patientServiceClient struct {
@@ -135,6 +137,24 @@ func (c *patientServiceClient) ListPatientSatisfactionQuestionnaires(ctx context
 	return out, nil
 }
 
+func (c *patientServiceClient) CreatePatientHealthQuestionnaire(ctx context.Context, in *CreatePatientHealthQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientHealthQuestionnaire, error) {
+	out := new(messages.PatientHealthQuestionnaire)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/CreatePatientHealthQuestionnaire", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *patientServiceClient) ListPatientHealthQuestionnaires(ctx context.Context, in *ListPatientHealthQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientHealthQuestionnairesResponse, error) {
+	out := new(ListPatientHealthQuestionnairesResponse)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/ListPatientHealthQuestionnaires", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PatientServiceServer is the server API for PatientService service.
 // All implementations must embed UnimplementedPatientServiceServer
 // for forward compatibility
@@ -155,6 +175,8 @@ type PatientServiceServer interface {
 	ListPatientAssessments(context.Context, *ListPatientAssessmentsRequest) (*ListPatientAssessmentsResponse, error)
 	CreatePatientSatisfactionQuestionnaire(context.Context, *CreatePatientSatisfactionQuestionnaireRequest) (*messages.PatientSatisfactionQuestionnaire, error)
 	ListPatientSatisfactionQuestionnaires(context.Context, *ListPatientSatisfactionQuestionnairesRequest) (*ListPatientSatisfactionQuestionnairesResponse, error)
+	CreatePatientHealthQuestionnaire(context.Context, *CreatePatientHealthQuestionnaireRequest) (*messages.PatientHealthQuestionnaire, error)
+	ListPatientHealthQuestionnaires(context.Context, *ListPatientHealthQuestionnairesRequest) (*ListPatientHealthQuestionnairesResponse, error)
 	mustEmbedUnimplementedPatientServiceServer()
 }
 
@@ -191,6 +213,12 @@ func (UnimplementedPatientServiceServer) CreatePatientSatisfactionQuestionnaire(
 }
 func (UnimplementedPatientServiceServer) ListPatientSatisfactionQuestionnaires(context.Context, *ListPatientSatisfactionQuestionnairesRequest) (*ListPatientSatisfactionQuestionnairesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPatientSatisfactionQuestionnaires not implemented")
+}
+func (UnimplementedPatientServiceServer) CreatePatientHealthQuestionnaire(context.Context, *CreatePatientHealthQuestionnaireRequest) (*messages.PatientHealthQuestionnaire, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientHealthQuestionnaire not implemented")
+}
+func (UnimplementedPatientServiceServer) ListPatientHealthQuestionnaires(context.Context, *ListPatientHealthQuestionnairesRequest) (*ListPatientHealthQuestionnairesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPatientHealthQuestionnaires not implemented")
 }
 func (UnimplementedPatientServiceServer) mustEmbedUnimplementedPatientServiceServer() {}
 
@@ -385,6 +413,42 @@ func _PatientService_ListPatientSatisfactionQuestionnaires_Handler(srv interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PatientService_CreatePatientHealthQuestionnaire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePatientHealthQuestionnaireRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PatientServiceServer).CreatePatientHealthQuestionnaire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.PatientService/CreatePatientHealthQuestionnaire",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PatientServiceServer).CreatePatientHealthQuestionnaire(ctx, req.(*CreatePatientHealthQuestionnaireRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PatientService_ListPatientHealthQuestionnaires_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPatientHealthQuestionnairesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PatientServiceServer).ListPatientHealthQuestionnaires(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.PatientService/ListPatientHealthQuestionnaires",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PatientServiceServer).ListPatientHealthQuestionnaires(ctx, req.(*ListPatientHealthQuestionnairesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PatientService_ServiceDesc is the grpc.ServiceDesc for PatientService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -431,6 +495,14 @@ var PatientService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPatientSatisfactionQuestionnaires",
 			Handler:    _PatientService_ListPatientSatisfactionQuestionnaires_Handler,
+		},
+		{
+			MethodName: "CreatePatientHealthQuestionnaire",
+			Handler:    _PatientService_CreatePatientHealthQuestionnaire_Handler,
+		},
+		{
+			MethodName: "ListPatientHealthQuestionnaires",
+			Handler:    _PatientService_ListPatientHealthQuestionnaires_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

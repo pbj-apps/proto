@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+import "heyrenee/v1/options/auth.proto";
+import "heyrenee/v1/enums/language.proto";
+import "google/protobuf/timestamp.proto";
+
+message PatientHealthQuestionnaire {
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  string patient_health_questionnaire_id = 2;
+  heyrenee.v1.enums.Language questionnaire_language = 3;
+  google.protobuf.Timestamp date_time_answered = 4;
+  AnnualWellnessVisitStatus annual_wellness_visit_status = 5;
+  google.protobuf.Timestamp last_annual_wellness_visit_date = 6;
+  MammogramStatus mammogram_status = 7;
+  google.protobuf.Timestamp last_mammogram_date = 8;
+  ColorectalCancerScreenStatus colorectal_cancer_screen_status = 9;
+  google.protobuf.Timestamp last_colorectal_cancer_screen_date = 10;
+  ColorectalCancerScreenType last_colorectal_cancer_screen_type = 11;
+  AnnualFluVaccineStatus annual_flu_vaccine_status = 12;
+  google.protobuf.Timestamp last_annual_flu_vaccine_date = 13;
+  PneumococcalVaccineStatus pneumococcal_vaccine_status = 14;
+  CovidVaccineStatus covid_vaccine_status = 15;
+  google.protobuf.Timestamp last_covid_vaccine_date = 16;
+  PillSystemUsage pill_system_usage = 17;
+  DailyMedicationDifficulty daily_medication_difficulty = 18;
+  MedicationCopayDifficulty medication_copay_difficulty = 19;
+  MedicationPaymentDifficulty medication_payment_difficulty = 20;
+}
+
+enum AnnualWellnessVisitStatus {
+  ANNUAL_WELLNESS_VISIT_STATUS_UNSPECIFIED = 0;
+  ANNUAL_WELLNESS_VISIT_STATUS_COMPLETED = 1;
+  ANNUAL_WELLNESS_VISIT_STATUS_NOT_COMPLETED = 2;
+}
+
+enum MammogramStatus {
+  MAMMOGRAM_STATUS_UNSPECIFIED = 0;
+  MAMMOGRAM_STATUS_COMPLETED = 1;
+  MAMMOGRAM_STATUS_NOT_COMPLETED = 2;
+}
+
+enum ColorectalCancerScreenStatus {
+  COLORECTAL_CANCER_SCREEN_STATUS_UNSPECIFIED = 0;
+  COLORECTAL_CANCER_SCREEN_STATUS_COMPLETED = 1;
+  COLORECTAL_CANCER_SCREEN_STATUS_NOT_COMPLETED = 2;
+}
+
+enum ColorectalCancerScreenType {
+  COLORECTAL_CANCER_SCREEN_TYPE_UNSPECIFIED = 0;
+  COLORECTAL_CANCER_SCREEN_TYPE_FIT = 1;
+  COLORECTAL_CANCER_SCREEN_TYPE_COLOGUARD = 2;
+  COLORECTAL_CANCER_SCREEN_TYPE_COLONOSCOPY = 3;
+}
+
+enum AnnualFluVaccineStatus {
+  ANNUAL_FLU_VACCINE_STATUS_UNSPECIFIED = 0;
+  ANNUAL_FLU_VACCINE_STATUS_COMPLETED = 1;
+  ANNUAL_FLU_VACCINE_STATUS_NOT_COMPLETED = 2;
+}
+
+enum PneumococcalVaccineStatus {
+  PNEUMOCOCCAL_VACCINE_STATUS_UNSPECIFIED = 0;
+  PNEUMOCOCCAL_VACCINE_STATUS_COMPLETED = 1;
+  PNEUMOCOCCAL_VACCINE_STATUS_ONLY_ONE = 2;
+  PNEUMOCOCCAL_VACCINE_STATUS_NOT_COMPLETED = 3;
+}
+
+enum CovidVaccineStatus {
+  COVID_VACCINE_STATUS_UNSPECIFIED = 0;
+  COVID_VACCINE_STATUS_COMPLETED = 1;
+  COVID_VACCINE_STATUS_NOT_COMPLETED = 2;
+}
+
+enum PillSystemUsage {
+  PILL_SYSTEM_USAGE_NOT_SPECIFIED = 0;
+  PILL_SYSTEM_USAGE_USES = 1;
+  PILL_SYSTEM_USAGE_DOES_NOT_USE = 2;
+}
+
+enum DailyMedicationDifficulty {
+  DAILY_MEDICATION_DIFFICULTY_NOT_SPECIFIED = 0;
+  DAILY_MEDICATION_DIFFICULTY_HAS_DIFFICULTY = 1;
+  DAILY_MEDICATION_DIFFICULTY_NO_DIFFICULTY = 2;
+}
+
+enum MedicationCopayDifficulty {
+  MEDICATION_COPAY_DIFFICULTY_NOT_SPECIFIED = 0;
+  MEDICATION_COPAY_DIFFICULTY_HAS_DIFFICULTY = 1;
+  MEDICATION_COPAY_DIFFICULTY_NO_DIFFICULTY = 2;
+}
+
+enum MedicationPaymentDifficulty {
+  MEDICATION_PAYMENT_DIFFICULTY_NOT_SPECIFIED = 0;
+  MEDICATION_PAYMENT_DIFFICULTY_SKIPS_BECAUSE_CANT_AFFORD = 1;
+  MEDICATION_PAYMENT_DIFFICULTY_NO_DIFFICULTY = 2;
+}
