@@ -31,6 +31,8 @@ type PatientServiceClient interface {
 	UpdatePatientCaregiver(ctx context.Context, in *UpdatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
 	// ListPatientCaregivers lists PatientCaregivers for a specific Patient.
 	ListPatientCaregivers(ctx context.Context, in *ListPatientCaregiversRequest, opts ...grpc.CallOption) (*ListPatientCaregiversResponse, error)
+	CreatePatientAssessment(ctx context.Context, in *CreatePatientAssessmentRequest, opts ...grpc.CallOption) (*messages.PatientAssessment, error)
+	ListPatientAssessments(ctx context.Context, in *ListPatientAssessmentsRequest, opts ...grpc.CallOption) (*ListPatientAssessmentsResponse, error)
 	CreatePatientSatisfactionQuestionnaire(ctx context.Context, in *CreatePatientSatisfactionQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSatisfactionQuestionnaire, error)
 	ListPatientSatisfactionQuestionnaires(ctx context.Context, in *ListPatientSatisfactionQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSatisfactionQuestionnairesResponse, error)
 }
@@ -97,6 +99,24 @@ func (c *patientServiceClient) ListPatientCaregivers(ctx context.Context, in *Li
 	return out, nil
 }
 
+func (c *patientServiceClient) CreatePatientAssessment(ctx context.Context, in *CreatePatientAssessmentRequest, opts ...grpc.CallOption) (*messages.PatientAssessment, error) {
+	out := new(messages.PatientAssessment)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/CreatePatientAssessment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *patientServiceClient) ListPatientAssessments(ctx context.Context, in *ListPatientAssessmentsRequest, opts ...grpc.CallOption) (*ListPatientAssessmentsResponse, error) {
+	out := new(ListPatientAssessmentsResponse)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/ListPatientAssessments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *patientServiceClient) CreatePatientSatisfactionQuestionnaire(ctx context.Context, in *CreatePatientSatisfactionQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSatisfactionQuestionnaire, error) {
 	out := new(messages.PatientSatisfactionQuestionnaire)
 	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/CreatePatientSatisfactionQuestionnaire", in, out, opts...)
@@ -131,6 +151,8 @@ type PatientServiceServer interface {
 	UpdatePatientCaregiver(context.Context, *UpdatePatientCaregiverRequest) (*messages.PatientCaregiver, error)
 	// ListPatientCaregivers lists PatientCaregivers for a specific Patient.
 	ListPatientCaregivers(context.Context, *ListPatientCaregiversRequest) (*ListPatientCaregiversResponse, error)
+	CreatePatientAssessment(context.Context, *CreatePatientAssessmentRequest) (*messages.PatientAssessment, error)
+	ListPatientAssessments(context.Context, *ListPatientAssessmentsRequest) (*ListPatientAssessmentsResponse, error)
 	CreatePatientSatisfactionQuestionnaire(context.Context, *CreatePatientSatisfactionQuestionnaireRequest) (*messages.PatientSatisfactionQuestionnaire, error)
 	ListPatientSatisfactionQuestionnaires(context.Context, *ListPatientSatisfactionQuestionnairesRequest) (*ListPatientSatisfactionQuestionnairesResponse, error)
 	mustEmbedUnimplementedPatientServiceServer()
@@ -157,6 +179,12 @@ func (UnimplementedPatientServiceServer) UpdatePatientCaregiver(context.Context,
 }
 func (UnimplementedPatientServiceServer) ListPatientCaregivers(context.Context, *ListPatientCaregiversRequest) (*ListPatientCaregiversResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPatientCaregivers not implemented")
+}
+func (UnimplementedPatientServiceServer) CreatePatientAssessment(context.Context, *CreatePatientAssessmentRequest) (*messages.PatientAssessment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientAssessment not implemented")
+}
+func (UnimplementedPatientServiceServer) ListPatientAssessments(context.Context, *ListPatientAssessmentsRequest) (*ListPatientAssessmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPatientAssessments not implemented")
 }
 func (UnimplementedPatientServiceServer) CreatePatientSatisfactionQuestionnaire(context.Context, *CreatePatientSatisfactionQuestionnaireRequest) (*messages.PatientSatisfactionQuestionnaire, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientSatisfactionQuestionnaire not implemented")
@@ -285,6 +313,42 @@ func _PatientService_ListPatientCaregivers_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PatientService_CreatePatientAssessment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePatientAssessmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PatientServiceServer).CreatePatientAssessment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.PatientService/CreatePatientAssessment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PatientServiceServer).CreatePatientAssessment(ctx, req.(*CreatePatientAssessmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PatientService_ListPatientAssessments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPatientAssessmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PatientServiceServer).ListPatientAssessments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.PatientService/ListPatientAssessments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PatientServiceServer).ListPatientAssessments(ctx, req.(*ListPatientAssessmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PatientService_CreatePatientSatisfactionQuestionnaire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatePatientSatisfactionQuestionnaireRequest)
 	if err := dec(in); err != nil {
@@ -351,6 +415,14 @@ var PatientService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPatientCaregivers",
 			Handler:    _PatientService_ListPatientCaregivers_Handler,
+		},
+		{
+			MethodName: "CreatePatientAssessment",
+			Handler:    _PatientService_CreatePatientAssessment_Handler,
+		},
+		{
+			MethodName: "ListPatientAssessments",
+			Handler:    _PatientService_ListPatientAssessments_Handler,
 		},
 		{
 			MethodName: "CreatePatientSatisfactionQuestionnaire",
