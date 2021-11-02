@@ -37,6 +37,8 @@ type PatientServiceClient interface {
 	ListPatientSatisfactionQuestionnaires(ctx context.Context, in *ListPatientSatisfactionQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSatisfactionQuestionnairesResponse, error)
 	CreatePatientHealthQuestionnaire(ctx context.Context, in *CreatePatientHealthQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientHealthQuestionnaire, error)
 	ListPatientHealthQuestionnaires(ctx context.Context, in *ListPatientHealthQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientHealthQuestionnairesResponse, error)
+	CreatePatientSdohQuestionnaire(ctx context.Context, in *CreatePatientSdohQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSdohQuestionnaire, error)
+	ListPatientSdohQuestionnaires(ctx context.Context, in *ListPatientSdohQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSdohQuestionnairesResponse, error)
 }
 
 type patientServiceClient struct {
@@ -155,6 +157,24 @@ func (c *patientServiceClient) ListPatientHealthQuestionnaires(ctx context.Conte
 	return out, nil
 }
 
+func (c *patientServiceClient) CreatePatientSdohQuestionnaire(ctx context.Context, in *CreatePatientSdohQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSdohQuestionnaire, error) {
+	out := new(messages.PatientSdohQuestionnaire)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/CreatePatientSdohQuestionnaire", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *patientServiceClient) ListPatientSdohQuestionnaires(ctx context.Context, in *ListPatientSdohQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSdohQuestionnairesResponse, error) {
+	out := new(ListPatientSdohQuestionnairesResponse)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/ListPatientSdohQuestionnaires", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PatientServiceServer is the server API for PatientService service.
 // All implementations must embed UnimplementedPatientServiceServer
 // for forward compatibility
@@ -177,6 +197,8 @@ type PatientServiceServer interface {
 	ListPatientSatisfactionQuestionnaires(context.Context, *ListPatientSatisfactionQuestionnairesRequest) (*ListPatientSatisfactionQuestionnairesResponse, error)
 	CreatePatientHealthQuestionnaire(context.Context, *CreatePatientHealthQuestionnaireRequest) (*messages.PatientHealthQuestionnaire, error)
 	ListPatientHealthQuestionnaires(context.Context, *ListPatientHealthQuestionnairesRequest) (*ListPatientHealthQuestionnairesResponse, error)
+	CreatePatientSdohQuestionnaire(context.Context, *CreatePatientSdohQuestionnaireRequest) (*messages.PatientSdohQuestionnaire, error)
+	ListPatientSdohQuestionnaires(context.Context, *ListPatientSdohQuestionnairesRequest) (*ListPatientSdohQuestionnairesResponse, error)
 	mustEmbedUnimplementedPatientServiceServer()
 }
 
@@ -219,6 +241,12 @@ func (UnimplementedPatientServiceServer) CreatePatientHealthQuestionnaire(contex
 }
 func (UnimplementedPatientServiceServer) ListPatientHealthQuestionnaires(context.Context, *ListPatientHealthQuestionnairesRequest) (*ListPatientHealthQuestionnairesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPatientHealthQuestionnaires not implemented")
+}
+func (UnimplementedPatientServiceServer) CreatePatientSdohQuestionnaire(context.Context, *CreatePatientSdohQuestionnaireRequest) (*messages.PatientSdohQuestionnaire, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientSdohQuestionnaire not implemented")
+}
+func (UnimplementedPatientServiceServer) ListPatientSdohQuestionnaires(context.Context, *ListPatientSdohQuestionnairesRequest) (*ListPatientSdohQuestionnairesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPatientSdohQuestionnaires not implemented")
 }
 func (UnimplementedPatientServiceServer) mustEmbedUnimplementedPatientServiceServer() {}
 
@@ -449,6 +477,42 @@ func _PatientService_ListPatientHealthQuestionnaires_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PatientService_CreatePatientSdohQuestionnaire_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePatientSdohQuestionnaireRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PatientServiceServer).CreatePatientSdohQuestionnaire(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.PatientService/CreatePatientSdohQuestionnaire",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PatientServiceServer).CreatePatientSdohQuestionnaire(ctx, req.(*CreatePatientSdohQuestionnaireRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PatientService_ListPatientSdohQuestionnaires_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPatientSdohQuestionnairesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PatientServiceServer).ListPatientSdohQuestionnaires(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.PatientService/ListPatientSdohQuestionnaires",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PatientServiceServer).ListPatientSdohQuestionnaires(ctx, req.(*ListPatientSdohQuestionnairesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PatientService_ServiceDesc is the grpc.ServiceDesc for PatientService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -503,6 +567,14 @@ var PatientService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPatientHealthQuestionnaires",
 			Handler:    _PatientService_ListPatientHealthQuestionnaires_Handler,
+		},
+		{
+			MethodName: "CreatePatientSdohQuestionnaire",
+			Handler:    _PatientService_CreatePatientSdohQuestionnaire_Handler,
+		},
+		{
+			MethodName: "ListPatientSdohQuestionnaires",
+			Handler:    _PatientService_ListPatientSdohQuestionnaires_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

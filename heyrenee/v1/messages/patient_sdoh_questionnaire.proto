@@ -1,0 +1,200 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+import "heyrenee/v1/options/auth.proto";
+import "heyrenee/v1/enums/language.proto";
+import "google/protobuf/timestamp.proto";
+
+message PatientSdohQuestionnaire {
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  string patient_sdoh_questionnaire_id = 2;
+  heyrenee.v1.enums.Language questionnaire_language = 3;
+  google.protobuf.Timestamp date_time_answered = 4;
+  AmbulatoryStatus ambulatory_status = 5;
+  FallHistory fall_history = 6;
+  WalkingSteadiness walking_steadiness = 7;
+  WalkingSupportNecessity walking_support_necessity = 8;
+  WalkingAssistanceAdvisory walking_assistance_advisory = 9;
+  WalkingAssistanceOwnership walking_assistance_ownership = 10;
+  FallingWorry falling_worry = 11;
+  StandingUpAssistance standing_up_assistance = 12;
+  SteppingUpDifficulty stepping_up_difficulty = 13;
+  FeelingInFeetStatus feeling_in_feet_status = 14;
+  FeelingLightheadedFromMedsStatus feeling_lightheaded_from_meds_status = 15;
+  SmokingStatus smoking_status = 16;
+  string amount_smoked = 17;
+  QuitSmokingStatus quit_smoking_status = 18;
+  AlcoholDrinkingStatus alcohol_drinking_status = 19;
+  string amount_alcohol_drank = 20;
+  QuitDrinkingStatus quit_drinking_status = 21;
+  SchedulingDoctorsAppointmentsDifficulty scheduling_doctors_appointments_difficulty = 22;
+  GettingToDoctorsAppointmentsDifficulty getting_to_doctors_appointments_difficulty = 23;
+  AdlHelpNecessity adl_help_necessity = 24;
+  GettingToGroceryStoreDifficulty getting_to_grocery_store_difficulty = 25;
+  SocialIsolation social_isolation = 26;
+  MealPlanningAssistance meal_planning_assistance = 27;
+  WeightLossProgramInterest weight_loss_program_interest = 28;
+  SnapStatus snap_status = 29;
+  FinancialAssistanceStatus financial_assistance_status = 30;
+  FoodInsecurity food_insecurity = 31;
+  DepressionFrequency depression_frequency = 32;
+}
+
+enum AmbulatoryStatus {
+  AMBULATORY_STATUS_UNSPECIFIED = 0;
+  AMBULATORY_STATUS_IS_AMBULATORY = 1;
+  AMBULATORY_STATUS_NOT_AMBULATORY = 2;
+}
+
+enum FallHistory {
+  FALL_HISTORY_UNSPECIFIED = 0;
+  FALL_HISTORY_FALLEN_IN_LAST_YEAR = 1;
+  FALL_HISTORY_HAS_NOT_FALLEN = 2;
+}
+
+enum WalkingSteadiness {
+  WALKING_STEADINESS_UNSPECIFIED = 0;
+  WALKING_STEADINESS_FEELS_UNSTEADY = 1;
+  WALKING_STEADINESS_STEADY = 2;
+}
+
+enum WalkingSupportNecessity {
+  WALKING_SUPPORT_NECESSITY_UNSPECIFIED = 0;
+  WALKING_SUPPORT_NECESSITY_USES_FURNITURE = 1;
+  WALKING_SUPPORT_NECESSITY_NONE = 2;
+}
+
+enum WalkingAssistanceAdvisory {
+  WALKING_ASSISTANCE_ADVISORY_UNSPECIFIED = 0;
+  WALKING_ASSISTANCE_ADVISORY_CANE_OR_WALKER = 1;
+  WALKING_ASSISTANCE_ADVISORY_NONE = 2;
+}
+
+enum WalkingAssistanceOwnership {
+  WALKING_ASSISTANCE_OWNERSHIP_UNSPECIFIED = 0;
+  WALKING_ASSISTANCE_OWNERSHIP_CANE_OR_WALKER = 1;
+  WALKING_ASSISTANCE_OWNERSHIP_NONE = 2;
+}
+
+enum FallingWorry {
+  FALLING_WORRY_UNSPECIFIED = 0;
+  FALLING_WORRY_IS_WORRIED = 1;
+  FALLING_WORRY_NOT_WORRIED = 2;
+}
+
+enum StandingUpAssistance {
+  STANDING_UP_ASSISTANCE_UNSPECIFIED = 0;
+  STANDING_UP_ASSISTANCE_PUSHES = 1;
+  STANDING_UP_ASSISTANCE_NONE = 2;
+}
+
+enum SteppingUpDifficulty {
+  STEPPING_UP_DIFFICULTY_UNSPECIFIED = 0;
+  STEPPING_UP_DIFFICULTY_HAS_DIFFICULTY = 1;
+  STEPPING_UP_DIFFICULTY_NONE = 2;
+}
+
+enum FeelingInFeetStatus {
+  FEELING_IN_FEET_STATUS_UNSPECIFIED = 0;
+  FEELING_IN_FEET_STATUS_LOST_SOME = 1;
+  FEELING_IN_FEET_STATUS_HAS_ALL = 2;
+}
+
+enum FeelingLightheadedFromMedsStatus {
+  FEELING_LIGHTHEADED_FROM_MEDS_STATUS_UNSPECIFIED = 0;
+  FEELING_LIGHTHEADED_FROM_MEDS_STATUS_AT_LEAST_ONE = 1;
+  FEELING_LIGHTHEADED_FROM_MEDS_STATUS_NO_MEDS = 2;
+}
+
+enum SmokingStatus {
+  SMOKING_STATUS_UNSPECIFIED = 0;
+  SMOKING_STATUS_SMOKES = 1;
+  SMOKING_STATUS_DOES_NOT_SMOKE = 2;
+}
+
+enum QuitSmokingStatus {
+  QUIT_SMOKING_STATUS_UNSPECIFIED = 0;
+  QUIT_SMOKING_STATUS_WANTS_TO_QUIT = 1;
+  QUIT_SMOKING_STATUS_DOES_NOT_WANT_TO_QUIT = 2;
+}
+
+enum AlcoholDrinkingStatus {
+  ALCOHOL_DRINKING_STATUS_UNSPECIFIED = 0;
+  ALCOHOL_DRINKING_STATUS_DRINKS = 1;
+  ALCOHOL_DRINKING_STATUS_DOES_NOT_DRINK = 2;
+}
+
+enum QuitDrinkingStatus {
+  QUIT_DRINKING_STATUS_UNSPECIFIED = 0;
+  QUIT_DRINKING_STATUS_WANTS_TO_QUIT = 1;
+  QUIT_DRINKING_STATUS_DOES_NOT_WANT_TO_QUIT = 2;
+}
+
+enum SchedulingDoctorsAppointmentsDifficulty {
+  SCHEDULING_DOCTORS_APPOINTMENTS_DIFFICULTY_UNSPECIFIED = 0;
+  SCHEDULING_DOCTORS_APPOINTMENTS_DIFFICULTY_HAS_DIFFICULTY = 1;
+  SCHEDULING_DOCTORS_APPOINTMENTS_DIFFICULTY_NO_DIFFICULTY = 2;
+}
+
+enum GettingToDoctorsAppointmentsDifficulty {
+  GETTING_TO_DOCTORS_APPOINTMENTS_DIFFICULTY = 0;
+  GETTING_TO_DOCTORS_APPOINTMENTS_DIFFICULTY_TROUBLE_FINDING_RIDE = 1;
+  GETTING_TO_DOCTORS_APPOINTMENTS_DIFFICULTY_NO_DIFFICULTY = 2;
+}
+
+enum AdlHelpNecessity {
+  ADL_HELP_NECESSITY_UNSPECIFIED = 0;
+  ADL_HELP_NECESSITY_NEEDED = 1;
+  ADL_HELP_NECESSITY_NOT_NEEDED = 2;
+}
+
+enum GettingToGroceryStoreDifficulty{
+  GETTING_TO_GROCERY_STORE_DIFFICULTY_UNSPECIFIED = 0;
+  GETTING_TO_GROCERY_STORE_DIFFICULTY_UNABLE_ALONE = 1;
+  GETTING_TO_GROCERY_STORE_DIFFICULTY_ABLE_ALONE = 2;
+}
+
+enum SocialIsolation {
+  SOCIAL_ISOLATION_UNSPECIFIED = 0;
+  SOCIAL_ISOLATION_FEELS_ISOLATED = 1;
+  SOCIAL_ISOLATION_DOES_NOT_FEEL_ISOLATED = 2;
+}
+
+enum MealPlanningAssistance {
+  MEAL_PLANNING_ASSISTANCE_UNSPECIFIED = 0;
+  MEAL_PLANNING_ASSISTANCE_WANTS = 1;
+  MEAL_PLANNING_ASSISTANCE_DOES_NOT_WANT = 2;
+}
+
+enum WeightLossProgramInterest {
+  WEIGHT_LOSS_PROGRAM_INTEREST_UNSPECIFIED = 0;
+  WEIGHT_LOSS_PROGRAM_INTEREST_INTERESTED = 1;
+  WEIGHT_LOSS_PROGRAM_INTEREST_NOT_INTERESTED = 2;
+}
+
+enum SnapStatus {
+  SNAP_STATUS_UNSPECIFIED = 0;
+  SNAP_STATUS_ON_SNAP = 1;
+  SNAP_STATUS_NOT_ON_SNAP = 2;
+}
+
+enum FinancialAssistanceStatus {
+  FINANCIAL_ASSISTANCE_STATUS_UNSPECIFIED = 0;
+  FINANCIAL_ASSISTANCE_STATUS_RECEIVES_FINANCIAL_ASSISTANCE = 1;
+  FINANCIAL_ASSISTANCE_STATUS_NO_FINANCIAL_ASSISTANCE = 2;
+}
+
+enum FoodInsecurity {
+  FOOD_INSECURITY_UNSPECIFIED = 0;
+  FOOD_INSECURITY_INSECURE = 1;
+  FOOD_INSECURITY_SECURE = 2;
+}
+
+enum DepressionFrequency {
+  DEPRESSION_FREQUENCY_UNSPECIFIED = 0;
+  DEPRESSION_FREQUENCY_FREQUENT = 1;
+  DEPRESSION_FREQUENCY_INFREQUENT = 2;
+}

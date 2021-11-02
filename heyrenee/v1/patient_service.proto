@@ -8,6 +8,7 @@ import "heyrenee/v1/messages/patient_provider.proto";
 import "heyrenee/v1/messages/patient_caregiver.proto";
 import "heyrenee/v1/messages/patient_health_questionnaire.proto";
 import "heyrenee/v1/messages/patient_satisfaction_questionnaire.proto";
+import "heyrenee/v1/messages/patient_sdoh_questionnaire.proto";
 import "heyrenee/v1/messages/patient_assessment.proto";
 import "heyrenee/v1/options/auth.proto";
 
@@ -63,6 +64,13 @@ service PatientService {
     option (heyrenee.v1.options.authenticated) = true;
   }
   rpc ListPatientHealthQuestionnaires(ListPatientHealthQuestionnairesRequest) returns (ListPatientHealthQuestionnairesResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+
+  rpc CreatePatientSdohQuestionnaire(CreatePatientSdohQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSdohQuestionnaire) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+  rpc ListPatientSdohQuestionnaires(ListPatientSdohQuestionnairesRequest) returns (ListPatientSdohQuestionnairesResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 }
@@ -171,4 +179,22 @@ message ListPatientHealthQuestionnairesRequest {
 message ListPatientHealthQuestionnairesResponse {
   // The list of PatientHealthQuestionnaires.
   repeated heyrenee.v1.messages.PatientHealthQuestionnaire patient_health_questionnaires = 1;
+}
+
+// Request message for CreatePatientSdohQuestionnaire.
+message CreatePatientSdohQuestionnaireRequest {
+  // The PatientSdohQuestionnaire to create. Required.
+  heyrenee.v1.messages.PatientSdohQuestionnaire patient_sdoh_questionnaire = 1;
+}
+
+// Request message for ListPatientSdohQuestionnaires.
+message ListPatientSdohQuestionnairesRequest {
+  // The ID of the Patient to return PatientSdohQuestionnaires for. Required.
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+}
+
+// Response message for ListPatientSdohQuestionnaires.
+message ListPatientSdohQuestionnairesResponse {
+  // The list of PatientSdohQuestionnaires.
+  repeated heyrenee.v1.messages.PatientSdohQuestionnaire patient_sdoh_questionnaires = 1;
 }
