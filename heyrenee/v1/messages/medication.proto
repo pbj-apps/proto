@@ -39,7 +39,7 @@ message Medication {
   // prescribed by their brand names (e.g. CORTISPORIN OINTMENT). Any non-empty value means that a row should be suppressed.
   string suppress_for = 13;
   // Commonly used synonyms or abbreviations for the drug e.g. MOM for Milk of Magnesia.
-  repeated string display_name_synonym = 14;
+  string display_name_synonym = 14;
   // The RxNorm unique identifier for the entity represented by the DISPLAY_NAME (drug + intended route). The
   // corresponding TTY (term type) in RxNorm is either SCDG (Semantic Clinical Doseform Group) or SBDG (Semantic Branded
   // Doseform Group), as represented in the field SXDG_TTY.
