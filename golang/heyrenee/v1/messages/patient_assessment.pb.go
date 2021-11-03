@@ -23,11 +23,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Specifies a type of assessment.
 type AssessmentType int32
 
 const (
-	AssessmentType_ASSESSMENT_TYPE_UNSPECIFIED         AssessmentType = 0
-	AssessmentType_ASSESSMENT_TYPE_HEALTH_LITERACY     AssessmentType = 1
+	// The assessment type is unspecified.
+	AssessmentType_ASSESSMENT_TYPE_UNSPECIFIED AssessmentType = 0
+	// The assessment is a health literacy assessment.
+	AssessmentType_ASSESSMENT_TYPE_HEALTH_LITERACY AssessmentType = 1
+	// The assessment is a technology literacy assessment.
 	AssessmentType_ASSESSMENT_TYPE_TECHNOLOGY_LITERACY AssessmentType = 2
 )
 
@@ -72,17 +76,24 @@ func (AssessmentType) EnumDescriptor() ([]byte, []int) {
 	return file_heyrenee_v1_messages_patient_assessment_proto_rawDescGZIP(), []int{0}
 }
 
+// A PatientAssessment represents the results of an assessment taken by a Patient.
 type PatientAssessment struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId           string                 `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	PatientAssessmentId string                 `protobuf:"bytes,2,opt,name=patient_assessment_id,json=patientAssessmentId,proto3" json:"patient_assessment_id,omitempty"`
-	AssessmentType      AssessmentType         `protobuf:"varint,3,opt,name=assessment_type,json=assessmentType,proto3,enum=heyrenee.v1.messages.AssessmentType" json:"assessment_type,omitempty"`
-	AssessmentLanguage  enums.Language         `protobuf:"varint,4,opt,name=assessment_language,json=assessmentLanguage,proto3,enum=heyrenee.v1.enums.Language" json:"assessment_language,omitempty"`
-	DateTimeTaken       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=date_time_taken,json=dateTimeTaken,proto3" json:"date_time_taken,omitempty"`
-	Score               float64                `protobuf:"fixed64,6,opt,name=score,proto3" json:"score,omitempty"`
+	// The ID of the Patient that took the assessment. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the PatientAssessment. Must be empty in create requests, required in update requests.
+	PatientAssessmentId string `protobuf:"bytes,2,opt,name=patient_assessment_id,json=patientAssessmentId,proto3" json:"patient_assessment_id,omitempty"`
+	// The type of assessment that was taken. Required.
+	AssessmentType AssessmentType `protobuf:"varint,3,opt,name=assessment_type,json=assessmentType,proto3,enum=heyrenee.v1.messages.AssessmentType" json:"assessment_type,omitempty"`
+	// The language that the assessment was taken in. Required.
+	AssessmentLanguage enums.Language `protobuf:"varint,4,opt,name=assessment_language,json=assessmentLanguage,proto3,enum=heyrenee.v1.enums.Language" json:"assessment_language,omitempty"`
+	// The date and time that the assessment was taken. Required.
+	DateTimeTaken *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=date_time_taken,json=dateTimeTaken,proto3" json:"date_time_taken,omitempty"`
+	// The score that the Patient received on the assessment.
+	Score float64 `protobuf:"fixed64,6,opt,name=score,proto3" json:"score,omitempty"`
 }
 
 func (x *PatientAssessment) Reset() {

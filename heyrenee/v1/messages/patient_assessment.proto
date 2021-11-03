@@ -8,17 +8,28 @@ import "heyrenee/v1/options/auth.proto";
 import "heyrenee/v1/enums/language.proto";
 import "google/protobuf/timestamp.proto";
 
+// A PatientAssessment represents the results of an assessment taken by a Patient.
 message PatientAssessment {
+  // The ID of the Patient that took the assessment. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The ID of the PatientAssessment. Must be empty in create requests, required in update requests.
   string patient_assessment_id = 2;
+  // The type of assessment that was taken. Required.
   AssessmentType assessment_type = 3;
+  // The language that the assessment was taken in. Required.
   heyrenee.v1.enums.Language assessment_language = 4;
+  // The date and time that the assessment was taken. Required.
   google.protobuf.Timestamp date_time_taken = 5;
+  // The score that the Patient received on the assessment.
   double score = 6;
 }
 
+// Specifies a type of assessment.
 enum AssessmentType {
+  // The assessment type is unspecified.
   ASSESSMENT_TYPE_UNSPECIFIED = 0;
+  // The assessment is a health literacy assessment.
   ASSESSMENT_TYPE_HEALTH_LITERACY = 1;
+  // The assessment is a technology literacy assessment.
   ASSESSMENT_TYPE_TECHNOLOGY_LITERACY = 2;
 }

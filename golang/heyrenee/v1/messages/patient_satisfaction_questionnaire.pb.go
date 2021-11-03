@@ -23,20 +23,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// A PatientSatisfactionQuestionnaire represents the answers to a HeyRenee satisfaction questionnaire provided by a
+// Patient.
 type PatientSatisfactionQuestionnaire struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PatientId                          string                 `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
-	PatientSatisfactionQuestionnaireId string                 `protobuf:"bytes,2,opt,name=patient_satisfaction_questionnaire_id,json=patientSatisfactionQuestionnaireId,proto3" json:"patient_satisfaction_questionnaire_id,omitempty"`
-	QuestionnaireLanguage              enums.Language         `protobuf:"varint,3,opt,name=questionnaire_language,json=questionnaireLanguage,proto3,enum=heyrenee.v1.enums.Language" json:"questionnaire_language,omitempty"`
-	DateTimeAnswered                   *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date_time_answered,json=dateTimeAnswered,proto3" json:"date_time_answered,omitempty"`
-	HealthStatus                       int64                  `protobuf:"varint,5,opt,name=health_status,json=healthStatus,proto3" json:"health_status,omitempty"`
-	MedicalCareSatisfaction            int64                  `protobuf:"varint,6,opt,name=medical_care_satisfaction,json=medicalCareSatisfaction,proto3" json:"medical_care_satisfaction,omitempty"`
-	HealthSatisfaction                 int64                  `protobuf:"varint,7,opt,name=health_satisfaction,json=healthSatisfaction,proto3" json:"health_satisfaction,omitempty"`
-	HeyReneeSatisfaction               int64                  `protobuf:"varint,8,opt,name=hey_renee_satisfaction,json=heyReneeSatisfaction,proto3" json:"hey_renee_satisfaction,omitempty"`
-	PrimaryCareProviderSatisfaction    int64                  `protobuf:"varint,9,opt,name=primary_care_provider_satisfaction,json=primaryCareProviderSatisfaction,proto3" json:"primary_care_provider_satisfaction,omitempty"`
+	// The ID of the Patient who answered the satisfaction questionnaire. Required.
+	PatientId string `protobuf:"bytes,1,opt,name=patient_id,json=patientId,proto3" json:"patient_id,omitempty"`
+	// The ID of the set of answers to the satisfaction questionnaire. Must be empty in create requests, required in update requests.
+	PatientSatisfactionQuestionnaireId string `protobuf:"bytes,2,opt,name=patient_satisfaction_questionnaire_id,json=patientSatisfactionQuestionnaireId,proto3" json:"patient_satisfaction_questionnaire_id,omitempty"`
+	// The language that the questionnaire was taken in. Required.
+	QuestionnaireLanguage enums.Language `protobuf:"varint,3,opt,name=questionnaire_language,json=questionnaireLanguage,proto3,enum=heyrenee.v1.enums.Language" json:"questionnaire_language,omitempty"`
+	// The date and time that the Patient answered the questionnaire. Required.
+	DateTimeAnswered *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date_time_answered,json=dateTimeAnswered,proto3" json:"date_time_answered,omitempty"`
+	// The Patient's perception of their health status on a scale of 1 to 5. Required.
+	HealthStatus int64 `protobuf:"varint,5,opt,name=health_status,json=healthStatus,proto3" json:"health_status,omitempty"`
+	// The Patient's satisfaction with their medical care on a scale of 1 to 5. Required.
+	MedicalCareSatisfaction int64 `protobuf:"varint,6,opt,name=medical_care_satisfaction,json=medicalCareSatisfaction,proto3" json:"medical_care_satisfaction,omitempty"`
+	// The Patient's satisfaction with their current health on a scale of 1 to 5. Required.
+	HealthSatisfaction int64 `protobuf:"varint,7,opt,name=health_satisfaction,json=healthSatisfaction,proto3" json:"health_satisfaction,omitempty"`
+	// The Patient's satisfaction with HeyRenee on a scale of 1 to 5. Required.
+	HeyReneeSatisfaction int64 `protobuf:"varint,8,opt,name=hey_renee_satisfaction,json=heyReneeSatisfaction,proto3" json:"hey_renee_satisfaction,omitempty"`
+	// The Patient's satisfaction with their primary care provider on a scale of 1 to 5. Required.
+	PrimaryCareProviderSatisfaction int64 `protobuf:"varint,9,opt,name=primary_care_provider_satisfaction,json=primaryCareProviderSatisfaction,proto3" json:"primary_care_provider_satisfaction,omitempty"`
 }
 
 func (x *PatientSatisfactionQuestionnaire) Reset() {

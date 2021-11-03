@@ -14,8 +14,9 @@ import "heyrenee/v1/options/auth.proto";
 
 // PatientService
 //
-// The PatientService provides methods for management of Patient subusers along with their relationship to other subuser
-// types.
+// The PatientService provides functionality for managing Patient subusers. Specifically, it provides methods for
+// storing and accessing the results of Patient assessments, storing and accessing the results of Patient
+// questionnaires, and managing relationships between Patients and other subusers.
 //
 // URLs
 //  Scratch: patient-service-fugckz6xoq-uc.a.run.app:443
@@ -46,30 +47,38 @@ service PatientService {
     option (heyrenee.v1.options.authenticated) = true;
   }
 
+  // CreatePatientAssessment creates a specified PatientAssessment.
   rpc CreatePatientAssessment(CreatePatientAssessmentRequest) returns (heyrenee.v1.messages.PatientAssessment) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListPatientAssessments lists PatientAssessments for a specific Patient.
   rpc ListPatientAssessments(ListPatientAssessmentsRequest) returns (ListPatientAssessmentsResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 
+  // CreatePatientSatisfactionQuestionnaire creates a specified PatientSatisfactionQuestionnaire.
   rpc CreatePatientSatisfactionQuestionnaire(CreatePatientSatisfactionQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSatisfactionQuestionnaire) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListPatientSatisfactionQuestionnaires lists PatientSatisfactionQuestionnaires for a specific Patient.
   rpc ListPatientSatisfactionQuestionnaires(ListPatientSatisfactionQuestionnairesRequest) returns (ListPatientSatisfactionQuestionnairesResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 
+  // CreatePatientHealthQuestionnaire creates a specified PatientHealthQuestionnaire.
   rpc CreatePatientHealthQuestionnaire(CreatePatientHealthQuestionnaireRequest) returns (heyrenee.v1.messages.PatientHealthQuestionnaire) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListPatientHealthQuestionnaires lists PatientHealthQuestionnaires for a specific Patient.
   rpc ListPatientHealthQuestionnaires(ListPatientHealthQuestionnairesRequest) returns (ListPatientHealthQuestionnairesResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
 
+  // CreatePatientSdohQuestionnaire creates a specified PatientSdohQuestionnaire.
   rpc CreatePatientSdohQuestionnaire(CreatePatientSdohQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSdohQuestionnaire) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+  // ListPatientSdohQuestionnaires lists PatientSdohQuestionnaires for a specific Patient.
   rpc ListPatientSdohQuestionnaires(ListPatientSdohQuestionnairesRequest) returns (ListPatientSdohQuestionnairesResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }

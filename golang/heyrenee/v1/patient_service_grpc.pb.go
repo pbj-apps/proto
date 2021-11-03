@@ -31,13 +31,21 @@ type PatientServiceClient interface {
 	UpdatePatientCaregiver(ctx context.Context, in *UpdatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
 	// ListPatientCaregivers lists PatientCaregivers for a specific Patient.
 	ListPatientCaregivers(ctx context.Context, in *ListPatientCaregiversRequest, opts ...grpc.CallOption) (*ListPatientCaregiversResponse, error)
+	// CreatePatientAssessment creates a specified PatientAssessment.
 	CreatePatientAssessment(ctx context.Context, in *CreatePatientAssessmentRequest, opts ...grpc.CallOption) (*messages.PatientAssessment, error)
+	// ListPatientAssessments lists PatientAssessments for a specific Patient.
 	ListPatientAssessments(ctx context.Context, in *ListPatientAssessmentsRequest, opts ...grpc.CallOption) (*ListPatientAssessmentsResponse, error)
+	// CreatePatientSatisfactionQuestionnaire creates a specified PatientSatisfactionQuestionnaire.
 	CreatePatientSatisfactionQuestionnaire(ctx context.Context, in *CreatePatientSatisfactionQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSatisfactionQuestionnaire, error)
+	// ListPatientSatisfactionQuestionnaires lists PatientSatisfactionQuestionnaires for a specific Patient.
 	ListPatientSatisfactionQuestionnaires(ctx context.Context, in *ListPatientSatisfactionQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSatisfactionQuestionnairesResponse, error)
+	// CreatePatientHealthQuestionnaire creates a specified PatientHealthQuestionnaire.
 	CreatePatientHealthQuestionnaire(ctx context.Context, in *CreatePatientHealthQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientHealthQuestionnaire, error)
+	// ListPatientHealthQuestionnaires lists PatientHealthQuestionnaires for a specific Patient.
 	ListPatientHealthQuestionnaires(ctx context.Context, in *ListPatientHealthQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientHealthQuestionnairesResponse, error)
+	// CreatePatientSdohQuestionnaire creates a specified PatientSdohQuestionnaire.
 	CreatePatientSdohQuestionnaire(ctx context.Context, in *CreatePatientSdohQuestionnaireRequest, opts ...grpc.CallOption) (*messages.PatientSdohQuestionnaire, error)
+	// ListPatientSdohQuestionnaires lists PatientSdohQuestionnaires for a specific Patient.
 	ListPatientSdohQuestionnaires(ctx context.Context, in *ListPatientSdohQuestionnairesRequest, opts ...grpc.CallOption) (*ListPatientSdohQuestionnairesResponse, error)
 }
 
@@ -191,13 +199,21 @@ type PatientServiceServer interface {
 	UpdatePatientCaregiver(context.Context, *UpdatePatientCaregiverRequest) (*messages.PatientCaregiver, error)
 	// ListPatientCaregivers lists PatientCaregivers for a specific Patient.
 	ListPatientCaregivers(context.Context, *ListPatientCaregiversRequest) (*ListPatientCaregiversResponse, error)
+	// CreatePatientAssessment creates a specified PatientAssessment.
 	CreatePatientAssessment(context.Context, *CreatePatientAssessmentRequest) (*messages.PatientAssessment, error)
+	// ListPatientAssessments lists PatientAssessments for a specific Patient.
 	ListPatientAssessments(context.Context, *ListPatientAssessmentsRequest) (*ListPatientAssessmentsResponse, error)
+	// CreatePatientSatisfactionQuestionnaire creates a specified PatientSatisfactionQuestionnaire.
 	CreatePatientSatisfactionQuestionnaire(context.Context, *CreatePatientSatisfactionQuestionnaireRequest) (*messages.PatientSatisfactionQuestionnaire, error)
+	// ListPatientSatisfactionQuestionnaires lists PatientSatisfactionQuestionnaires for a specific Patient.
 	ListPatientSatisfactionQuestionnaires(context.Context, *ListPatientSatisfactionQuestionnairesRequest) (*ListPatientSatisfactionQuestionnairesResponse, error)
+	// CreatePatientHealthQuestionnaire creates a specified PatientHealthQuestionnaire.
 	CreatePatientHealthQuestionnaire(context.Context, *CreatePatientHealthQuestionnaireRequest) (*messages.PatientHealthQuestionnaire, error)
+	// ListPatientHealthQuestionnaires lists PatientHealthQuestionnaires for a specific Patient.
 	ListPatientHealthQuestionnaires(context.Context, *ListPatientHealthQuestionnairesRequest) (*ListPatientHealthQuestionnairesResponse, error)
+	// CreatePatientSdohQuestionnaire creates a specified PatientSdohQuestionnaire.
 	CreatePatientSdohQuestionnaire(context.Context, *CreatePatientSdohQuestionnaireRequest) (*messages.PatientSdohQuestionnaire, error)
+	// ListPatientSdohQuestionnaires lists PatientSdohQuestionnaires for a specific Patient.
 	ListPatientSdohQuestionnaires(context.Context, *ListPatientSdohQuestionnairesRequest) (*ListPatientSdohQuestionnairesResponse, error)
 	mustEmbedUnimplementedPatientServiceServer()
 }

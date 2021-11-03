@@ -8,14 +8,25 @@ import "heyrenee/v1/options/auth.proto";
 import "heyrenee/v1/enums/language.proto";
 import "google/protobuf/timestamp.proto";
 
+// A PatientSatisfactionQuestionnaire represents the answers to a HeyRenee satisfaction questionnaire provided by a
+// Patient.
 message PatientSatisfactionQuestionnaire {
+  // The ID of the Patient who answered the satisfaction questionnaire. Required.
   string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The ID of the set of answers to the satisfaction questionnaire. Must be empty in create requests, required in update requests.
   string patient_satisfaction_questionnaire_id = 2;
+  // The language that the questionnaire was taken in. Required.
   heyrenee.v1.enums.Language questionnaire_language = 3;
+  // The date and time that the Patient answered the questionnaire. Required.
   google.protobuf.Timestamp date_time_answered = 4;
+  // The Patient's perception of their health status on a scale of 1 to 5. Required.
   int64 health_status = 5;
+  // The Patient's satisfaction with their medical care on a scale of 1 to 5. Required.
   int64 medical_care_satisfaction = 6;
+  // The Patient's satisfaction with their current health on a scale of 1 to 5. Required.
   int64 health_satisfaction = 7;
+  // The Patient's satisfaction with HeyRenee on a scale of 1 to 5. Required.
   int64 hey_renee_satisfaction = 8;
+  // The Patient's satisfaction with their primary care provider on a scale of 1 to 5. Required.
   int64 primary_care_provider_satisfaction = 9;
 }
