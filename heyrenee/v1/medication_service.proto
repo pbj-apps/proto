@@ -16,6 +16,10 @@ import "heyrenee/v1/options/auth.proto";
 // URLs
 //  Scratch: medication-service-fugckz6xoq-uc.a.run.app:443
 service MedicationService {
+  rpc MedicationSuggest(stream MedicationSuggestRequest) returns (stream MedicationSuggestResponse) {
+    option (heyrenee.v1.options.authenticated) = true;
+  }
+
   // CreatePrescription creates the provided Prescription resource.
   rpc CreatePrescription(CreatePrescriptionRequest) returns (heyrenee.v1.messages.Prescription) {
     option (heyrenee.v1.options.authenticated) = true;
@@ -36,6 +40,19 @@ service MedicationService {
   rpc ListRefills(ListRefillsRequest) returns (ListRefillsResponse) {
     option (heyrenee.v1.options.authenticated) = true;
   }
+}
+
+message MedicationSuggestRequest {
+  string text = 1;
+}
+
+message MedicationSuggestResponse {
+  repeated MedicationSuggestion medication_suggestions = 1;
+}
+
+message MedicationSuggestion {
+  string medication_id = 1;
+  string display_name = 2;
 }
 
 // Request message for CreatePrescription.
