@@ -1,2 +1,2 @@
 proto:
-	protoc --descriptor_set_out=heyrenee/v1/api_descriptor.pb --go_out=golang --go_opt=module=github.com/HeyReneeInc/proto/golang --go-grpc_out=golang --go-grpc_opt=module=github.com/HeyReneeInc/proto/golang */*/*.proto */*/*/*.proto
+	protoc --descriptor_set_out=golang/heyrenee/v1/api_descriptor.pb --go_out=golang --go_opt=module=github.com/HeyReneeInc/proto/golang --go-grpc_out=golang --go-grpc_opt=module=github.com/HeyReneeInc/proto/golang */*/*.proto */*/*/*.proto
