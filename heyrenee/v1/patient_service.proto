@@ -19,7 +19,7 @@ import "heyrenee/v1/options/auth.proto";
 // questionnaires, and managing relationships between Patients and other subusers.
 //
 // URLs
-//  Scratch: patient-service-fugckz6xoq-uc.a.run.app:443
+//  Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev
 service PatientService {
   // CreatePatientProvider creates a specified PatientProvider.
   rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}

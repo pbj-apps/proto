@@ -13,7 +13,7 @@ import "heyrenee/v1/messages/caregiver.proto";
 // The UserService provides methods for the creation and management of HeyRenee users.
 //
 // URLs
-//  Scratch: user-service-fugckz6xoq-uc.a.run.app:443
+//  Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev
 service UserService {
   // CreatePatient creates a new User with a Patient subuser. If the request is unauthenticated, a standalone user with
   // a Patient subuser will be created. If the request is authenticated by a Caregiver or Concierge subuser then the new
