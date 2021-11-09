@@ -15,17 +15,11 @@ import "heyrenee/v1/options/auth.proto";
 //  Scratch: insurance-service-fugckz6xoq-uc.a.run.app:443
 service InsuranceService {
   // CreateInsurance creates a provided Insurance resource.
-  rpc CreateInsurance(CreateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreateInsurance(CreateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {}
   // UpdateInsurance updates a provided Insurance resource.
-  rpc UpdateInsurance(UpdateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc UpdateInsurance(UpdateInsuranceRequest) returns (heyrenee.v1.messages.Insurance) {}
   // ListInsurance lists Insurance resources for a specified Patient.
-  rpc ListInsurance(ListInsuranceRequest) returns (ListInsuranceResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListInsurance(ListInsuranceRequest) returns (ListInsuranceResponse) {}
 }
 
 // Request message for CreateInsurance.

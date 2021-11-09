@@ -6,14 +6,8 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/options";
 
 import "google/protobuf/descriptor.proto";
 
-extend google.protobuf.MethodOptions {
-  // If true, indicates that the method requires authentication.
-  bool authenticated = 50000;
-}
-
 extend google.protobuf.FieldOptions {
-  // If specified, indicates that the field requires authorization and the type of authorization. Access to the field will
-  // only be authorized if the method is also authenticated.
+  // If specified, indicates that the field requires authorization and the type of authorization.
   FieldAuthorization field_authorization = 50000;
 }
 

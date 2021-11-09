@@ -22,66 +22,38 @@ import "heyrenee/v1/options/auth.proto";
 //  Scratch: patient-service-fugckz6xoq-uc.a.run.app:443
 service PatientService {
   // CreatePatientProvider creates a specified PatientProvider.
-  rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
   // UpdatePatientProvider updates a specified PatientProvider.
-  rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
   // ListPatientProviders lists PatientProviders for a specified Patient.
-  rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {}
 
   // CreatePatientCaregiver creates a specified PatientCaregiver.
-  rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
   // UpdatePatientCaregiver updates a specified PatientCaregiver.
-  rpc UpdatePatientCaregiver(UpdatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc UpdatePatientCaregiver(UpdatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
   // ListPatientCaregivers lists PatientCaregivers for a specific Patient.
-  rpc ListPatientCaregivers(ListPatientCaregiversRequest) returns (ListPatientCaregiversResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListPatientCaregivers(ListPatientCaregiversRequest) returns (ListPatientCaregiversResponse) {}
 
   // CreatePatientAssessment creates a specified PatientAssessment.
-  rpc CreatePatientAssessment(CreatePatientAssessmentRequest) returns (heyrenee.v1.messages.PatientAssessment) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreatePatientAssessment(CreatePatientAssessmentRequest) returns (heyrenee.v1.messages.PatientAssessment) {}
   // ListPatientAssessments lists PatientAssessments for a specific Patient.
-  rpc ListPatientAssessments(ListPatientAssessmentsRequest) returns (ListPatientAssessmentsResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListPatientAssessments(ListPatientAssessmentsRequest) returns (ListPatientAssessmentsResponse) {}
 
   // CreatePatientSatisfactionQuestionnaire creates a specified PatientSatisfactionQuestionnaire.
-  rpc CreatePatientSatisfactionQuestionnaire(CreatePatientSatisfactionQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSatisfactionQuestionnaire) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreatePatientSatisfactionQuestionnaire(CreatePatientSatisfactionQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSatisfactionQuestionnaire) {}
   // ListPatientSatisfactionQuestionnaires lists PatientSatisfactionQuestionnaires for a specific Patient.
-  rpc ListPatientSatisfactionQuestionnaires(ListPatientSatisfactionQuestionnairesRequest) returns (ListPatientSatisfactionQuestionnairesResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListPatientSatisfactionQuestionnaires(ListPatientSatisfactionQuestionnairesRequest) returns (ListPatientSatisfactionQuestionnairesResponse) {}
 
   // CreatePatientHealthQuestionnaire creates a specified PatientHealthQuestionnaire.
-  rpc CreatePatientHealthQuestionnaire(CreatePatientHealthQuestionnaireRequest) returns (heyrenee.v1.messages.PatientHealthQuestionnaire) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreatePatientHealthQuestionnaire(CreatePatientHealthQuestionnaireRequest) returns (heyrenee.v1.messages.PatientHealthQuestionnaire) {}
   // ListPatientHealthQuestionnaires lists PatientHealthQuestionnaires for a specific Patient.
-  rpc ListPatientHealthQuestionnaires(ListPatientHealthQuestionnairesRequest) returns (ListPatientHealthQuestionnairesResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListPatientHealthQuestionnaires(ListPatientHealthQuestionnairesRequest) returns (ListPatientHealthQuestionnairesResponse) {}
 
   // CreatePatientSdohQuestionnaire creates a specified PatientSdohQuestionnaire.
-  rpc CreatePatientSdohQuestionnaire(CreatePatientSdohQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSdohQuestionnaire) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc CreatePatientSdohQuestionnaire(CreatePatientSdohQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSdohQuestionnaire) {}
   // ListPatientSdohQuestionnaires lists PatientSdohQuestionnaires for a specific Patient.
-  rpc ListPatientSdohQuestionnaires(ListPatientSdohQuestionnairesRequest) returns (ListPatientSdohQuestionnairesResponse) {
-    option (heyrenee.v1.options.authenticated) = true;
-  }
+  rpc ListPatientSdohQuestionnaires(ListPatientSdohQuestionnairesRequest) returns (ListPatientSdohQuestionnairesResponse) {}
 }
 
 // Request message for CreatePatientProvider.
