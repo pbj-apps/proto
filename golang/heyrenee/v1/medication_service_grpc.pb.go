@@ -19,7 +19,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MedicationServiceClient interface {
-	MedicationSuggest(ctx context.Context, opts ...grpc.CallOption) (MedicationService_MedicationSuggestClient, error)
+	// MedicationSuggest returns a list of MedicationSuggestions based on a partial search string. This should only be
+	// used for autocomplete like features and not as a full fledged Medication search method.
+	//
+	// TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+	// https://github.com/grpc/grpc-web/issues/24
+	MedicationSuggest(ctx context.Context, in *MedicationSuggestRequest, opts ...grpc.CallOption) (*MedicationSuggestResponse, error)
 	// CreatePrescription creates the provided Prescription resource.
 	CreatePrescription(ctx context.Context, in *CreatePrescriptionRequest, opts ...grpc.CallOption) (*messages.Prescription, error)
 	// UpdatePrescription updates the provided Prescription resource.
@@ -40,35 +45,13 @@ func NewMedicationServiceClient(cc grpc.ClientConnInterface) MedicationServiceCl
 	return &medicationServiceClient{cc}
 }
 
-func (c *medicationServiceClient) MedicationSuggest(ctx context.Context, opts ...grpc.CallOption) (MedicationService_MedicationSuggestClient, error) {
-	stream, err := c.cc.NewStream(ctx, &MedicationService_ServiceDesc.Streams[0], "/heyrenee.v1.MedicationService/MedicationSuggest", opts...)
+func (c *medicationServiceClient) MedicationSuggest(ctx context.Context, in *MedicationSuggestRequest, opts ...grpc.CallOption) (*MedicationSuggestResponse, error) {
+	out := new(MedicationSuggestResponse)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.MedicationService/MedicationSuggest", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &medicationServiceMedicationSuggestClient{stream}
-	return x, nil
-}
-
-type MedicationService_MedicationSuggestClient interface {
-	Send(*MedicationSuggestRequest) error
-	Recv() (*MedicationSuggestResponse, error)
-	grpc.ClientStream
-}
-
-type medicationServiceMedicationSuggestClient struct {
-	grpc.ClientStream
-}
-
-func (x *medicationServiceMedicationSuggestClient) Send(m *MedicationSuggestRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *medicationServiceMedicationSuggestClient) Recv() (*MedicationSuggestResponse, error) {
-	m := new(MedicationSuggestResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *medicationServiceClient) CreatePrescription(ctx context.Context, in *CreatePrescriptionRequest, opts ...grpc.CallOption) (*messages.Prescription, error) {
@@ -120,7 +103,12 @@ func (c *medicationServiceClient) ListRefills(ctx context.Context, in *ListRefil
 // All implementations must embed UnimplementedMedicationServiceServer
 // for forward compatibility
 type MedicationServiceServer interface {
-	MedicationSuggest(MedicationService_MedicationSuggestServer) error
+	// MedicationSuggest returns a list of MedicationSuggestions based on a partial search string. This should only be
+	// used for autocomplete like features and not as a full fledged Medication search method.
+	//
+	// TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+	// https://github.com/grpc/grpc-web/issues/24
+	MedicationSuggest(context.Context, *MedicationSuggestRequest) (*MedicationSuggestResponse, error)
 	// CreatePrescription creates the provided Prescription resource.
 	CreatePrescription(context.Context, *CreatePrescriptionRequest) (*messages.Prescription, error)
 	// UpdatePrescription updates the provided Prescription resource.
@@ -138,8 +126,8 @@ type MedicationServiceServer interface {
 type UnimplementedMedicationServiceServer struct {
 }
 
-func (UnimplementedMedicationServiceServer) MedicationSuggest(MedicationService_MedicationSuggestServer) error {
-	return status.Errorf(codes.Unimplemented, "method MedicationSuggest not implemented")
+func (UnimplementedMedicationServiceServer) MedicationSuggest(context.Context, *MedicationSuggestRequest) (*MedicationSuggestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MedicationSuggest not implemented")
 }
 func (UnimplementedMedicationServiceServer) CreatePrescription(context.Context, *CreatePrescriptionRequest) (*messages.Prescription, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePrescription not implemented")
@@ -169,30 +157,22 @@ func RegisterMedicationServiceServer(s grpc.ServiceRegistrar, srv MedicationServ
 	s.RegisterService(&MedicationService_ServiceDesc, srv)
 }
 
-func _MedicationService_MedicationSuggest_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(MedicationServiceServer).MedicationSuggest(&medicationServiceMedicationSuggestServer{stream})
-}
-
-type MedicationService_MedicationSuggestServer interface {
-	Send(*MedicationSuggestResponse) error
-	Recv() (*MedicationSuggestRequest, error)
-	grpc.ServerStream
-}
-
-type medicationServiceMedicationSuggestServer struct {
-	grpc.ServerStream
-}
-
-func (x *medicationServiceMedicationSuggestServer) Send(m *MedicationSuggestResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *medicationServiceMedicationSuggestServer) Recv() (*MedicationSuggestRequest, error) {
-	m := new(MedicationSuggestRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
+func _MedicationService_MedicationSuggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MedicationSuggestRequest)
+	if err := dec(in); err != nil {
 		return nil, err
 	}
-	return m, nil
+	if interceptor == nil {
+		return srv.(MedicationServiceServer).MedicationSuggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.MedicationService/MedicationSuggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MedicationServiceServer).MedicationSuggest(ctx, req.(*MedicationSuggestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _MedicationService_CreatePrescription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -293,6 +273,10 @@ var MedicationService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MedicationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "MedicationSuggest",
+			Handler:    _MedicationService_MedicationSuggest_Handler,
+		},
+		{
 			MethodName: "CreatePrescription",
 			Handler:    _MedicationService_CreatePrescription_Handler,
 		},
@@ -313,13 +297,6 @@ var MedicationService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MedicationService_ListRefills_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "MedicationSuggest",
-			Handler:       _MedicationService_MedicationSuggest_Handler,
-			ServerStreams: true,
-			ClientStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "heyrenee/v1/medication_service.proto",
 }
