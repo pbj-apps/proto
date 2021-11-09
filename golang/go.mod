@@ -1,9 +1,8 @@
-module github.com/HeyReneeInc/proto
+module github.com/HeyReneeInc/proto/golang
 
 go 1.17
 
 require (
-	github.com/HeyReneeInc/proto/golang v0.0.0-20211109135212-96fcc40e2490
 	google.golang.org/grpc v1.42.0
 	google.golang.org/protobuf v1.27.1
 )
