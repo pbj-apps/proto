@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
+
+import "heyrenee/v1/messages/patient_diagnosis.proto";
+
+// DiagnosisService
+//
+// The DiagnosisService provides operations on Diagnosis resources along with managing PatientDiagnoses which represent
+// relationships between Patient users and Diagnoses.
+//
+// URLs
+//  Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev
+service DiagnosisService {
+  // DiagnosisSuggest returns a list of DiagnosisSuggestions based on a partial search string. This should only be
+  // used for autocomplete like features and not as a full fledged Diagnosis search method.
+  //
+  // TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+  // https://github.com/grpc/grpc-web/issues/24
+  rpc DiagnosisSuggest(DiagnosisSuggestRequest) returns (DiagnosisSuggestResponse) {}
+
+  // CreatePatientDiagnosis creates a specified PatientDiagnosis.
+  rpc CreatePatientDiagnosis(CreatePatientDiagnosisRequest) returns (heyrenee.v1.messages.PatientDiagnosis) {}
+}
+
+// Request message for DiagnosisSuggest.
+message DiagnosisSuggestRequest {
+  // The partial text be used to generate DiagnosisSuggestions. Required.
+  string partial_text = 1;
+}
+
+// Response message for DiagnosisSuggest.
+message DiagnosisSuggestResponse {
+  // The list of DiagnosisSuggestions.
+  repeated DiagnosisSuggestion diagnosis_suggestions = 1;
+}
+
+// A DiagnosisSuggestion represents a single Diagnosis suggested as an autocompletion result for the partial text in a
+// DiagnosisSuggestRequest.
+message DiagnosisSuggestion {
+  // The ID of the suggested Diagnosis.
+  string diagnosis_id = 1;
+  // The name of the Diagnosis that should be displayed to the user in the list of suggestions.
+  string display_name = 2;
+}
+
+// Request message for CreatePatientDiagnosis.
+message CreatePatientDiagnosisRequest {
+  // The PatientDiagnosis to create. Required.
+  heyrenee.v1.messages.PatientDiagnosis patient_diagnosis = 1;
+}

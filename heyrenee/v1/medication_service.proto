@@ -37,7 +37,7 @@ service MedicationService {
 
 // Request message for MedicationSuggest.
 message MedicationSuggestRequest {
-  // The partial text be used to generate MedicationSuggestions.
+  // The partial text be used to generate MedicationSuggestions. Required.
   string partial_text = 1;
 }
 

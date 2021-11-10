@@ -28,7 +28,7 @@ type MedicationSuggestRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The partial text be used to generate MedicationSuggestions.
+	// The partial text be used to generate MedicationSuggestions. Required.
 	PartialText string `protobuf:"bytes,1,opt,name=partial_text,json=partialText,proto3" json:"partial_text,omitempty"`
 }
 

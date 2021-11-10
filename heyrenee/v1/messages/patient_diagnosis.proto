@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+import "heyrenee/v1/messages/provider.proto";
+import "heyrenee/v1/options/auth.proto";
+import "heyrenee/v1/messages/diagnosis.proto";
+import "google/protobuf/timestamp.proto";
+
+// A PatientDiagnosis represents a relationship between a Patient and Diagnosis. The relationship indicates that
+// the Patient is either currently or has in the past received the diagnosis represented by the Diagnosis resource.
+message PatientDiagnosis {
+  // The ID of the Patient that has received the Diagnosis. Required.
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The Diagnosis given to the Patient. Required.
+  oneof diagnosis {
+    // The ID of the Diagnosis given to the Patient. Required.
+    string diagnosis_id = 2;
+    // The Diagnosis given to the Patient. Only returned in responses, must not be set in requests.
+    Diagnosis diagnosis_message = 3;
+  }
+  // The ID of this PatientDiagnosis resource. Must be empty in create requests, required in all other requests.
+  string patient_diagnosis_id = 4;
+  // The Provider that made the Diagnosis. Required.
+  oneof diagnosing_provider {
+    // The ID of the Provider that made the Diagnosis. Required.
+    string provider_id = 5;
+    // The Provider that made the Diagnosis. Only returned in responses, must not be set in requests.
+    Provider provider_message = 6;
+  }
+  // The status of the PatientDiagnosis. Required.
+  PatientDiagnosisStatus patient_diagnosis_status = 7;
+  // The date the Patient received the Diagnosis. Required.
+  google.protobuf.Timestamp date_diagnosed = 8;
+  // Instructions related to this Diagnosis for the Patient.
+  string diagnosis_instructions = 9;
+  // Notes related to this Diagnosis for the Patient.
+  string diagnosis_notes = 10;
+}
+
+// Specifies a PatientDiagnosis' status.
+enum PatientDiagnosisStatus {
+  // The PatientDiagnosis' status is unspecified.
+  PATIENT_DIAGNOSIS_STATUS_UNSPECIFIED = 0;
+  // The Patient is actively experiencing the condition specified by the Diagnosis.
+  PATIENT_DIAGNOSIS_ACTIVE = 1;
+  // The Patient is not actively experiencing the condition specified by the Diagnosis.
+  PATIENT_DIAGNOSIS_INACTIVE = 2;
+}

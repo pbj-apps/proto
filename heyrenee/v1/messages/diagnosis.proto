@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package heyrenee.v1.messages;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+
+// A Diagnosis represents a diagnosable condition as specified by ICD-10-CM.
+message Diagnosis {
+  // The ID of the Diagnosis resource.
+  string diagnosis_id = 1;
+  // The ICD-10-CM code that specifies the Diagnosis.
+  string ICD10CM = 2;
+  // The human readable name of the Diagnosis as specified by ICD-10-CM.
+  string name = 3;
+}
