@@ -6,3 +6,8 @@ proto-api-descriptors:
 
 proto-js:
 	protoc --plugin="./lib/ts-protoc-gen/node_modules/.bin/protoc-gen-ts" --js_out="import_style=commonjs,binary:js" --ts_out="service=grpc-web:js" */*/*.proto */*/*/*.proto
+
+proto:
+	make proto-golang
+	make proto-js
+	make proto-api-descriptors
