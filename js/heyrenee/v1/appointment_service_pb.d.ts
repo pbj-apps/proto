@@ -4,8 +4,6 @@
 import * as jspb from "google-protobuf";
 import * as heyrenee_v1_messages_appointment_pb from "../../heyrenee/v1/messages/appointment_pb";
 import * as heyrenee_v1_options_auth_pb from "../../heyrenee/v1/options/auth_pb";
-import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
-import * as google_api_annotations_pb from "../../google/api/annotations_pb";
 
 export class ListAppointmentsRequest extends jspb.Message {
   getPatientId(): string;

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package heyrenee.v1;
+
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// CorsService
+service CorsService {
+  rpc CorsPreflight(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      custom: { kind:"OPTIONS", path:"/*/*" }
+    };
+  }
+}

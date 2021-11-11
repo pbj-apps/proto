@@ -7,7 +7,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,7 +18,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AppointmentServiceClient interface {
-	CorsPreflight(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// ListAppointments returns a list of Appointments for the specified Patient.
 	ListAppointments(ctx context.Context, in *ListAppointmentsRequest, opts ...grpc.CallOption) (*ListAppointmentsResponse, error)
 }
@@ -30,15 +28,6 @@ type appointmentServiceClient struct {
 
 func NewAppointmentServiceClient(cc grpc.ClientConnInterface) AppointmentServiceClient {
 	return &appointmentServiceClient{cc}
-}
-
-func (c *appointmentServiceClient) CorsPreflight(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.AppointmentService/CorsPreflight", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *appointmentServiceClient) ListAppointments(ctx context.Context, in *ListAppointmentsRequest, opts ...grpc.CallOption) (*ListAppointmentsResponse, error) {
@@ -54,7 +43,6 @@ func (c *appointmentServiceClient) ListAppointments(ctx context.Context, in *Lis
 // All implementations must embed UnimplementedAppointmentServiceServer
 // for forward compatibility
 type AppointmentServiceServer interface {
-	CorsPreflight(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// ListAppointments returns a list of Appointments for the specified Patient.
 	ListAppointments(context.Context, *ListAppointmentsRequest) (*ListAppointmentsResponse, error)
 	mustEmbedUnimplementedAppointmentServiceServer()
@@ -64,9 +52,6 @@ type AppointmentServiceServer interface {
 type UnimplementedAppointmentServiceServer struct {
 }
 
-func (UnimplementedAppointmentServiceServer) CorsPreflight(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CorsPreflight not implemented")
-}
 func (UnimplementedAppointmentServiceServer) ListAppointments(context.Context, *ListAppointmentsRequest) (*ListAppointmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAppointments not implemented")
 }
@@ -81,24 +66,6 @@ type UnsafeAppointmentServiceServer interface {
 
 func RegisterAppointmentServiceServer(s grpc.ServiceRegistrar, srv AppointmentServiceServer) {
 	s.RegisterService(&AppointmentService_ServiceDesc, srv)
-}
-
-func _AppointmentService_CorsPreflight_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppointmentServiceServer).CorsPreflight(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.AppointmentService/CorsPreflight",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppointmentServiceServer).CorsPreflight(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _AppointmentService_ListAppointments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -126,10 +93,6 @@ var AppointmentService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "heyrenee.v1.AppointmentService",
 	HandlerType: (*AppointmentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CorsPreflight",
-			Handler:    _AppointmentService_CorsPreflight_Handler,
-		},
 		{
 			MethodName: "ListAppointments",
 			Handler:    _AppointmentService_ListAppointments_Handler,

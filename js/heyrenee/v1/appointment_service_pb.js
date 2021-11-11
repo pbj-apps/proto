@@ -19,10 +19,6 @@ var heyrenee_v1_messages_appointment_pb = require('../../heyrenee/v1/messages/ap
 goog.object.extend(proto, heyrenee_v1_messages_appointment_pb);
 var heyrenee_v1_options_auth_pb = require('../../heyrenee/v1/options/auth_pb.js');
 goog.object.extend(proto, heyrenee_v1_options_auth_pb);
-var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
-goog.object.extend(proto, google_protobuf_empty_pb);
-var google_api_annotations_pb = require('../../google/api/annotations_pb.js');
-goog.object.extend(proto, google_api_annotations_pb);
 goog.exportSymbol('proto.heyrenee.v1.AppointmentType', null, global);
 goog.exportSymbol('proto.heyrenee.v1.ListAppointmentsRequest', null, global);
 goog.exportSymbol('proto.heyrenee.v1.ListAppointmentsResponse', null, global);
