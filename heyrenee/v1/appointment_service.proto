@@ -6,6 +6,7 @@ option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
 import "heyrenee/v1/messages/appointment.proto";
 import "heyrenee/v1/options/auth.proto";
+import "google/protobuf/empty.proto";
 
 // AppointmentService
 //
@@ -15,6 +16,7 @@ import "heyrenee/v1/options/auth.proto";
 // URLs
 //  Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev
 service AppointmentService {
+  rpc CorsPreflight(google.protobuf.Empty) returns (google.protobuf.Empty) {}
   // ListAppointments returns a list of Appointments for the specified Patient.
   rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse) {}
 }
