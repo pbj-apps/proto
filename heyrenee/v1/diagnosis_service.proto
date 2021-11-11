@@ -5,6 +5,7 @@ package heyrenee.v1;
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
 import "heyrenee/v1/messages/patient_diagnosis.proto";
+import "heyrenee/v1/options/auth.proto";
 
 // DiagnosisService
 //
@@ -23,6 +24,10 @@ service DiagnosisService {
 
   // CreatePatientDiagnosis creates a specified PatientDiagnosis.
   rpc CreatePatientDiagnosis(CreatePatientDiagnosisRequest) returns (heyrenee.v1.messages.PatientDiagnosis) {}
+  // UpdatePatientDiagnosis creates a specified PatientDiagnosis.
+  rpc UpdatePatientDiagnosis(UpdatePatientDiagnosisRequest) returns (heyrenee.v1.messages.PatientDiagnosis) {}
+  // ListPatientDiagnoses lists the PatientDiagnoses for a specified Patient.
+  rpc ListPatientDiagnoses(ListPatientDiagnosesRequest) returns (ListPatientDiagnosesResponse) {}
 }
 
 // Request message for DiagnosisSuggest.
@@ -50,4 +55,24 @@ message DiagnosisSuggestion {
 message CreatePatientDiagnosisRequest {
   // The PatientDiagnosis to create. Required.
   heyrenee.v1.messages.PatientDiagnosis patient_diagnosis = 1;
+}
+
+// Request message for UpdatePatientDiagnosis.
+message UpdatePatientDiagnosisRequest {
+  // The PatientDiagnosis to update. Required.
+  heyrenee.v1.messages.PatientDiagnosis patient_diagnosis = 1;
+}
+
+// Request message for ListPatientDiagnoses.
+message ListPatientDiagnosesRequest {
+  // The ID of the Patient to return Appointments for. Required.
+  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
+  // The status of the PatientDiagnoses. If specified, only PatientDiagnoses with the specified status will be returned.
+  heyrenee.v1.messages.PatientDiagnosisStatus patient_diagnosis_status = 2;
+}
+
+// Response message for ListPatientDiagnoses.
+message ListPatientDiagnosesResponse {
+  // The list of PatientDiagnoses.
+  repeated heyrenee.v1.messages.PatientDiagnosis patient_diagnoses = 1;
 }

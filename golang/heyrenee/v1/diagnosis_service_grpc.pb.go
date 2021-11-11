@@ -27,6 +27,10 @@ type DiagnosisServiceClient interface {
 	DiagnosisSuggest(ctx context.Context, in *DiagnosisSuggestRequest, opts ...grpc.CallOption) (*DiagnosisSuggestResponse, error)
 	// CreatePatientDiagnosis creates a specified PatientDiagnosis.
 	CreatePatientDiagnosis(ctx context.Context, in *CreatePatientDiagnosisRequest, opts ...grpc.CallOption) (*messages.PatientDiagnosis, error)
+	// UpdatePatientDiagnosis creates a specified PatientDiagnosis.
+	UpdatePatientDiagnosis(ctx context.Context, in *UpdatePatientDiagnosisRequest, opts ...grpc.CallOption) (*messages.PatientDiagnosis, error)
+	// ListPatientDiagnoses lists the PatientDiagnoses for a specified Patient.
+	ListPatientDiagnoses(ctx context.Context, in *ListPatientDiagnosesRequest, opts ...grpc.CallOption) (*ListPatientDiagnosesResponse, error)
 }
 
 type diagnosisServiceClient struct {
@@ -55,6 +59,24 @@ func (c *diagnosisServiceClient) CreatePatientDiagnosis(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *diagnosisServiceClient) UpdatePatientDiagnosis(ctx context.Context, in *UpdatePatientDiagnosisRequest, opts ...grpc.CallOption) (*messages.PatientDiagnosis, error) {
+	out := new(messages.PatientDiagnosis)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.DiagnosisService/UpdatePatientDiagnosis", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *diagnosisServiceClient) ListPatientDiagnoses(ctx context.Context, in *ListPatientDiagnosesRequest, opts ...grpc.CallOption) (*ListPatientDiagnosesResponse, error) {
+	out := new(ListPatientDiagnosesResponse)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.DiagnosisService/ListPatientDiagnoses", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DiagnosisServiceServer is the server API for DiagnosisService service.
 // All implementations must embed UnimplementedDiagnosisServiceServer
 // for forward compatibility
@@ -67,6 +89,10 @@ type DiagnosisServiceServer interface {
 	DiagnosisSuggest(context.Context, *DiagnosisSuggestRequest) (*DiagnosisSuggestResponse, error)
 	// CreatePatientDiagnosis creates a specified PatientDiagnosis.
 	CreatePatientDiagnosis(context.Context, *CreatePatientDiagnosisRequest) (*messages.PatientDiagnosis, error)
+	// UpdatePatientDiagnosis creates a specified PatientDiagnosis.
+	UpdatePatientDiagnosis(context.Context, *UpdatePatientDiagnosisRequest) (*messages.PatientDiagnosis, error)
+	// ListPatientDiagnoses lists the PatientDiagnoses for a specified Patient.
+	ListPatientDiagnoses(context.Context, *ListPatientDiagnosesRequest) (*ListPatientDiagnosesResponse, error)
 	mustEmbedUnimplementedDiagnosisServiceServer()
 }
 
@@ -79,6 +105,12 @@ func (UnimplementedDiagnosisServiceServer) DiagnosisSuggest(context.Context, *Di
 }
 func (UnimplementedDiagnosisServiceServer) CreatePatientDiagnosis(context.Context, *CreatePatientDiagnosisRequest) (*messages.PatientDiagnosis, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientDiagnosis not implemented")
+}
+func (UnimplementedDiagnosisServiceServer) UpdatePatientDiagnosis(context.Context, *UpdatePatientDiagnosisRequest) (*messages.PatientDiagnosis, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePatientDiagnosis not implemented")
+}
+func (UnimplementedDiagnosisServiceServer) ListPatientDiagnoses(context.Context, *ListPatientDiagnosesRequest) (*ListPatientDiagnosesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPatientDiagnoses not implemented")
 }
 func (UnimplementedDiagnosisServiceServer) mustEmbedUnimplementedDiagnosisServiceServer() {}
 
@@ -129,6 +161,42 @@ func _DiagnosisService_CreatePatientDiagnosis_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DiagnosisService_UpdatePatientDiagnosis_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePatientDiagnosisRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiagnosisServiceServer).UpdatePatientDiagnosis(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.DiagnosisService/UpdatePatientDiagnosis",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiagnosisServiceServer).UpdatePatientDiagnosis(ctx, req.(*UpdatePatientDiagnosisRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DiagnosisService_ListPatientDiagnoses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPatientDiagnosesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiagnosisServiceServer).ListPatientDiagnoses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.DiagnosisService/ListPatientDiagnoses",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiagnosisServiceServer).ListPatientDiagnoses(ctx, req.(*ListPatientDiagnosesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DiagnosisService_ServiceDesc is the grpc.ServiceDesc for DiagnosisService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -143,6 +211,14 @@ var DiagnosisService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreatePatientDiagnosis",
 			Handler:    _DiagnosisService_CreatePatientDiagnosis_Handler,
+		},
+		{
+			MethodName: "UpdatePatientDiagnosis",
+			Handler:    _DiagnosisService_UpdatePatientDiagnosis_Handler,
+		},
+		{
+			MethodName: "ListPatientDiagnoses",
+			Handler:    _DiagnosisService_ListPatientDiagnoses_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
