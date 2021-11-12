@@ -19,6 +19,12 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProviderServiceClient interface {
+	// ProviderSuggest returns a list of ProviderSuggestions based on a partial search string. This should only be
+	// used for autocomplete like features and not as a full fledged Provider search method.
+	//
+	// TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+	// https://github.com/grpc/grpc-web/issues/24
+	ProviderSuggest(ctx context.Context, in *ProviderSuggestRequest, opts ...grpc.CallOption) (*ProviderSuggestResponse, error)
 	// CreatePatientProvider creates a specified PatientProvider.
 	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
 	// UpdatePatientProvider updates a specified PatientProvider.
@@ -33,6 +39,15 @@ type providerServiceClient struct {
 
 func NewProviderServiceClient(cc grpc.ClientConnInterface) ProviderServiceClient {
 	return &providerServiceClient{cc}
+}
+
+func (c *providerServiceClient) ProviderSuggest(ctx context.Context, in *ProviderSuggestRequest, opts ...grpc.CallOption) (*ProviderSuggestResponse, error) {
+	out := new(ProviderSuggestResponse)
+	err := c.cc.Invoke(ctx, "/heyrenee.v1.ProviderService/ProviderSuggest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *providerServiceClient) CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error) {
@@ -66,6 +81,12 @@ func (c *providerServiceClient) ListPatientProviders(ctx context.Context, in *Li
 // All implementations must embed UnimplementedProviderServiceServer
 // for forward compatibility
 type ProviderServiceServer interface {
+	// ProviderSuggest returns a list of ProviderSuggestions based on a partial search string. This should only be
+	// used for autocomplete like features and not as a full fledged Provider search method.
+	//
+	// TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+	// https://github.com/grpc/grpc-web/issues/24
+	ProviderSuggest(context.Context, *ProviderSuggestRequest) (*ProviderSuggestResponse, error)
 	// CreatePatientProvider creates a specified PatientProvider.
 	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
 	// UpdatePatientProvider updates a specified PatientProvider.
@@ -79,6 +100,9 @@ type ProviderServiceServer interface {
 type UnimplementedProviderServiceServer struct {
 }
 
+func (UnimplementedProviderServiceServer) ProviderSuggest(context.Context, *ProviderSuggestRequest) (*ProviderSuggestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProviderSuggest not implemented")
+}
 func (UnimplementedProviderServiceServer) CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientProvider not implemented")
 }
@@ -99,6 +123,24 @@ type UnsafeProviderServiceServer interface {
 
 func RegisterProviderServiceServer(s grpc.ServiceRegistrar, srv ProviderServiceServer) {
 	s.RegisterService(&ProviderService_ServiceDesc, srv)
+}
+
+func _ProviderService_ProviderSuggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProviderSuggestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProviderServiceServer).ProviderSuggest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/heyrenee.v1.ProviderService/ProviderSuggest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProviderServiceServer).ProviderSuggest(ctx, req.(*ProviderSuggestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ProviderService_CreatePatientProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -162,6 +204,10 @@ var ProviderService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "heyrenee.v1.ProviderService",
 	HandlerType: (*ProviderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ProviderSuggest",
+			Handler:    _ProviderService_ProviderSuggest_Handler,
+		},
 		{
 			MethodName: "CreatePatientProvider",
 			Handler:    _ProviderService_CreatePatientProvider_Handler,

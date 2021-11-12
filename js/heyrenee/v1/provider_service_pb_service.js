@@ -11,6 +11,15 @@ var ProviderService = (function () {
   return ProviderService;
 }());
 
+ProviderService.ProviderSuggest = {
+  methodName: "ProviderSuggest",
+  service: ProviderService,
+  requestStream: false,
+  responseStream: false,
+  requestType: heyrenee_v1_provider_service_pb.ProviderSuggestRequest,
+  responseType: heyrenee_v1_provider_service_pb.ProviderSuggestResponse
+};
+
 ProviderService.CreatePatientProvider = {
   methodName: "CreatePatientProvider",
   service: ProviderService,
@@ -44,6 +53,37 @@ function ProviderServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
+
+ProviderServiceClient.prototype.providerSuggest = function providerSuggest(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(ProviderService.ProviderSuggest, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
 
 ProviderServiceClient.prototype.createPatientProvider = function createPatientProvider(requestMessage, metadata, callback) {
   if (arguments.length === 2) {

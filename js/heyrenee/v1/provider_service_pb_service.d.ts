@@ -5,6 +5,15 @@ import * as heyrenee_v1_provider_service_pb from "../../heyrenee/v1/provider_ser
 import * as heyrenee_v1_messages_patient_provider_pb from "../../heyrenee/v1/messages/patient_provider_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
+type ProviderServiceProviderSuggest = {
+  readonly methodName: string;
+  readonly service: typeof ProviderService;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof heyrenee_v1_provider_service_pb.ProviderSuggestRequest;
+  readonly responseType: typeof heyrenee_v1_provider_service_pb.ProviderSuggestResponse;
+};
+
 type ProviderServiceCreatePatientProvider = {
   readonly methodName: string;
   readonly service: typeof ProviderService;
@@ -34,6 +43,7 @@ type ProviderServiceListPatientProviders = {
 
 export class ProviderService {
   static readonly serviceName: string;
+  static readonly ProviderSuggest: ProviderServiceProviderSuggest;
   static readonly CreatePatientProvider: ProviderServiceCreatePatientProvider;
   static readonly UpdatePatientProvider: ProviderServiceUpdatePatientProvider;
   static readonly ListPatientProviders: ProviderServiceListPatientProviders;
@@ -71,6 +81,15 @@ export class ProviderServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
+  providerSuggest(
+    requestMessage: heyrenee_v1_provider_service_pb.ProviderSuggestRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_provider_service_pb.ProviderSuggestResponse|null) => void
+  ): UnaryResponse;
+  providerSuggest(
+    requestMessage: heyrenee_v1_provider_service_pb.ProviderSuggestRequest,
+    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_provider_service_pb.ProviderSuggestResponse|null) => void
+  ): UnaryResponse;
   createPatientProvider(
     requestMessage: heyrenee_v1_provider_service_pb.CreatePatientProviderRequest,
     metadata: grpc.Metadata,
