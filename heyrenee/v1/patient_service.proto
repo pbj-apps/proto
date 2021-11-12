@@ -4,7 +4,6 @@ package heyrenee.v1;
 
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
-import "heyrenee/v1/messages/patient_provider.proto";
 import "heyrenee/v1/messages/patient_caregiver.proto";
 import "heyrenee/v1/messages/patient_health_questionnaire.proto";
 import "heyrenee/v1/messages/patient_satisfaction_questionnaire.proto";
@@ -21,13 +20,6 @@ import "heyrenee/v1/options/auth.proto";
 // URLs
 //  Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev
 service PatientService {
-  // CreatePatientProvider creates a specified PatientProvider.
-  rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
-  // UpdatePatientProvider updates a specified PatientProvider.
-  rpc UpdatePatientProvider(UpdatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
-  // ListPatientProviders lists PatientProviders for a specified Patient.
-  rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {}
-
   // CreatePatientCaregiver creates a specified PatientCaregiver.
   rpc CreatePatientCaregiver(CreatePatientCaregiverRequest) returns (heyrenee.v1.messages.PatientCaregiver) {}
   // UpdatePatientCaregiver updates a specified PatientCaregiver.
@@ -54,34 +46,6 @@ service PatientService {
   rpc CreatePatientSdohQuestionnaire(CreatePatientSdohQuestionnaireRequest) returns (heyrenee.v1.messages.PatientSdohQuestionnaire) {}
   // ListPatientSdohQuestionnaires lists PatientSdohQuestionnaires for a specific Patient.
   rpc ListPatientSdohQuestionnaires(ListPatientSdohQuestionnairesRequest) returns (ListPatientSdohQuestionnairesResponse) {}
-}
-
-// Request message for CreatePatientProvider.
-message CreatePatientProviderRequest {
-  // The PatientProvider to create. Required.
-  heyrenee.v1.messages.PatientProvider patient_provider = 1;
-}
-
-// Request message for UpdatePatientProvider.
-message UpdatePatientProviderRequest {
-  // The PatientProvider to update. Required.
-  heyrenee.v1.messages.PatientProvider patient_provider = 1;
-}
-
-// Request message for ListPatientProviders.
-message ListPatientProvidersRequest {
-  // The ID of the Patient to return PatientProviders for. Required.
-  string patient_id = 1 [(heyrenee.v1.options.field_authorization) = FIELD_AUTHORIZATION_PATIENT];
-  // The PatientProvider status. If specified, only PatientProviders with this status will be returned.
-  heyrenee.v1.messages.PatientProviderStatus patient_provider_status = 2;
-  // The PatientProvider type. If specified, only PatientProviders of this type will be returned.
-  heyrenee.v1.messages.PatientProviderType patient_provider_type = 3;
-}
-
-// Response message for ListPatientProviders.
-message ListPatientProvidersResponse {
-  // The list of PatientProviders.
-  repeated heyrenee.v1.messages.PatientProvider patient_providers = 1;
 }
 
 // Request message for CreatePatientCaregiver.

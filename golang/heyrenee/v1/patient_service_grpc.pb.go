@@ -19,12 +19,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PatientServiceClient interface {
-	// CreatePatientProvider creates a specified PatientProvider.
-	CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
-	// UpdatePatientProvider updates a specified PatientProvider.
-	UpdatePatientProvider(ctx context.Context, in *UpdatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error)
-	// ListPatientProviders lists PatientProviders for a specified Patient.
-	ListPatientProviders(ctx context.Context, in *ListPatientProvidersRequest, opts ...grpc.CallOption) (*ListPatientProvidersResponse, error)
 	// CreatePatientCaregiver creates a specified PatientCaregiver.
 	CreatePatientCaregiver(ctx context.Context, in *CreatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error)
 	// UpdatePatientCaregiver updates a specified PatientCaregiver.
@@ -55,33 +49,6 @@ type patientServiceClient struct {
 
 func NewPatientServiceClient(cc grpc.ClientConnInterface) PatientServiceClient {
 	return &patientServiceClient{cc}
-}
-
-func (c *patientServiceClient) CreatePatientProvider(ctx context.Context, in *CreatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error) {
-	out := new(messages.PatientProvider)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/CreatePatientProvider", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *patientServiceClient) UpdatePatientProvider(ctx context.Context, in *UpdatePatientProviderRequest, opts ...grpc.CallOption) (*messages.PatientProvider, error) {
-	out := new(messages.PatientProvider)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/UpdatePatientProvider", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *patientServiceClient) ListPatientProviders(ctx context.Context, in *ListPatientProvidersRequest, opts ...grpc.CallOption) (*ListPatientProvidersResponse, error) {
-	out := new(ListPatientProvidersResponse)
-	err := c.cc.Invoke(ctx, "/heyrenee.v1.PatientService/ListPatientProviders", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *patientServiceClient) CreatePatientCaregiver(ctx context.Context, in *CreatePatientCaregiverRequest, opts ...grpc.CallOption) (*messages.PatientCaregiver, error) {
@@ -187,12 +154,6 @@ func (c *patientServiceClient) ListPatientSdohQuestionnaires(ctx context.Context
 // All implementations must embed UnimplementedPatientServiceServer
 // for forward compatibility
 type PatientServiceServer interface {
-	// CreatePatientProvider creates a specified PatientProvider.
-	CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error)
-	// UpdatePatientProvider updates a specified PatientProvider.
-	UpdatePatientProvider(context.Context, *UpdatePatientProviderRequest) (*messages.PatientProvider, error)
-	// ListPatientProviders lists PatientProviders for a specified Patient.
-	ListPatientProviders(context.Context, *ListPatientProvidersRequest) (*ListPatientProvidersResponse, error)
 	// CreatePatientCaregiver creates a specified PatientCaregiver.
 	CreatePatientCaregiver(context.Context, *CreatePatientCaregiverRequest) (*messages.PatientCaregiver, error)
 	// UpdatePatientCaregiver updates a specified PatientCaregiver.
@@ -222,15 +183,6 @@ type PatientServiceServer interface {
 type UnimplementedPatientServiceServer struct {
 }
 
-func (UnimplementedPatientServiceServer) CreatePatientProvider(context.Context, *CreatePatientProviderRequest) (*messages.PatientProvider, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientProvider not implemented")
-}
-func (UnimplementedPatientServiceServer) UpdatePatientProvider(context.Context, *UpdatePatientProviderRequest) (*messages.PatientProvider, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePatientProvider not implemented")
-}
-func (UnimplementedPatientServiceServer) ListPatientProviders(context.Context, *ListPatientProvidersRequest) (*ListPatientProvidersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPatientProviders not implemented")
-}
 func (UnimplementedPatientServiceServer) CreatePatientCaregiver(context.Context, *CreatePatientCaregiverRequest) (*messages.PatientCaregiver, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePatientCaregiver not implemented")
 }
@@ -275,60 +227,6 @@ type UnsafePatientServiceServer interface {
 
 func RegisterPatientServiceServer(s grpc.ServiceRegistrar, srv PatientServiceServer) {
 	s.RegisterService(&PatientService_ServiceDesc, srv)
-}
-
-func _PatientService_CreatePatientProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePatientProviderRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PatientServiceServer).CreatePatientProvider(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.PatientService/CreatePatientProvider",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PatientServiceServer).CreatePatientProvider(ctx, req.(*CreatePatientProviderRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PatientService_UpdatePatientProvider_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePatientProviderRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PatientServiceServer).UpdatePatientProvider(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.PatientService/UpdatePatientProvider",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PatientServiceServer).UpdatePatientProvider(ctx, req.(*UpdatePatientProviderRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PatientService_ListPatientProviders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPatientProvidersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PatientServiceServer).ListPatientProviders(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/heyrenee.v1.PatientService/ListPatientProviders",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PatientServiceServer).ListPatientProviders(ctx, req.(*ListPatientProvidersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _PatientService_CreatePatientCaregiver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -536,18 +434,6 @@ var PatientService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "heyrenee.v1.PatientService",
 	HandlerType: (*PatientServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreatePatientProvider",
-			Handler:    _PatientService_CreatePatientProvider_Handler,
-		},
-		{
-			MethodName: "UpdatePatientProvider",
-			Handler:    _PatientService_UpdatePatientProvider_Handler,
-		},
-		{
-			MethodName: "ListPatientProviders",
-			Handler:    _PatientService_ListPatientProviders_Handler,
-		},
 		{
 			MethodName: "CreatePatientCaregiver",
 			Handler:    _PatientService_CreatePatientCaregiver_Handler,
