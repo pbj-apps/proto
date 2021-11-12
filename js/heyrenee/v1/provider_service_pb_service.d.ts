@@ -5,13 +5,13 @@ import * as heyrenee_v1_provider_service_pb from "../../heyrenee/v1/provider_ser
 import * as heyrenee_v1_messages_patient_provider_pb from "../../heyrenee/v1/messages/patient_provider_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type ProviderServiceProviderSuggest = {
+type ProviderServiceSearchProviders = {
   readonly methodName: string;
   readonly service: typeof ProviderService;
   readonly requestStream: false;
   readonly responseStream: false;
-  readonly requestType: typeof heyrenee_v1_provider_service_pb.ProviderSuggestRequest;
-  readonly responseType: typeof heyrenee_v1_provider_service_pb.ProviderSuggestResponse;
+  readonly requestType: typeof heyrenee_v1_provider_service_pb.SearchProvidersRequest;
+  readonly responseType: typeof heyrenee_v1_provider_service_pb.SearchProvidersResponse;
 };
 
 type ProviderServiceCreatePatientProvider = {
@@ -43,7 +43,7 @@ type ProviderServiceListPatientProviders = {
 
 export class ProviderService {
   static readonly serviceName: string;
-  static readonly ProviderSuggest: ProviderServiceProviderSuggest;
+  static readonly SearchProviders: ProviderServiceSearchProviders;
   static readonly CreatePatientProvider: ProviderServiceCreatePatientProvider;
   static readonly UpdatePatientProvider: ProviderServiceUpdatePatientProvider;
   static readonly ListPatientProviders: ProviderServiceListPatientProviders;
@@ -81,14 +81,14 @@ export class ProviderServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  providerSuggest(
-    requestMessage: heyrenee_v1_provider_service_pb.ProviderSuggestRequest,
+  searchProviders(
+    requestMessage: heyrenee_v1_provider_service_pb.SearchProvidersRequest,
     metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_provider_service_pb.ProviderSuggestResponse|null) => void
+    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_provider_service_pb.SearchProvidersResponse|null) => void
   ): UnaryResponse;
-  providerSuggest(
-    requestMessage: heyrenee_v1_provider_service_pb.ProviderSuggestRequest,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_provider_service_pb.ProviderSuggestResponse|null) => void
+  searchProviders(
+    requestMessage: heyrenee_v1_provider_service_pb.SearchProvidersRequest,
+    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_provider_service_pb.SearchProvidersResponse|null) => void
   ): UnaryResponse;
   createPatientProvider(
     requestMessage: heyrenee_v1_provider_service_pb.CreatePatientProviderRequest,

@@ -4,7 +4,7 @@ package heyrenee.v1.messages;
 
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
-import "heyrenee/v1/messages/specialty.proto";
+import "heyrenee/v1/enums/specialty.proto";
 
 // A Provider represents a medical care provider.
 message Provider {
@@ -25,7 +25,7 @@ message Provider {
   // The primary phone number for contacting the Provider.
   string phone = 8;
   // The primary specialty practiced by the Provider.
-  Specialty specialty = 9;
+  heyrenee.v1.enums.Specialty specialty = 9;
   // The National Provider Identifier (NPI) used to identity the Provider.
   string npi = 10;
   // The primary facility of the Provider.
@@ -47,7 +47,7 @@ message Provider {
   // The secondary phone number for contacting the Provider.
   string secondary_phone = 19;
   // The secondary specialty practiced by the Provider.
-  Specialty secondary_specialty = 20;
+  heyrenee.v1.enums.Specialty secondary_specialty = 20;
   // The secondary hours that the Provider practices.
   string secondary_hours = 21;
 }

@@ -5,6 +5,8 @@ package heyrenee.v1;
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1";
 
 import "heyrenee/v1/messages/patient_provider.proto";
+import "heyrenee/v1/messages/provider.proto";
+import "heyrenee/v1/enums/specialty.proto";
 import "heyrenee/v1/options/auth.proto";
 
 // ProviderService
@@ -15,12 +17,8 @@ import "heyrenee/v1/options/auth.proto";
 // URLs
 //  Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev
 service ProviderService {
-  // ProviderSuggest returns a list of ProviderSuggestions based on a partial search string. This should only be
-  // used for autocomplete like features and not as a full fledged Provider search method.
-  //
-  // TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
-  // https://github.com/grpc/grpc-web/issues/24
-  rpc ProviderSuggest(ProviderSuggestRequest) returns (ProviderSuggestResponse) {}
+  // SearchProviders returns a list of Providers based on the provided search parameters.
+  rpc SearchProviders(SearchProvidersRequest) returns (SearchProvidersResponse) {}
 
   // CreatePatientProvider creates a specified PatientProvider.
   rpc CreatePatientProvider(CreatePatientProviderRequest) returns (heyrenee.v1.messages.PatientProvider) {}
@@ -30,27 +28,20 @@ service ProviderService {
   rpc ListPatientProviders(ListPatientProvidersRequest) returns (ListPatientProvidersResponse) {}
 }
 
-// Request message for ProviderSuggest.
-message ProviderSuggestRequest {
-  // The partial text be used to generate ProviderSuggestions. Required.
-  string partial_text = 1;
+// Request message for SearchProviders.
+message SearchProvidersRequest {
+  string first_name = 1;
+  string last_name = 2;
+  heyrenee.v1.enums.Specialty specialty = 3;
+  string city = 4;
+  string state = 5;
 }
 
-// Response message for ProviderSuggest.
-message ProviderSuggestResponse {
-  // The list of ProviderSuggestions.
-  repeated ProviderSuggestion provider_suggestions = 1;
+// Response message for SearchProviders.
+message SearchProvidersResponse {
+  // The list of Providers.
+  repeated heyrenee.v1.messages.Provider providers = 1;
 }
-
-// A ProviderSuggestions represents a single Provider suggested as an autocompletion result for the partial text in a
-// ProviderSuggestRequest.
-message ProviderSuggestion {
-  // The ID of the suggested Provider.
-  string provider_id = 1;
-  // The name of the Provider that should be displayed to the user in the list of suggestions.
-  string display_name = 2;
-}
-
 
 // Request message for CreatePatientProvider.
 message CreatePatientProviderRequest {

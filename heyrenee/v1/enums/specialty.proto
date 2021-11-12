@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package heyrenee.v1.messages;
+package heyrenee.v1.enums;
 
-option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
+option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/enums";
 
 // Specialty specifies a healthcare speciality.
 enum Specialty {

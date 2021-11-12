@@ -17,8 +17,8 @@ var global = Function('return this')();
 
 var heyrenee_v1_messages_provider_pb = require('../../../heyrenee/v1/messages/provider_pb.js');
 goog.object.extend(proto, heyrenee_v1_messages_provider_pb);
-var heyrenee_v1_messages_specialty_pb = require('../../../heyrenee/v1/messages/specialty_pb.js');
-goog.object.extend(proto, heyrenee_v1_messages_specialty_pb);
+var heyrenee_v1_enums_specialty_pb = require('../../../heyrenee/v1/enums/specialty_pb.js');
+goog.object.extend(proto, heyrenee_v1_enums_specialty_pb);
 var heyrenee_v1_options_auth_pb = require('../../../heyrenee/v1/options/auth_pb.js');
 goog.object.extend(proto, heyrenee_v1_options_auth_pb);
 goog.exportSymbol('proto.heyrenee.v1.messages.PatientProvider', null, global);
@@ -183,7 +183,7 @@ proto.heyrenee.v1.messages.PatientProvider.deserializeBinaryFromReader = functio
       msg.setPatientProviderType(value);
       break;
     case 9:
-      var value = /** @type {!proto.heyrenee.v1.messages.Specialty} */ (reader.readEnum());
+      var value = /** @type {!proto.heyrenee.v1.enums.Specialty} */ (reader.readEnum());
       msg.setSpecialty(value);
       break;
     default:
@@ -464,16 +464,16 @@ proto.heyrenee.v1.messages.PatientProvider.prototype.setPatientProviderType = fu
 
 
 /**
- * optional Specialty specialty = 9;
- * @return {!proto.heyrenee.v1.messages.Specialty}
+ * optional heyrenee.v1.enums.Specialty specialty = 9;
+ * @return {!proto.heyrenee.v1.enums.Specialty}
  */
 proto.heyrenee.v1.messages.PatientProvider.prototype.getSpecialty = function() {
-  return /** @type {!proto.heyrenee.v1.messages.Specialty} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+  return /** @type {!proto.heyrenee.v1.enums.Specialty} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
 /**
- * @param {!proto.heyrenee.v1.messages.Specialty} value
+ * @param {!proto.heyrenee.v1.enums.Specialty} value
  * @return {!proto.heyrenee.v1.messages.PatientProvider} returns this
  */
 proto.heyrenee.v1.messages.PatientProvider.prototype.setSpecialty = function(value) {

@@ -2,7 +2,7 @@
 // file: heyrenee/v1/messages/provider.proto
 
 import * as jspb from "google-protobuf";
-import * as heyrenee_v1_messages_specialty_pb from "../../../heyrenee/v1/messages/specialty_pb";
+import * as heyrenee_v1_enums_specialty_pb from "../../../heyrenee/v1/enums/specialty_pb";
 
 export class Provider extends jspb.Message {
   getProviderId(): string;
@@ -31,8 +31,8 @@ export class Provider extends jspb.Message {
   getPhone(): string;
   setPhone(value: string): void;
 
-  getSpecialty(): heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap];
-  setSpecialty(value: heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap]): void;
+  getSpecialty(): heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap];
+  setSpecialty(value: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap]): void;
 
   getNpi(): string;
   setNpi(value: string): void;
@@ -66,8 +66,8 @@ export class Provider extends jspb.Message {
   getSecondaryPhone(): string;
   setSecondaryPhone(value: string): void;
 
-  getSecondarySpecialty(): heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap];
-  setSecondarySpecialty(value: heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap]): void;
+  getSecondarySpecialty(): heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap];
+  setSecondarySpecialty(value: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap]): void;
 
   getSecondaryHours(): string;
   setSecondaryHours(value: string): void;
@@ -92,7 +92,7 @@ export namespace Provider {
     state: string,
     zip: string,
     phone: string,
-    specialty: heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap],
+    specialty: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap],
     npi: string,
     facility: string,
     hours: string,
@@ -103,7 +103,7 @@ export namespace Provider {
     secondaryState: string,
     secondaryZip: string,
     secondaryPhone: string,
-    secondarySpecialty: heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap],
+    secondarySpecialty: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap],
     secondaryHours: string,
   }
 }

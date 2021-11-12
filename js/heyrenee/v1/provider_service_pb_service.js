@@ -11,13 +11,13 @@ var ProviderService = (function () {
   return ProviderService;
 }());
 
-ProviderService.ProviderSuggest = {
-  methodName: "ProviderSuggest",
+ProviderService.SearchProviders = {
+  methodName: "SearchProviders",
   service: ProviderService,
   requestStream: false,
   responseStream: false,
-  requestType: heyrenee_v1_provider_service_pb.ProviderSuggestRequest,
-  responseType: heyrenee_v1_provider_service_pb.ProviderSuggestResponse
+  requestType: heyrenee_v1_provider_service_pb.SearchProvidersRequest,
+  responseType: heyrenee_v1_provider_service_pb.SearchProvidersResponse
 };
 
 ProviderService.CreatePatientProvider = {
@@ -54,11 +54,11 @@ function ProviderServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-ProviderServiceClient.prototype.providerSuggest = function providerSuggest(requestMessage, metadata, callback) {
+ProviderServiceClient.prototype.searchProviders = function searchProviders(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ProviderService.ProviderSuggest, {
+  var client = grpc.unary(ProviderService.SearchProviders, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

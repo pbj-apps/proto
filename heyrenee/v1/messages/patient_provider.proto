@@ -5,7 +5,7 @@ package heyrenee.v1.messages;
 option go_package = "github.com/HeyReneeInc/proto/golang/heyrenee/v1/messages";
 
 import "heyrenee/v1/messages/provider.proto";
-import "heyrenee/v1/messages/specialty.proto";
+import "heyrenee/v1/enums/specialty.proto";
 import "heyrenee/v1/options/auth.proto";
 
 // A PatientProvider represents a relationship between a Patient and Provider resource. The relationship indicates that
@@ -32,7 +32,7 @@ message PatientProvider {
   // The type of PatientProvider.
   PatientProviderType patient_provider_type = 8;
   // The specialty that this Provider specifically offers this Patient.
-  Specialty specialty = 9;
+  heyrenee.v1.enums.Specialty specialty = 9;
 }
 
 // Specifies a PatientProvider's status.

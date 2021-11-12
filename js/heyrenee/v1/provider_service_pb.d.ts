@@ -3,71 +3,65 @@
 
 import * as jspb from "google-protobuf";
 import * as heyrenee_v1_messages_patient_provider_pb from "../../heyrenee/v1/messages/patient_provider_pb";
+import * as heyrenee_v1_messages_provider_pb from "../../heyrenee/v1/messages/provider_pb";
+import * as heyrenee_v1_enums_specialty_pb from "../../heyrenee/v1/enums/specialty_pb";
 import * as heyrenee_v1_options_auth_pb from "../../heyrenee/v1/options/auth_pb";
 
-export class ProviderSuggestRequest extends jspb.Message {
-  getPartialText(): string;
-  setPartialText(value: string): void;
+export class SearchProvidersRequest extends jspb.Message {
+  getFirstName(): string;
+  setFirstName(value: string): void;
+
+  getLastName(): string;
+  setLastName(value: string): void;
+
+  getSpecialty(): heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap];
+  setSpecialty(value: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap]): void;
+
+  getCity(): string;
+  setCity(value: string): void;
+
+  getState(): string;
+  setState(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ProviderSuggestRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ProviderSuggestRequest): ProviderSuggestRequest.AsObject;
+  toObject(includeInstance?: boolean): SearchProvidersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchProvidersRequest): SearchProvidersRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ProviderSuggestRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ProviderSuggestRequest;
-  static deserializeBinaryFromReader(message: ProviderSuggestRequest, reader: jspb.BinaryReader): ProviderSuggestRequest;
+  static serializeBinaryToWriter(message: SearchProvidersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchProvidersRequest;
+  static deserializeBinaryFromReader(message: SearchProvidersRequest, reader: jspb.BinaryReader): SearchProvidersRequest;
 }
 
-export namespace ProviderSuggestRequest {
+export namespace SearchProvidersRequest {
   export type AsObject = {
-    partialText: string,
+    firstName: string,
+    lastName: string,
+    specialty: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap],
+    city: string,
+    state: string,
   }
 }
 
-export class ProviderSuggestResponse extends jspb.Message {
-  clearProviderSuggestionsList(): void;
-  getProviderSuggestionsList(): Array<ProviderSuggestion>;
-  setProviderSuggestionsList(value: Array<ProviderSuggestion>): void;
-  addProviderSuggestions(value?: ProviderSuggestion, index?: number): ProviderSuggestion;
+export class SearchProvidersResponse extends jspb.Message {
+  clearProvidersList(): void;
+  getProvidersList(): Array<heyrenee_v1_messages_provider_pb.Provider>;
+  setProvidersList(value: Array<heyrenee_v1_messages_provider_pb.Provider>): void;
+  addProviders(value?: heyrenee_v1_messages_provider_pb.Provider, index?: number): heyrenee_v1_messages_provider_pb.Provider;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ProviderSuggestResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ProviderSuggestResponse): ProviderSuggestResponse.AsObject;
+  toObject(includeInstance?: boolean): SearchProvidersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SearchProvidersResponse): SearchProvidersResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ProviderSuggestResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ProviderSuggestResponse;
-  static deserializeBinaryFromReader(message: ProviderSuggestResponse, reader: jspb.BinaryReader): ProviderSuggestResponse;
+  static serializeBinaryToWriter(message: SearchProvidersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SearchProvidersResponse;
+  static deserializeBinaryFromReader(message: SearchProvidersResponse, reader: jspb.BinaryReader): SearchProvidersResponse;
 }
 
-export namespace ProviderSuggestResponse {
+export namespace SearchProvidersResponse {
   export type AsObject = {
-    providerSuggestionsList: Array<ProviderSuggestion.AsObject>,
-  }
-}
-
-export class ProviderSuggestion extends jspb.Message {
-  getProviderId(): string;
-  setProviderId(value: string): void;
-
-  getDisplayName(): string;
-  setDisplayName(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ProviderSuggestion.AsObject;
-  static toObject(includeInstance: boolean, msg: ProviderSuggestion): ProviderSuggestion.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ProviderSuggestion, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ProviderSuggestion;
-  static deserializeBinaryFromReader(message: ProviderSuggestion, reader: jspb.BinaryReader): ProviderSuggestion;
-}
-
-export namespace ProviderSuggestion {
-  export type AsObject = {
-    providerId: string,
-    displayName: string,
+    providersList: Array<heyrenee_v1_messages_provider_pb.Provider.AsObject>,
   }
 }
 

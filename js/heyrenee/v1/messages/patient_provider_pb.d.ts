@@ -3,7 +3,7 @@
 
 import * as jspb from "google-protobuf";
 import * as heyrenee_v1_messages_provider_pb from "../../../heyrenee/v1/messages/provider_pb";
-import * as heyrenee_v1_messages_specialty_pb from "../../../heyrenee/v1/messages/specialty_pb";
+import * as heyrenee_v1_enums_specialty_pb from "../../../heyrenee/v1/enums/specialty_pb";
 import * as heyrenee_v1_options_auth_pb from "../../../heyrenee/v1/options/auth_pb";
 
 export class PatientProvider extends jspb.Message {
@@ -35,8 +35,8 @@ export class PatientProvider extends jspb.Message {
   getPatientProviderType(): PatientProviderTypeMap[keyof PatientProviderTypeMap];
   setPatientProviderType(value: PatientProviderTypeMap[keyof PatientProviderTypeMap]): void;
 
-  getSpecialty(): heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap];
-  setSpecialty(value: heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap]): void;
+  getSpecialty(): heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap];
+  setSpecialty(value: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap]): void;
 
   getProviderCase(): PatientProvider.ProviderCase;
   serializeBinary(): Uint8Array;
@@ -59,7 +59,7 @@ export namespace PatientProvider {
     contactInfo: string,
     patientProviderStatus: PatientProviderStatusMap[keyof PatientProviderStatusMap],
     patientProviderType: PatientProviderTypeMap[keyof PatientProviderTypeMap],
-    specialty: heyrenee_v1_messages_specialty_pb.SpecialtyMap[keyof heyrenee_v1_messages_specialty_pb.SpecialtyMap],
+    specialty: heyrenee_v1_enums_specialty_pb.SpecialtyMap[keyof heyrenee_v1_enums_specialty_pb.SpecialtyMap],
   }
 
   export enum ProviderCase {
