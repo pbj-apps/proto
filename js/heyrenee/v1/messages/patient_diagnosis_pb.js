@@ -80,8 +80,8 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getDiagnosisCase = functio
  */
 proto.heyrenee.v1.messages.PatientDiagnosis.DiagnosingProviderCase = {
   DIAGNOSING_PROVIDER_NOT_SET: 0,
-  PROVIDER_ID: 5,
-  PROVIDER_MESSAGE: 6
+  DIAGNOSING_PROVIDER_ID: 5,
+  DIAGNOSING_PROVIDER_MESSAGE: 6
 };
 
 /**
@@ -126,8 +126,8 @@ proto.heyrenee.v1.messages.PatientDiagnosis.toObject = function(includeInstance,
     diagnosisId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     diagnosisMessage: (f = msg.getDiagnosisMessage()) && heyrenee_v1_messages_diagnosis_pb.Diagnosis.toObject(includeInstance, f),
     patientDiagnosisId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    providerId: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    providerMessage: (f = msg.getProviderMessage()) && heyrenee_v1_messages_provider_pb.Provider.toObject(includeInstance, f),
+    diagnosingProviderId: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    diagnosingProviderMessage: (f = msg.getDiagnosingProviderMessage()) && heyrenee_v1_messages_provider_pb.Provider.toObject(includeInstance, f),
     patientDiagnosisStatus: jspb.Message.getFieldWithDefault(msg, 7, 0),
     dateDiagnosed: (f = msg.getDateDiagnosed()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     diagnosisInstructions: jspb.Message.getFieldWithDefault(msg, 9, ""),
@@ -187,12 +187,12 @@ proto.heyrenee.v1.messages.PatientDiagnosis.deserializeBinaryFromReader = functi
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setProviderId(value);
+      msg.setDiagnosingProviderId(value);
       break;
     case 6:
       var value = new heyrenee_v1_messages_provider_pb.Provider;
       reader.readMessage(value,heyrenee_v1_messages_provider_pb.Provider.deserializeBinaryFromReader);
-      msg.setProviderMessage(value);
+      msg.setDiagnosingProviderMessage(value);
       break;
     case 7:
       var value = /** @type {!proto.heyrenee.v1.messages.PatientDiagnosisStatus} */ (reader.readEnum());
@@ -276,7 +276,7 @@ proto.heyrenee.v1.messages.PatientDiagnosis.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getProviderMessage();
+  f = message.getDiagnosingProviderMessage();
   if (f != null) {
     writer.writeMessage(
       6,
@@ -426,10 +426,10 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setPatientDiagnosisId = fu
 
 
 /**
- * optional string provider_id = 5;
+ * optional string diagnosing_provider_id = 5;
  * @return {string}
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getProviderId = function() {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getDiagnosingProviderId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -438,7 +438,7 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getProviderId = function()
  * @param {string} value
  * @return {!proto.heyrenee.v1.messages.PatientDiagnosis} returns this
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setProviderId = function(value) {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setDiagnosingProviderId = function(value) {
   return jspb.Message.setOneofField(this, 5, proto.heyrenee.v1.messages.PatientDiagnosis.oneofGroups_[1], value);
 };
 
@@ -447,7 +447,7 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setProviderId = function(v
  * Clears the field making it undefined.
  * @return {!proto.heyrenee.v1.messages.PatientDiagnosis} returns this
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.clearProviderId = function() {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.clearDiagnosingProviderId = function() {
   return jspb.Message.setOneofField(this, 5, proto.heyrenee.v1.messages.PatientDiagnosis.oneofGroups_[1], undefined);
 };
 
@@ -456,16 +456,16 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.clearProviderId = function
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.hasProviderId = function() {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.hasDiagnosingProviderId = function() {
   return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional Provider provider_message = 6;
+ * optional Provider diagnosing_provider_message = 6;
  * @return {?proto.heyrenee.v1.messages.Provider}
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getProviderMessage = function() {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getDiagnosingProviderMessage = function() {
   return /** @type{?proto.heyrenee.v1.messages.Provider} */ (
     jspb.Message.getWrapperField(this, heyrenee_v1_messages_provider_pb.Provider, 6));
 };
@@ -475,7 +475,7 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.getProviderMessage = funct
  * @param {?proto.heyrenee.v1.messages.Provider|undefined} value
  * @return {!proto.heyrenee.v1.messages.PatientDiagnosis} returns this
 */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setProviderMessage = function(value) {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setDiagnosingProviderMessage = function(value) {
   return jspb.Message.setOneofWrapperField(this, 6, proto.heyrenee.v1.messages.PatientDiagnosis.oneofGroups_[1], value);
 };
 
@@ -484,8 +484,8 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.setProviderMessage = funct
  * Clears the message field making it undefined.
  * @return {!proto.heyrenee.v1.messages.PatientDiagnosis} returns this
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.clearProviderMessage = function() {
-  return this.setProviderMessage(undefined);
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.clearDiagnosingProviderMessage = function() {
+  return this.setDiagnosingProviderMessage(undefined);
 };
 
 
@@ -493,7 +493,7 @@ proto.heyrenee.v1.messages.PatientDiagnosis.prototype.clearProviderMessage = fun
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.heyrenee.v1.messages.PatientDiagnosis.prototype.hasProviderMessage = function() {
+proto.heyrenee.v1.messages.PatientDiagnosis.prototype.hasDiagnosingProviderMessage = function() {
   return jspb.Message.getField(this, 6) != null;
 };
 

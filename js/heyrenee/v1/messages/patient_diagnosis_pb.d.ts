@@ -24,15 +24,15 @@ export class PatientDiagnosis extends jspb.Message {
   getPatientDiagnosisId(): string;
   setPatientDiagnosisId(value: string): void;
 
-  hasProviderId(): boolean;
-  clearProviderId(): void;
-  getProviderId(): string;
-  setProviderId(value: string): void;
+  hasDiagnosingProviderId(): boolean;
+  clearDiagnosingProviderId(): void;
+  getDiagnosingProviderId(): string;
+  setDiagnosingProviderId(value: string): void;
 
-  hasProviderMessage(): boolean;
-  clearProviderMessage(): void;
-  getProviderMessage(): heyrenee_v1_messages_provider_pb.Provider | undefined;
-  setProviderMessage(value?: heyrenee_v1_messages_provider_pb.Provider): void;
+  hasDiagnosingProviderMessage(): boolean;
+  clearDiagnosingProviderMessage(): void;
+  getDiagnosingProviderMessage(): heyrenee_v1_messages_provider_pb.Provider | undefined;
+  setDiagnosingProviderMessage(value?: heyrenee_v1_messages_provider_pb.Provider): void;
 
   getPatientDiagnosisStatus(): PatientDiagnosisStatusMap[keyof PatientDiagnosisStatusMap];
   setPatientDiagnosisStatus(value: PatientDiagnosisStatusMap[keyof PatientDiagnosisStatusMap]): void;
@@ -66,8 +66,8 @@ export namespace PatientDiagnosis {
     diagnosisId: string,
     diagnosisMessage?: heyrenee_v1_messages_diagnosis_pb.Diagnosis.AsObject,
     patientDiagnosisId: string,
-    providerId: string,
-    providerMessage?: heyrenee_v1_messages_provider_pb.Provider.AsObject,
+    diagnosingProviderId: string,
+    diagnosingProviderMessage?: heyrenee_v1_messages_provider_pb.Provider.AsObject,
     patientDiagnosisStatus: PatientDiagnosisStatusMap[keyof PatientDiagnosisStatusMap],
     dateDiagnosed?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     diagnosisInstructions: string,
@@ -82,8 +82,8 @@ export namespace PatientDiagnosis {
 
   export enum DiagnosingProviderCase {
     DIAGNOSING_PROVIDER_NOT_SET = 0,
-    PROVIDER_ID = 5,
-    PROVIDER_MESSAGE = 6,
+    DIAGNOSING_PROVIDER_ID = 5,
+    DIAGNOSING_PROVIDER_MESSAGE = 6,
   }
 }
 

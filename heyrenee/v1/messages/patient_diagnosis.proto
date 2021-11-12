@@ -26,9 +26,9 @@ message PatientDiagnosis {
   // The Provider that made the Diagnosis. Required.
   oneof diagnosing_provider {
     // The ID of the Provider that made the Diagnosis. Required.
-    string provider_id = 5;
+    string diagnosing_provider_id = 5;
     // The Provider that made the Diagnosis. Only returned in responses, must not be set in requests.
-    Provider provider_message = 6;
+    Provider diagnosing_provider_message = 6;
   }
   // The status of the PatientDiagnosis. Required.
   PatientDiagnosisStatus patient_diagnosis_status = 7;
