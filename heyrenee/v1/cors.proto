@@ -11,8 +11,8 @@ import "google/api/annotations.proto";
 //
 // This service should never be directly called. It exists solely because API Gateway does not support CORS headers. Any
 // HTTP OPTIONS requests for CORS preflight headers are directed to this service so that headers may be set and returned.
-service CorsService {
-  rpc CorsPreflight(google.protobuf.Empty) returns (google.protobuf.Empty) {
+service Cors {
+  rpc Preflight(google.protobuf.Empty) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       custom: { kind:"OPTIONS", path:"/*/*" }
     };
