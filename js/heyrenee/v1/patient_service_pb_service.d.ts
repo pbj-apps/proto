@@ -2,40 +2,12 @@
 // file: heyrenee/v1/patient_service.proto
 
 import * as heyrenee_v1_patient_service_pb from "../../heyrenee/v1/patient_service_pb";
-import * as heyrenee_v1_messages_patient_provider_pb from "../../heyrenee/v1/messages/patient_provider_pb";
 import * as heyrenee_v1_messages_patient_caregiver_pb from "../../heyrenee/v1/messages/patient_caregiver_pb";
 import * as heyrenee_v1_messages_patient_health_questionnaire_pb from "../../heyrenee/v1/messages/patient_health_questionnaire_pb";
 import * as heyrenee_v1_messages_patient_satisfaction_questionnaire_pb from "../../heyrenee/v1/messages/patient_satisfaction_questionnaire_pb";
 import * as heyrenee_v1_messages_patient_sdoh_questionnaire_pb from "../../heyrenee/v1/messages/patient_sdoh_questionnaire_pb";
 import * as heyrenee_v1_messages_patient_assessment_pb from "../../heyrenee/v1/messages/patient_assessment_pb";
 import {grpc} from "@improbable-eng/grpc-web";
-
-type PatientServiceCreatePatientProvider = {
-  readonly methodName: string;
-  readonly service: typeof PatientService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof heyrenee_v1_patient_service_pb.CreatePatientProviderRequest;
-  readonly responseType: typeof heyrenee_v1_messages_patient_provider_pb.PatientProvider;
-};
-
-type PatientServiceUpdatePatientProvider = {
-  readonly methodName: string;
-  readonly service: typeof PatientService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof heyrenee_v1_patient_service_pb.UpdatePatientProviderRequest;
-  readonly responseType: typeof heyrenee_v1_messages_patient_provider_pb.PatientProvider;
-};
-
-type PatientServiceListPatientProviders = {
-  readonly methodName: string;
-  readonly service: typeof PatientService;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof heyrenee_v1_patient_service_pb.ListPatientProvidersRequest;
-  readonly responseType: typeof heyrenee_v1_patient_service_pb.ListPatientProvidersResponse;
-};
 
 type PatientServiceCreatePatientCaregiver = {
   readonly methodName: string;
@@ -138,9 +110,6 @@ type PatientServiceListPatientSdohQuestionnaires = {
 
 export class PatientService {
   static readonly serviceName: string;
-  static readonly CreatePatientProvider: PatientServiceCreatePatientProvider;
-  static readonly UpdatePatientProvider: PatientServiceUpdatePatientProvider;
-  static readonly ListPatientProviders: PatientServiceListPatientProviders;
   static readonly CreatePatientCaregiver: PatientServiceCreatePatientCaregiver;
   static readonly UpdatePatientCaregiver: PatientServiceUpdatePatientCaregiver;
   static readonly ListPatientCaregivers: PatientServiceListPatientCaregivers;
@@ -186,33 +155,6 @@ export class PatientServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  createPatientProvider(
-    requestMessage: heyrenee_v1_patient_service_pb.CreatePatientProviderRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_messages_patient_provider_pb.PatientProvider|null) => void
-  ): UnaryResponse;
-  createPatientProvider(
-    requestMessage: heyrenee_v1_patient_service_pb.CreatePatientProviderRequest,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_messages_patient_provider_pb.PatientProvider|null) => void
-  ): UnaryResponse;
-  updatePatientProvider(
-    requestMessage: heyrenee_v1_patient_service_pb.UpdatePatientProviderRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_messages_patient_provider_pb.PatientProvider|null) => void
-  ): UnaryResponse;
-  updatePatientProvider(
-    requestMessage: heyrenee_v1_patient_service_pb.UpdatePatientProviderRequest,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_messages_patient_provider_pb.PatientProvider|null) => void
-  ): UnaryResponse;
-  listPatientProviders(
-    requestMessage: heyrenee_v1_patient_service_pb.ListPatientProvidersRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_patient_service_pb.ListPatientProvidersResponse|null) => void
-  ): UnaryResponse;
-  listPatientProviders(
-    requestMessage: heyrenee_v1_patient_service_pb.ListPatientProvidersRequest,
-    callback: (error: ServiceError|null, responseMessage: heyrenee_v1_patient_service_pb.ListPatientProvidersResponse|null) => void
-  ): UnaryResponse;
   createPatientCaregiver(
     requestMessage: heyrenee_v1_patient_service_pb.CreatePatientCaregiverRequest,
     metadata: grpc.Metadata,

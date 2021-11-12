@@ -2,7 +2,6 @@
 // file: heyrenee/v1/patient_service.proto
 
 var heyrenee_v1_patient_service_pb = require("../../heyrenee/v1/patient_service_pb");
-var heyrenee_v1_messages_patient_provider_pb = require("../../heyrenee/v1/messages/patient_provider_pb");
 var heyrenee_v1_messages_patient_caregiver_pb = require("../../heyrenee/v1/messages/patient_caregiver_pb");
 var heyrenee_v1_messages_patient_health_questionnaire_pb = require("../../heyrenee/v1/messages/patient_health_questionnaire_pb");
 var heyrenee_v1_messages_patient_satisfaction_questionnaire_pb = require("../../heyrenee/v1/messages/patient_satisfaction_questionnaire_pb");
@@ -15,33 +14,6 @@ var PatientService = (function () {
   PatientService.serviceName = "heyrenee.v1.PatientService";
   return PatientService;
 }());
-
-PatientService.CreatePatientProvider = {
-  methodName: "CreatePatientProvider",
-  service: PatientService,
-  requestStream: false,
-  responseStream: false,
-  requestType: heyrenee_v1_patient_service_pb.CreatePatientProviderRequest,
-  responseType: heyrenee_v1_messages_patient_provider_pb.PatientProvider
-};
-
-PatientService.UpdatePatientProvider = {
-  methodName: "UpdatePatientProvider",
-  service: PatientService,
-  requestStream: false,
-  responseStream: false,
-  requestType: heyrenee_v1_patient_service_pb.UpdatePatientProviderRequest,
-  responseType: heyrenee_v1_messages_patient_provider_pb.PatientProvider
-};
-
-PatientService.ListPatientProviders = {
-  methodName: "ListPatientProviders",
-  service: PatientService,
-  requestStream: false,
-  responseStream: false,
-  requestType: heyrenee_v1_patient_service_pb.ListPatientProvidersRequest,
-  responseType: heyrenee_v1_patient_service_pb.ListPatientProvidersResponse
-};
 
 PatientService.CreatePatientCaregiver = {
   methodName: "CreatePatientCaregiver",
@@ -148,99 +120,6 @@ function PatientServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
-
-PatientServiceClient.prototype.createPatientProvider = function createPatientProvider(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(PatientService.CreatePatientProvider, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-PatientServiceClient.prototype.updatePatientProvider = function updatePatientProvider(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(PatientService.UpdatePatientProvider, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-PatientServiceClient.prototype.listPatientProviders = function listPatientProviders(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(PatientService.ListPatientProviders, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
 
 PatientServiceClient.prototype.createPatientCaregiver = function createPatientCaregiver(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
