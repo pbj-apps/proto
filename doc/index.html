@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fappointment_service.proto">heyrenee/v1/appointment_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListAppointmentsRequest"><span class="badge">M</span>ListAppointmentsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListAppointmentsResponse"><span class="badge">M</span>ListAppointmentsResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.AppointmentType"><span class="badge">E</span>AppointmentType</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.AppointmentService"><span class="badge">S</span>AppointmentService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fcors.proto">heyrenee/v1/cors.proto</a>
+            <ul>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.Cors"><span class="badge">S</span>Cors</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fdiagnosis_service.proto">heyrenee/v1/diagnosis_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientDiagnosisRequest"><span class="badge">M</span>CreatePatientDiagnosisRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.DiagnosisSuggestRequest"><span class="badge">M</span>DiagnosisSuggestRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.DiagnosisSuggestResponse"><span class="badge">M</span>DiagnosisSuggestResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.DiagnosisSuggestion"><span class="badge">M</span>DiagnosisSuggestion</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientDiagnosesRequest"><span class="badge">M</span>ListPatientDiagnosesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientDiagnosesResponse"><span class="badge">M</span>ListPatientDiagnosesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdatePatientDiagnosisRequest"><span class="badge">M</span>UpdatePatientDiagnosisRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.DiagnosisService"><span class="badge">S</span>DiagnosisService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2finsurance_service.proto">heyrenee/v1/insurance_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreateInsuranceRequest"><span class="badge">M</span>CreateInsuranceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListInsuranceRequest"><span class="badge">M</span>ListInsuranceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListInsuranceResponse"><span class="badge">M</span>ListInsuranceResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdateInsuranceRequest"><span class="badge">M</span>UpdateInsuranceRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.InsuranceService"><span class="badge">S</span>InsuranceService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fmedication_service.proto">heyrenee/v1/medication_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePrescriptionRequest"><span class="badge">M</span>CreatePrescriptionRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListMedicationDosesRequest"><span class="badge">M</span>ListMedicationDosesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListMedicationDosesResponse"><span class="badge">M</span>ListMedicationDosesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPrescriptionsRequest"><span class="badge">M</span>ListPrescriptionsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPrescriptionsResponse"><span class="badge">M</span>ListPrescriptionsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListRefillsRequest"><span class="badge">M</span>ListRefillsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListRefillsResponse"><span class="badge">M</span>ListRefillsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.MedicationSuggestRequest"><span class="badge">M</span>MedicationSuggestRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.MedicationSuggestResponse"><span class="badge">M</span>MedicationSuggestResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.MedicationSuggestion"><span class="badge">M</span>MedicationSuggestion</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdatePrescriptionRequest"><span class="badge">M</span>UpdatePrescriptionRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.MedicationService"><span class="badge">S</span>MedicationService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fpatient_service.proto">heyrenee/v1/patient_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientAssessmentRequest"><span class="badge">M</span>CreatePatientAssessmentRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientCaregiverRequest"><span class="badge">M</span>CreatePatientCaregiverRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientHealthQuestionnaireRequest"><span class="badge">M</span>CreatePatientHealthQuestionnaireRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientSatisfactionQuestionnaireRequest"><span class="badge">M</span>CreatePatientSatisfactionQuestionnaireRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientSdohQuestionnaireRequest"><span class="badge">M</span>CreatePatientSdohQuestionnaireRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientAssessmentsRequest"><span class="badge">M</span>ListPatientAssessmentsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientAssessmentsResponse"><span class="badge">M</span>ListPatientAssessmentsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientCaregiversRequest"><span class="badge">M</span>ListPatientCaregiversRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientCaregiversResponse"><span class="badge">M</span>ListPatientCaregiversResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientHealthQuestionnairesRequest"><span class="badge">M</span>ListPatientHealthQuestionnairesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientHealthQuestionnairesResponse"><span class="badge">M</span>ListPatientHealthQuestionnairesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientSatisfactionQuestionnairesRequest"><span class="badge">M</span>ListPatientSatisfactionQuestionnairesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientSatisfactionQuestionnairesResponse"><span class="badge">M</span>ListPatientSatisfactionQuestionnairesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientSdohQuestionnairesRequest"><span class="badge">M</span>ListPatientSdohQuestionnairesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientSdohQuestionnairesResponse"><span class="badge">M</span>ListPatientSdohQuestionnairesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdatePatientCaregiverRequest"><span class="badge">M</span>UpdatePatientCaregiverRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.PatientService"><span class="badge">S</span>PatientService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fprovider_service.proto">heyrenee/v1/provider_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientProviderRequest"><span class="badge">M</span>CreatePatientProviderRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientProvidersRequest"><span class="badge">M</span>ListPatientProvidersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListPatientProvidersResponse"><span class="badge">M</span>ListPatientProvidersResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.SearchProvidersRequest"><span class="badge">M</span>SearchProvidersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.SearchProvidersResponse"><span class="badge">M</span>SearchProvidersResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdatePatientProviderRequest"><span class="badge">M</span>UpdatePatientProviderRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.ProviderService"><span class="badge">S</span>ProviderService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2frpm_service.proto">heyrenee/v1/rpm_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListRpmMeasurementsRequest"><span class="badge">M</span>ListRpmMeasurementsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListRpmMeasurementsResponse"><span class="badge">M</span>ListRpmMeasurementsResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListRpmSchedulesRequest"><span class="badge">M</span>ListRpmSchedulesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.ListRpmSchedulesResponse"><span class="badge">M</span>ListRpmSchedulesResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.RpmService"><span class="badge">S</span>RpmService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#heyrenee%2fv1%2fuser_service.proto">heyrenee/v1/user_service.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreateCaregiverRequest"><span class="badge">M</span>CreateCaregiverRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.CreatePatientRequest"><span class="badge">M</span>CreatePatientRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.GetCaregiverRequest"><span class="badge">M</span>GetCaregiverRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.GetPatientRequest"><span class="badge">M</span>GetPatientRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdateCaregiverRequest"><span class="badge">M</span>UpdateCaregiverRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#heyrenee.v1.UpdatePatientRequest"><span class="badge">M</span>UpdatePatientRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#heyrenee.v1.UserService"><span class="badge">S</span>UserService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/appointment_service.proto">heyrenee/v1/appointment_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.ListAppointmentsRequest">ListAppointmentsRequest</h3>
+        <p>ListAppointmentsRequest is the request message for the ListAppointments method.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return Appointments for. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>appointment_type</td>
+                  <td><a href="#heyrenee.v1.AppointmentType">AppointmentType</a></td>
+                  <td></td>
+                  <td><p>The type of Appointments that should be returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListAppointmentsResponse">ListAppointmentsResponse</h3>
+        <p>ListAppointmentsResponse is the response message for the ListAppointments method.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appointments</td>
+                  <td><a href="#heyrenee.v1.messages.Appointment">messages.Appointment</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of Appointments returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="heyrenee.v1.AppointmentType">AppointmentType</h3>
+        <p>Specifies the type of Appointment.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>APPOINTMENT_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>No Appointment type specified.</p></td>
+              </tr>
+            
+              <tr>
+                <td>APPOINTMENT_UPCOMING</td>
+                <td>1</td>
+                <td><p>The Appointment is upcoming, that is it&#39;s scheduled datetime is &gt;= the current datetime.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.AppointmentService">AppointmentService</h3>
+        <p>AppointmentService</p><p>The AppointmentService provides access to a Patient's Appointments. An Appointment represents a Patient's scheduled</p><p>event with a Provider where medical care is provided.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ListAppointments</td>
+                <td><a href="#heyrenee.v1.ListAppointmentsRequest">ListAppointmentsRequest</a></td>
+                <td><a href="#heyrenee.v1.ListAppointmentsResponse">ListAppointmentsResponse</a></td>
+                <td><p>ListAppointments returns a list of Appointments for the specified Patient.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/cors.proto">heyrenee/v1/cors.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.Cors">Cors</h3>
+        <p>CorsService</p><p>This service should never be directly called. It exists solely because API Gateway does not support CORS headers. Any</p><p>HTTP OPTIONS requests for CORS preflight headers are directed to this service so that headers may be set and returned.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Preflight</td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+          
+          
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+              
+              
+              <tr>
+                <td>Preflight</td>
+                <td>OPTIONS</td>
+                <td>/*/*</td>
+                <td></td>
+              </tr>
+              
+            
+            </tbody>
+          </table>
+          
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/diagnosis_service.proto">heyrenee/v1/diagnosis_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.CreatePatientDiagnosisRequest">CreatePatientDiagnosisRequest</h3>
+        <p>Request message for CreatePatientDiagnosis.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_diagnosis</td>
+                  <td><a href="#heyrenee.v1.messages.PatientDiagnosis">messages.PatientDiagnosis</a></td>
+                  <td></td>
+                  <td><p>The PatientDiagnosis to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.DiagnosisSuggestRequest">DiagnosisSuggestRequest</h3>
+        <p>Request message for DiagnosisSuggest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>partial_text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The partial text be used to generate DiagnosisSuggestions. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.DiagnosisSuggestResponse">DiagnosisSuggestResponse</h3>
+        <p>Response message for DiagnosisSuggest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>diagnosis_suggestions</td>
+                  <td><a href="#heyrenee.v1.DiagnosisSuggestion">DiagnosisSuggestion</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of DiagnosisSuggestions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.DiagnosisSuggestion">DiagnosisSuggestion</h3>
+        <p>A DiagnosisSuggestion represents a single Diagnosis suggested as an autocompletion result for the partial text in a</p><p>DiagnosisSuggestRequest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>diagnosis_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the suggested Diagnosis. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The name of the Diagnosis that should be displayed to the user in the list of suggestions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientDiagnosesRequest">ListPatientDiagnosesRequest</h3>
+        <p>Request message for ListPatientDiagnoses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return Appointments for. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>patient_diagnosis_status</td>
+                  <td><a href="#heyrenee.v1.messages.PatientDiagnosisStatus">messages.PatientDiagnosisStatus</a></td>
+                  <td></td>
+                  <td><p>The status of the PatientDiagnoses. If specified, only PatientDiagnoses with the specified status will be returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientDiagnosesResponse">ListPatientDiagnosesResponse</h3>
+        <p>Response message for ListPatientDiagnoses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_diagnoses</td>
+                  <td><a href="#heyrenee.v1.messages.PatientDiagnosis">messages.PatientDiagnosis</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientDiagnoses. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdatePatientDiagnosisRequest">UpdatePatientDiagnosisRequest</h3>
+        <p>Request message for UpdatePatientDiagnosis.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_diagnosis</td>
+                  <td><a href="#heyrenee.v1.messages.PatientDiagnosis">messages.PatientDiagnosis</a></td>
+                  <td></td>
+                  <td><p>The PatientDiagnosis to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.DiagnosisService">DiagnosisService</h3>
+        <p>DiagnosisService</p><p>The DiagnosisService provides operations on Diagnosis resources along with managing PatientDiagnoses which represent</p><p>relationships between Patient users and Diagnoses.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DiagnosisSuggest</td>
+                <td><a href="#heyrenee.v1.DiagnosisSuggestRequest">DiagnosisSuggestRequest</a></td>
+                <td><a href="#heyrenee.v1.DiagnosisSuggestResponse">DiagnosisSuggestResponse</a></td>
+                <td><p>DiagnosisSuggest returns a list of DiagnosisSuggestions based on a partial search string. This should only be
+used for autocomplete like features and not as a full fledged Diagnosis search method.
+
+TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+https://github.com/grpc/grpc-web/issues/24</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePatientDiagnosis</td>
+                <td><a href="#heyrenee.v1.CreatePatientDiagnosisRequest">CreatePatientDiagnosisRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientDiagnosis">messages.PatientDiagnosis</a></td>
+                <td><p>CreatePatientDiagnosis creates a specified PatientDiagnosis.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePatientDiagnosis</td>
+                <td><a href="#heyrenee.v1.UpdatePatientDiagnosisRequest">UpdatePatientDiagnosisRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientDiagnosis">messages.PatientDiagnosis</a></td>
+                <td><p>UpdatePatientDiagnosis creates a specified PatientDiagnosis.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientDiagnoses</td>
+                <td><a href="#heyrenee.v1.ListPatientDiagnosesRequest">ListPatientDiagnosesRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientDiagnosesResponse">ListPatientDiagnosesResponse</a></td>
+                <td><p>ListPatientDiagnoses lists the PatientDiagnoses for a specified Patient.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/insurance_service.proto">heyrenee/v1/insurance_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.CreateInsuranceRequest">CreateInsuranceRequest</h3>
+        <p>Request message for CreateInsurance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>insurance</td>
+                  <td><a href="#heyrenee.v1.messages.Insurance">messages.Insurance</a></td>
+                  <td></td>
+                  <td><p>The Insurance resource to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListInsuranceRequest">ListInsuranceRequest</h3>
+        <p>Request message for ListInsurance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return Insurance for. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>insurance_status</td>
+                  <td><a href="#heyrenee.v1.messages.InsuranceStatus">messages.InsuranceStatus</a></td>
+                  <td></td>
+                  <td><p>The status of Insurance that should be returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListInsuranceResponse">ListInsuranceResponse</h3>
+        <p>Response message for ListInsurance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>insurance</td>
+                  <td><a href="#heyrenee.v1.messages.Insurance">messages.Insurance</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of Insurance. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdateInsuranceRequest">UpdateInsuranceRequest</h3>
+        <p>Request message for UpdateInsurance.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>insurance</td>
+                  <td><a href="#heyrenee.v1.messages.Insurance">messages.Insurance</a></td>
+                  <td></td>
+                  <td><p>The Insurance resource to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.InsuranceService">InsuranceService</h3>
+        <p>InsuranceService</p><p>The InsuranceService provides operations on insurance related resources that belong to specific Patients.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateInsurance</td>
+                <td><a href="#heyrenee.v1.CreateInsuranceRequest">CreateInsuranceRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Insurance">messages.Insurance</a></td>
+                <td><p>CreateInsurance creates a provided Insurance resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateInsurance</td>
+                <td><a href="#heyrenee.v1.UpdateInsuranceRequest">UpdateInsuranceRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Insurance">messages.Insurance</a></td>
+                <td><p>UpdateInsurance updates a provided Insurance resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListInsurance</td>
+                <td><a href="#heyrenee.v1.ListInsuranceRequest">ListInsuranceRequest</a></td>
+                <td><a href="#heyrenee.v1.ListInsuranceResponse">ListInsuranceResponse</a></td>
+                <td><p>ListInsurance lists Insurance resources for a specified Patient.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/medication_service.proto">heyrenee/v1/medication_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.CreatePrescriptionRequest">CreatePrescriptionRequest</h3>
+        <p>Request message for CreatePrescription.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prescription</td>
+                  <td><a href="#heyrenee.v1.messages.Prescription">messages.Prescription</a></td>
+                  <td></td>
+                  <td><p>The Prescription resource to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListMedicationDosesRequest">ListMedicationDosesRequest</h3>
+        <p>Request message for ListMedicationDoses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prescription_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Prescription to return MedicationDoses for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListMedicationDosesResponse">ListMedicationDosesResponse</h3>
+        <p>Response message for ListMedicationDoses.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>medication_doses</td>
+                  <td><a href="#heyrenee.v1.messages.MedicationDose">messages.MedicationDose</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of MedicationDoses. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPrescriptionsRequest">ListPrescriptionsRequest</h3>
+        <p>Request message for ListPrescriptions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return Prescriptions for. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prescription_status</td>
+                  <td><a href="#heyrenee.v1.messages.PrescriptionStatus">messages.PrescriptionStatus</a></td>
+                  <td></td>
+                  <td><p>The status of Prescriptions that should be returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPrescriptionsResponse">ListPrescriptionsResponse</h3>
+        <p>Response message for ListPrescriptions.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prescriptions</td>
+                  <td><a href="#heyrenee.v1.messages.Prescription">messages.Prescription</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of Prescriptions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListRefillsRequest">ListRefillsRequest</h3>
+        <p>Request message for ListRefills.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prescription_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Prescription to return Refills for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListRefillsResponse">ListRefillsResponse</h3>
+        <p>Response message for ListRefills.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>refills</td>
+                  <td><a href="#heyrenee.v1.messages.Refill">messages.Refill</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of Refills. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.MedicationSuggestRequest">MedicationSuggestRequest</h3>
+        <p>Request message for MedicationSuggest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>partial_text</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The partial text be used to generate MedicationSuggestions. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.MedicationSuggestResponse">MedicationSuggestResponse</h3>
+        <p>Response message for MedicationSuggest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>medication_suggestions</td>
+                  <td><a href="#heyrenee.v1.MedicationSuggestion">MedicationSuggestion</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of MedicationSuggestions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.MedicationSuggestion">MedicationSuggestion</h3>
+        <p>A MedicationSuggestion represents a single medication suggested as an autocompletion result for the partial text in a</p><p>MedicationSuggestRequest.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>medication_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the suggested Medication. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The name of the Medication that should be displayed to the user in the list of suggestions. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdatePrescriptionRequest">UpdatePrescriptionRequest</h3>
+        <p>Request message for UpdatePrescription.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prescription</td>
+                  <td><a href="#heyrenee.v1.messages.Prescription">messages.Prescription</a></td>
+                  <td></td>
+                  <td><p>The Prescription resource to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.MedicationService">MedicationService</h3>
+        <p>MedicationService</p><p>The MedicationService provides operations on the Medication related resources that belonging to specific Patients.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MedicationSuggest</td>
+                <td><a href="#heyrenee.v1.MedicationSuggestRequest">MedicationSuggestRequest</a></td>
+                <td><a href="#heyrenee.v1.MedicationSuggestResponse">MedicationSuggestResponse</a></td>
+                <td><p>MedicationSuggest returns a list of MedicationSuggestions based on a partial search string. This should only be
+used for autocomplete like features and not as a full fledged Medication search method.
+
+TODO(mitch): Use bi-directional streaming once client streaming supported by grpc-web
+https://github.com/grpc/grpc-web/issues/24</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePrescription</td>
+                <td><a href="#heyrenee.v1.CreatePrescriptionRequest">CreatePrescriptionRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Prescription">messages.Prescription</a></td>
+                <td><p>CreatePrescription creates the provided Prescription resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePrescription</td>
+                <td><a href="#heyrenee.v1.UpdatePrescriptionRequest">UpdatePrescriptionRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Prescription">messages.Prescription</a></td>
+                <td><p>UpdatePrescription updates the provided Prescription resource.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPrescriptions</td>
+                <td><a href="#heyrenee.v1.ListPrescriptionsRequest">ListPrescriptionsRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPrescriptionsResponse">ListPrescriptionsResponse</a></td>
+                <td><p>ListPrescriptions lists the Prescription resources for the specified Patient.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListMedicationDoses</td>
+                <td><a href="#heyrenee.v1.ListMedicationDosesRequest">ListMedicationDosesRequest</a></td>
+                <td><a href="#heyrenee.v1.ListMedicationDosesResponse">ListMedicationDosesResponse</a></td>
+                <td><p>ListMedicationDoses lists the MedicationDoses for the specified Prescription.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListRefills</td>
+                <td><a href="#heyrenee.v1.ListRefillsRequest">ListRefillsRequest</a></td>
+                <td><a href="#heyrenee.v1.ListRefillsResponse">ListRefillsResponse</a></td>
+                <td><p>ListRefills lists the Refills for the specified Prescription.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/patient_service.proto">heyrenee/v1/patient_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.CreatePatientAssessmentRequest">CreatePatientAssessmentRequest</h3>
+        <p>Request message for CreatePatientAssessment.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_assessment</td>
+                  <td><a href="#heyrenee.v1.messages.PatientAssessment">messages.PatientAssessment</a></td>
+                  <td></td>
+                  <td><p>The PatientAssessment to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.CreatePatientCaregiverRequest">CreatePatientCaregiverRequest</h3>
+        <p>Request message for CreatePatientCaregiver.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_caregiver</td>
+                  <td><a href="#heyrenee.v1.messages.PatientCaregiver">messages.PatientCaregiver</a></td>
+                  <td></td>
+                  <td><p>The PatientCaregiver to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.CreatePatientHealthQuestionnaireRequest">CreatePatientHealthQuestionnaireRequest</h3>
+        <p>Request message for CreatePatientHealthQuestionnaire.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_health_questionnaire</td>
+                  <td><a href="#heyrenee.v1.messages.PatientHealthQuestionnaire">messages.PatientHealthQuestionnaire</a></td>
+                  <td></td>
+                  <td><p>The PatientHealthQuestionnaire to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.CreatePatientSatisfactionQuestionnaireRequest">CreatePatientSatisfactionQuestionnaireRequest</h3>
+        <p>Request message for CreatePatientSatisfactionQuestionnaire.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_satisfaction_questionnaire</td>
+                  <td><a href="#heyrenee.v1.messages.PatientSatisfactionQuestionnaire">messages.PatientSatisfactionQuestionnaire</a></td>
+                  <td></td>
+                  <td><p>The PatientSatisfactionQuestionnaire to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.CreatePatientSdohQuestionnaireRequest">CreatePatientSdohQuestionnaireRequest</h3>
+        <p>Request message for CreatePatientSdohQuestionnaire.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_sdoh_questionnaire</td>
+                  <td><a href="#heyrenee.v1.messages.PatientSdohQuestionnaire">messages.PatientSdohQuestionnaire</a></td>
+                  <td></td>
+                  <td><p>The PatientSdohQuestionnaire to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientAssessmentsRequest">ListPatientAssessmentsRequest</h3>
+        <p>Request message for ListPatientAssessments.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return PatientAssessments for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientAssessmentsResponse">ListPatientAssessmentsResponse</h3>
+        <p>Response message for ListPatientAssessments.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_assessments</td>
+                  <td><a href="#heyrenee.v1.messages.PatientAssessment">messages.PatientAssessment</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientAssessments. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientCaregiversRequest">ListPatientCaregiversRequest</h3>
+        <p>Request message for ListPatientCaregivers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return PatientCaregivers for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientCaregiversResponse">ListPatientCaregiversResponse</h3>
+        <p>Response message for ListPatientCaregivers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_caregivers</td>
+                  <td><a href="#heyrenee.v1.messages.PatientCaregiver">messages.PatientCaregiver</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientCaregivers. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientHealthQuestionnairesRequest">ListPatientHealthQuestionnairesRequest</h3>
+        <p>Request message for ListPatientHealthQuestionnaires.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return PatientHealthQuestionnaires for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientHealthQuestionnairesResponse">ListPatientHealthQuestionnairesResponse</h3>
+        <p>Response message for ListPatientHealthQuestionnaires.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_health_questionnaires</td>
+                  <td><a href="#heyrenee.v1.messages.PatientHealthQuestionnaire">messages.PatientHealthQuestionnaire</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientHealthQuestionnaires. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientSatisfactionQuestionnairesRequest">ListPatientSatisfactionQuestionnairesRequest</h3>
+        <p>Request message for ListPatientSatisfactionQuestionnaires.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return PatientSatisfactionQuestionnaires for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientSatisfactionQuestionnairesResponse">ListPatientSatisfactionQuestionnairesResponse</h3>
+        <p>Response message for ListPatientSatisfactionQuestionnaires.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_satisfaction_questionnaires</td>
+                  <td><a href="#heyrenee.v1.messages.PatientSatisfactionQuestionnaire">messages.PatientSatisfactionQuestionnaire</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientSatisfactionQuestionnaires. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientSdohQuestionnairesRequest">ListPatientSdohQuestionnairesRequest</h3>
+        <p>Request message for ListPatientSdohQuestionnaires.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return PatientSdohQuestionnaires for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientSdohQuestionnairesResponse">ListPatientSdohQuestionnairesResponse</h3>
+        <p>Response message for ListPatientSdohQuestionnaires.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_sdoh_questionnaires</td>
+                  <td><a href="#heyrenee.v1.messages.PatientSdohQuestionnaire">messages.PatientSdohQuestionnaire</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientSdohQuestionnaires. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdatePatientCaregiverRequest">UpdatePatientCaregiverRequest</h3>
+        <p>Request message for UpdatePatientCaregiver.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_caregiver</td>
+                  <td><a href="#heyrenee.v1.messages.PatientCaregiver">messages.PatientCaregiver</a></td>
+                  <td></td>
+                  <td><p>The PatientCaregiver to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.PatientService">PatientService</h3>
+        <p>PatientService</p><p>The PatientService provides functionality for managing Patient subusers. Specifically, it provides methods for</p><p>storing and accessing the results of Patient assessments, storing and accessing the results of Patient</p><p>questionnaires, and managing relationships between Patients and other subusers.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreatePatientCaregiver</td>
+                <td><a href="#heyrenee.v1.CreatePatientCaregiverRequest">CreatePatientCaregiverRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientCaregiver">messages.PatientCaregiver</a></td>
+                <td><p>CreatePatientCaregiver creates a specified PatientCaregiver.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePatientCaregiver</td>
+                <td><a href="#heyrenee.v1.UpdatePatientCaregiverRequest">UpdatePatientCaregiverRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientCaregiver">messages.PatientCaregiver</a></td>
+                <td><p>UpdatePatientCaregiver updates a specified PatientCaregiver.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientCaregivers</td>
+                <td><a href="#heyrenee.v1.ListPatientCaregiversRequest">ListPatientCaregiversRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientCaregiversResponse">ListPatientCaregiversResponse</a></td>
+                <td><p>ListPatientCaregivers lists PatientCaregivers for a specific Patient.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePatientAssessment</td>
+                <td><a href="#heyrenee.v1.CreatePatientAssessmentRequest">CreatePatientAssessmentRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientAssessment">messages.PatientAssessment</a></td>
+                <td><p>CreatePatientAssessment creates a specified PatientAssessment.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientAssessments</td>
+                <td><a href="#heyrenee.v1.ListPatientAssessmentsRequest">ListPatientAssessmentsRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientAssessmentsResponse">ListPatientAssessmentsResponse</a></td>
+                <td><p>ListPatientAssessments lists PatientAssessments for a specific Patient.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePatientSatisfactionQuestionnaire</td>
+                <td><a href="#heyrenee.v1.CreatePatientSatisfactionQuestionnaireRequest">CreatePatientSatisfactionQuestionnaireRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientSatisfactionQuestionnaire">messages.PatientSatisfactionQuestionnaire</a></td>
+                <td><p>CreatePatientSatisfactionQuestionnaire creates a specified PatientSatisfactionQuestionnaire.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientSatisfactionQuestionnaires</td>
+                <td><a href="#heyrenee.v1.ListPatientSatisfactionQuestionnairesRequest">ListPatientSatisfactionQuestionnairesRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientSatisfactionQuestionnairesResponse">ListPatientSatisfactionQuestionnairesResponse</a></td>
+                <td><p>ListPatientSatisfactionQuestionnaires lists PatientSatisfactionQuestionnaires for a specific Patient.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePatientHealthQuestionnaire</td>
+                <td><a href="#heyrenee.v1.CreatePatientHealthQuestionnaireRequest">CreatePatientHealthQuestionnaireRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientHealthQuestionnaire">messages.PatientHealthQuestionnaire</a></td>
+                <td><p>CreatePatientHealthQuestionnaire creates a specified PatientHealthQuestionnaire.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientHealthQuestionnaires</td>
+                <td><a href="#heyrenee.v1.ListPatientHealthQuestionnairesRequest">ListPatientHealthQuestionnairesRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientHealthQuestionnairesResponse">ListPatientHealthQuestionnairesResponse</a></td>
+                <td><p>ListPatientHealthQuestionnaires lists PatientHealthQuestionnaires for a specific Patient.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePatientSdohQuestionnaire</td>
+                <td><a href="#heyrenee.v1.CreatePatientSdohQuestionnaireRequest">CreatePatientSdohQuestionnaireRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientSdohQuestionnaire">messages.PatientSdohQuestionnaire</a></td>
+                <td><p>CreatePatientSdohQuestionnaire creates a specified PatientSdohQuestionnaire.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientSdohQuestionnaires</td>
+                <td><a href="#heyrenee.v1.ListPatientSdohQuestionnairesRequest">ListPatientSdohQuestionnairesRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientSdohQuestionnairesResponse">ListPatientSdohQuestionnairesResponse</a></td>
+                <td><p>ListPatientSdohQuestionnaires lists PatientSdohQuestionnaires for a specific Patient.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/provider_service.proto">heyrenee/v1/provider_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.CreatePatientProviderRequest">CreatePatientProviderRequest</h3>
+        <p>Request message for CreatePatientProvider.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_provider</td>
+                  <td><a href="#heyrenee.v1.messages.PatientProvider">messages.PatientProvider</a></td>
+                  <td></td>
+                  <td><p>The PatientProvider to create. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientProvidersRequest">ListPatientProvidersRequest</h3>
+        <p>Request message for ListPatientProviders.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return PatientProviders for. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>patient_provider_status</td>
+                  <td><a href="#heyrenee.v1.messages.PatientProviderStatus">messages.PatientProviderStatus</a></td>
+                  <td></td>
+                  <td><p>The PatientProvider status. If specified, only PatientProviders with this status will be returned. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>patient_provider_type</td>
+                  <td><a href="#heyrenee.v1.messages.PatientProviderType">messages.PatientProviderType</a></td>
+                  <td></td>
+                  <td><p>The PatientProvider type. If specified, only PatientProviders of this type will be returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListPatientProvidersResponse">ListPatientProvidersResponse</h3>
+        <p>Response message for ListPatientProviders.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_providers</td>
+                  <td><a href="#heyrenee.v1.messages.PatientProvider">messages.PatientProvider</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of PatientProviders. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.SearchProvidersRequest">SearchProvidersRequest</h3>
+        <p>Request message for SearchProviders.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>first_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>specialty</td>
+                  <td><a href="#heyrenee.v1.enums.Specialty">enums.Specialty</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>city</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.SearchProvidersResponse">SearchProvidersResponse</h3>
+        <p>Response message for SearchProviders.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>providers</td>
+                  <td><a href="#heyrenee.v1.messages.Provider">messages.Provider</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of Providers. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdatePatientProviderRequest">UpdatePatientProviderRequest</h3>
+        <p>Request message for UpdatePatientProvider.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_provider</td>
+                  <td><a href="#heyrenee.v1.messages.PatientProvider">messages.PatientProvider</a></td>
+                  <td></td>
+                  <td><p>The PatientProvider to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.ProviderService">ProviderService</h3>
+        <p>ProviderService</p><p>The Provider service provides operations on Provider resources as well as PatientProviders which represent a</p><p>relationship between a Patient user and a Provider resource.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SearchProviders</td>
+                <td><a href="#heyrenee.v1.SearchProvidersRequest">SearchProvidersRequest</a></td>
+                <td><a href="#heyrenee.v1.SearchProvidersResponse">SearchProvidersResponse</a></td>
+                <td><p>SearchProviders returns a list of Providers based on the provided search parameters.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreatePatientProvider</td>
+                <td><a href="#heyrenee.v1.CreatePatientProviderRequest">CreatePatientProviderRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientProvider">messages.PatientProvider</a></td>
+                <td><p>CreatePatientProvider creates a specified PatientProvider.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePatientProvider</td>
+                <td><a href="#heyrenee.v1.UpdatePatientProviderRequest">UpdatePatientProviderRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.PatientProvider">messages.PatientProvider</a></td>
+                <td><p>UpdatePatientProvider updates a specified PatientProvider.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListPatientProviders</td>
+                <td><a href="#heyrenee.v1.ListPatientProvidersRequest">ListPatientProvidersRequest</a></td>
+                <td><a href="#heyrenee.v1.ListPatientProvidersResponse">ListPatientProvidersResponse</a></td>
+                <td><p>ListPatientProviders lists PatientProviders for a specified Patient.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/rpm_service.proto">heyrenee/v1/rpm_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.ListRpmMeasurementsRequest">ListRpmMeasurementsRequest</h3>
+        <p>Request message for ListRpmMeasurements.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>rpm_schedule_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the RpmSchedule to return RpmMeasurements for. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListRpmMeasurementsResponse">ListRpmMeasurementsResponse</h3>
+        <p>Response message for ListRpmMeasurements.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>rpm_measurements</td>
+                  <td><a href="#heyrenee.v1.messages.RpmMeasurement">messages.RpmMeasurement</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of RpmMeasurements. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListRpmSchedulesRequest">ListRpmSchedulesRequest</h3>
+        <p>Request message for ListRpmSchedules.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to return RpmSchedules for. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>rpm_schedule_status</td>
+                  <td><a href="#heyrenee.v1.messages.RpmScheduleStatus">messages.RpmScheduleStatus</a></td>
+                  <td></td>
+                  <td><p>The status of the RpmSchedules. If specified, only RpmSchedules of this status are returned. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.ListRpmSchedulesResponse">ListRpmSchedulesResponse</h3>
+        <p>Response message for ListRpmSchedules.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>rpm_schedules</td>
+                  <td><a href="#heyrenee.v1.messages.RpmSchedule">messages.RpmSchedule</a></td>
+                  <td>repeated</td>
+                  <td><p>The list of RpmSchedules. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.RpmService">RpmService</h3>
+        <p>RpmService</p><p>The RpmService provides access to resources related to Remote Patient Monitoring (RPM).</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ListRpmSchedules</td>
+                <td><a href="#heyrenee.v1.ListRpmSchedulesRequest">ListRpmSchedulesRequest</a></td>
+                <td><a href="#heyrenee.v1.ListRpmSchedulesResponse">ListRpmSchedulesResponse</a></td>
+                <td><p>ListRpmSchedules retrieves a list of a Patient&#39;s RpmSchedules. These schedules specify when a patient should use
+RPM devices to take different RPM measurements.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListRpmMeasurements</td>
+                <td><a href="#heyrenee.v1.ListRpmMeasurementsRequest">ListRpmMeasurementsRequest</a></td>
+                <td><a href="#heyrenee.v1.ListRpmMeasurementsResponse">ListRpmMeasurementsResponse</a></td>
+                <td><p>ListRpmMeasurements retrieves a list of RpmMeasurements for a specific RpmSchedule. These measurements represent a
+single event where an RPM device was used to take a measurement. The RpmMeasurement contains a list of RpmResults
+where each individual result of the measurement event is listed.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="heyrenee/v1/user_service.proto">heyrenee/v1/user_service.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="heyrenee.v1.CreateCaregiverRequest">CreateCaregiverRequest</h3>
+        <p>Request message for CreateCaregiver.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>caregiver</td>
+                  <td><a href="#heyrenee.v1.messages.Caregiver">messages.Caregiver</a></td>
+                  <td></td>
+                  <td><p>The Caregiver to create. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Hash of the Caregiver&#39;s password. If not provided, a random password will be generated. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.CreatePatientRequest">CreatePatientRequest</h3>
+        <p>Request message for CreatePatient.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient</td>
+                  <td><a href="#heyrenee.v1.messages.Patient">messages.Patient</a></td>
+                  <td></td>
+                  <td><p>The Patient to create. Required. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The Patient&#39;s password. If not provided, a random password will be generated. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.GetCaregiverRequest">GetCaregiverRequest</h3>
+        <p>Request message for GetCaregiver.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>caregiver_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Caregiver to retrieve. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.GetPatientRequest">GetPatientRequest</h3>
+        <p>Request message for GetPatient.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the Patient to retrieve. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdateCaregiverRequest">UpdateCaregiverRequest</h3>
+        <p>Request message for UpdateCaregiver.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>caregiver</td>
+                  <td><a href="#heyrenee.v1.messages.Caregiver">messages.Caregiver</a></td>
+                  <td></td>
+                  <td><p>The Caregiver to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="heyrenee.v1.UpdatePatientRequest">UpdatePatientRequest</h3>
+        <p>Request message for UpdatePatient.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>patient</td>
+                  <td><a href="#heyrenee.v1.messages.Patient">messages.Patient</a></td>
+                  <td></td>
+                  <td><p>The Patient to update. Required. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="heyrenee.v1.UserService">UserService</h3>
+        <p>UserService</p><p>The UserService provides methods for the creation and management of HeyRenee users.</p><p>URLs</p><p>Scratch: heyrenee-v1-8jiz6fu6.uc.gateway.dev</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreatePatient</td>
+                <td><a href="#heyrenee.v1.CreatePatientRequest">CreatePatientRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Patient">messages.Patient</a></td>
+                <td><p>CreatePatient creates a new User with a Patient subuser. If the request is unauthenticated, a standalone user with
+a Patient subuser will be created. If the request is authenticated by a Caregiver or Concierge subuser then the new
+Patient subuser will be created with a PatientCaregiver or a PatientConcierge for the authenticated subuser.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetPatient</td>
+                <td><a href="#heyrenee.v1.GetPatientRequest">GetPatientRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Patient">messages.Patient</a></td>
+                <td><p>GetPatient retrieves a specified Patient subuser.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePatient</td>
+                <td><a href="#heyrenee.v1.UpdatePatientRequest">UpdatePatientRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Patient">messages.Patient</a></td>
+                <td><p>UpdatePatient updates a specified Patient subuser.</p></td>
+              </tr>
+            
+              <tr>
+                <td>CreateCaregiver</td>
+                <td><a href="#heyrenee.v1.CreateCaregiverRequest">CreateCaregiverRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Caregiver">messages.Caregiver</a></td>
+                <td><p>CreateCaregiver creates a new User with a Caregiver subuser.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetCaregiver</td>
+                <td><a href="#heyrenee.v1.GetCaregiverRequest">GetCaregiverRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Caregiver">messages.Caregiver</a></td>
+                <td><p>GetCaregiver retrieves a specified Caregiver subuser.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateCaregiver</td>
+                <td><a href="#heyrenee.v1.UpdateCaregiverRequest">UpdateCaregiverRequest</a></td>
+                <td><a href="#heyrenee.v1.messages.Caregiver">messages.Caregiver</a></td>
+                <td><p>UpdateCaregiver updates a specified Caregiver subuser.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+
